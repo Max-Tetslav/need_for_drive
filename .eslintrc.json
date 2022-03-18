@@ -27,6 +27,15 @@
     "@typescript-eslint",
     "jest"
   ],
+  // "settings": {
+  //   "react": {
+  //     "version": "detect",
+  //     "function-component-definition": ["<enabled>", {
+  //       "namedComponents": "arrow-function",
+  //       "unnamedComponents": "arrow-function"
+  //     }]
+  //   }
+  // },
   "rules": {
     "no-param-reassign": "off",
     "no-console": "error",
@@ -34,6 +43,7 @@
     "consistent-return": "warn",
     "no-underscore-dangle": "warn",
     "@typescript-eslint/no-explicit-any": "error",
+    "react/function-component-definition": "off",
     "prettier/prettier": [
       "error",
       {
