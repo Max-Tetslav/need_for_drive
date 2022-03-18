@@ -12,6 +12,7 @@
   align-items: center;
   cursor: pointer;
   padding: 0;
+  z-index: 99;
 
   &:focus {
     outline: none;
