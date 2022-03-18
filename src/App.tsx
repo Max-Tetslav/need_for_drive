@@ -5,7 +5,7 @@ import { store } from '@store/store';
 import Root from '@views/root/Root';
 import Homepage from '@views/homepage/Homepage';
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
@@ -17,6 +17,6 @@ function App() {
       </Provider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
