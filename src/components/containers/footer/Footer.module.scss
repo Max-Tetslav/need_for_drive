@@ -1,0 +1,25 @@
+.footer {
+  width: 560px;
+  height: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyRight {
+  color: #999;
+  font-size: 13px;
+  margin: 0;
+}
+
+.phoneLink {
+  color: #121212;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:active {
+    color: #0ec261;
+  }
+}
