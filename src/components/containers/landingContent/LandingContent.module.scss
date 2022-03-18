@@ -1,0 +1,64 @@
+.container {
+  width: 560px;
+  height: 308px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 97px;
+}
+
+.textContainer {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 70px;
+  line-height: 66px;
+  margin: 0;
+}
+
+.blackTitle {
+  color: #121212;
+}
+
+.greenTitle {
+  color: #0ec261;
+}
+
+.description {
+  font-size: 26px;
+  color: #999;
+  line-height: 30px;
+  margin: 0;
+}
+
+.button {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 48px;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+  }
+
+  &:active {
+    color: #fff;
+    background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+  }
+}
