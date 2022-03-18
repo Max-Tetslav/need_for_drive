@@ -1,0 +1,34 @@
+.container {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+
+  .text {
+    color: #0ec261;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    border: 1px solid #eee;
+
+    .text {
+      color: #eee;
+    }
+  }
+
+  &:active {
+    border: 1px solid #eee;
+
+    .text {
+      color: #0ec261;
+    }
+  }
+}
