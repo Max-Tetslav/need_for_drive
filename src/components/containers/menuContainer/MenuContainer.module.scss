@@ -15,6 +15,10 @@
   background-color: #111518;
   position: relative;
 
+  @media screen and (max-width: 1024px) {
+    width: 615px;
+  }
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }
@@ -26,6 +30,18 @@
   left: 128px;
   top: calc(50% - 100px);
   padding: 0;
+
+  @media screen and (max-width: 768px) {
+    top: 317px;
+    left: 97px;
+    height: 247px;
+  }
+
+  @media screen and (max-width: 320px) {
+    top: 76px;
+    left: 24px;
+    height: 219px;
+  }
 }
 
 .linkMenu {
@@ -37,6 +53,14 @@
   padding: 0;
   margin: 0;
 
+  @media screen and (max-width: 768px) {
+    height: 177px;
+  }
+
+  @media screen and (max-width: 420px) {
+    height: 149px;
+  }
+
   .link {
     font-weight: 500;
     font-size: 32px;
@@ -44,6 +68,16 @@
     color: #fff;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 768px) {
+      font-size: 28px;
+      line-height: 33px;
+    }
+
+    @media screen and (max-width: 420px) {
+      font-size: 22px;
+      line-height: 26px;
+    }
 
     &:hover {
       color: #0ec261;
@@ -77,6 +111,10 @@
   height: 100%;
   width: calc((100% - 64px) / 2);
   background: rgb(21 27 31 / 81%);
+
+  @media screen and (max-width: 1024px) {
+    width: 410px;
+  }
 
   @media screen and (max-width: 768px) {
     display: none;

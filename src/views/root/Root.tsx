@@ -16,7 +16,7 @@ const Root: React.FC = () => {
     <>
       <Aside />
       <MenuBtn isActive={isMenuOpened} clickHandler={menuBtnHandler} />
-      <LangSwitcher />
+      <LangSwitcher isMenuOpen={isMenuOpened} />
       <MenuContainer isOpen={isMenuOpened} />
       <Outlet />
     </>

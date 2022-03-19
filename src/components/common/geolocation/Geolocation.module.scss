@@ -8,4 +8,8 @@
 .text {
   color: #999;
   font-size: 14px;
+
+  @media screen and (max-width: 420px) {
+    margin: 0;
+  }
 }

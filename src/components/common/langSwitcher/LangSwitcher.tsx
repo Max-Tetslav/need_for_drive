@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from './LangSwitcher.module.scss';
 
-const LangSwitcher: React.FC = () => {
+interface IProps {
+  isMenuOpen: boolean;
+}
+
+const LangSwitcher: React.FC<IProps> = ({ isMenuOpen }) => {
   const [actualLang] = useState('Eng');
+  const [mobileAdaptive, setMobileAdaptive] = useState<React.CSSProperties>();
+
+  useEffect(() => {
+    if (window.innerWidth <= 420 && isMenuOpen) {
+      setTimeout(() => setMobileAdaptive({ display: 'flex' }), 1000);
+    } else {
+      setMobileAdaptive(undefined);
+    }
+  }, [isMenuOpen]);
 
   return (
-    <button className={cl.container} type="button">
+    <button className={cl.container} type="button" style={mobileAdaptive}>
       <p className={cl.text}>{actualLang}</p>
     </button>
   );

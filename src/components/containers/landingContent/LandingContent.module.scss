@@ -1,10 +1,24 @@
 .container {
-  width: 560px;
+  min-width: 560px;
   height: 308px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 97px;
+
+  @media screen and (max-width: 1024px) {
+    min-width: 481px;
+  }
+
+  @media screen and (max-width: 768px) {
+    min-width: 615px;
+  }
+
+  @media screen and (max-width: 420px) {
+    min-width: 100%;
+    height: 211px;
+    margin-bottom: 130px;
+  }
 }
 
 .textContainer {
@@ -12,12 +26,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (max-width: 420px) {
+    padding: 0 16px;
+    height: 129px;
+  }
 }
 
 .title {
   font-size: 70px;
   line-height: 66px;
   margin: 0;
+
+  @media screen and (max-width: 420px) {
+    font-size: 32px;
+    line-height: 100%;
+  }
 }
 
 .blackTitle {
@@ -33,6 +57,11 @@
   color: #999;
   line-height: 30px;
   margin: 0;
+
+  @media screen and (max-width: 420px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 
 .button {
@@ -51,6 +80,12 @@
   background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
   background-blend-mode: darken;
   border-radius: 8px;
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+  }
 
   &:hover,
   &:focus {

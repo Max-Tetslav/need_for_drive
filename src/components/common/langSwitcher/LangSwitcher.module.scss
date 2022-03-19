@@ -11,9 +11,18 @@
   position: absolute;
   bottom: 15px;
   left: 8px;
+  padding: 0;
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 768px) {
+    left: 19px;
+    bottom: 19px;
+  }
+
+  @media screen and (max-width: 420px) {
     z-index: 99;
+    display: none;
+    left: 11px;
+    bottom: 13px;
   }
 
   .text {
