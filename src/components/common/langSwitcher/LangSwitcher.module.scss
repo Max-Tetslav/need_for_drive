@@ -8,6 +8,13 @@
   align-items: center;
   border-radius: 50%;
   transition: all 0.1s ease-in-out;
+  position: absolute;
+  bottom: 15px;
+  left: 8px;
+
+  @media screen and (max-width: 320px) {
+    z-index: 99;
+  }
 
   .text {
     color: #0ec261;
