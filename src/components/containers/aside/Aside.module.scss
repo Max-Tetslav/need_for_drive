@@ -8,9 +8,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding-bottom: 15px;
 
   @media screen and (max-width: 320px) {
-    display: none;
+    background-color: none;
   }
 }
