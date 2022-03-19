@@ -8,8 +8,9 @@
   top: 32px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 6px 0;
   cursor: pointer;
   padding: 0;
   z-index: 99;
@@ -21,7 +22,7 @@
   &::after,
   &::before,
   span {
-    width: 24px;
+    width: 26px;
     height: 3px;
     display: block;
     background: #fff;
