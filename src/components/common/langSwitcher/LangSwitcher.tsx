@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import cl from './LangSwitcher.module.scss';
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const LangSwitcher: React.FC<IProps> = ({ isMenuOpen }) => {
-  const [actualLang] = useState('Eng');
+  const [actualLang, setActualLang] = useState('Eng');
   const [mobileAdaptive, setMobileAdaptive] = useState<React.CSSProperties>();
 
   useEffect(() => {
@@ -17,8 +17,16 @@ const LangSwitcher: React.FC<IProps> = ({ isMenuOpen }) => {
     }
   }, [isMenuOpen]);
 
+  const switchLang = useCallback(() => {
+    if (actualLang === 'Eng') {
+      setActualLang('Рус');
+    } else {
+      setActualLang('Eng');
+    }
+  }, [actualLang]);
+
   return (
-    <button className={cl.container} type="button" style={mobileAdaptive}>
+    <button className={cl.container} type="button" style={mobileAdaptive} onClick={switchLang}>
       <p className={cl.text}>{actualLang}</p>
     </button>
   );
