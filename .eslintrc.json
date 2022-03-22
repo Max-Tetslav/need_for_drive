@@ -35,6 +35,7 @@
     "no-underscore-dangle": "warn",
     "@typescript-eslint/no-explicit-any": "error",
     "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+    "react/require-default-props": "off",
     "prettier/prettier": [
       "error",
       {
