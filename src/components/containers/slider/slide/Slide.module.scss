@@ -18,6 +18,11 @@
   transition: all 0.5s ease-in-out;
   z-index: 1;
 
+  @media screen and (max-width: 1280px) {
+    width: 310px;
+    height: auto;
+  }
+
   @media screen and (max-width: 1024px) {
     width: 282px;
     height: 273px;
@@ -52,6 +57,7 @@
   margin: 0;
   font-weight: 500;
   line-height: 47px;
+  white-space: normal;
 
   @media screen and (max-width: 1024px) {
     font-size: 32px;
@@ -65,7 +71,8 @@
   font-size: 24px;
   font-weight: 300;
   line-height: 90%;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 32px;
   white-space: normal;
 
   @media screen and (max-width: 1024px) {
@@ -79,7 +86,7 @@
     transform: scale(1.05);
   }
 
-  position: absolute;
+  // position: absolute;
   width: 164px;
   height: 48px;
   bottom: 0;
