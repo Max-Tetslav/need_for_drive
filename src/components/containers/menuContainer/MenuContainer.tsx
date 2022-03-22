@@ -1,7 +1,6 @@
 import React from 'react';
-import TelegramIcon from '@components/icons/TelegramIcon';
-import FacebookIcon from '@components/icons/FacebookIcon';
-import InstagramIcon from '@components/icons/InstagramIcon';
+import socialMediaData from '@utils/constants/socialMediaData';
+import menuData from '@utils/constants/menuData';
 import cl from './MenuContainer.module.scss';
 
 interface IMenuContainerProps {
@@ -14,43 +13,26 @@ const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
       <div className={cl.navContainer}>
         <nav className={cl.nav}>
           <ul className={cl.linkMenu}>
-            <li>
-              <a className={cl.link} href="/">
-                ПАРКОВКА
-              </a>
-            </li>
-            <li>
-              <a className={cl.link} href="/">
-                СТРАХОВКА
-              </a>
-            </li>
-            <li>
-              <a className={cl.link} href="/">
-                БЕНЗИН
-              </a>
-            </li>
-            <li>
-              <a className={cl.link} href="/">
-                ОБСЛУЖИВАНИЕ
-              </a>
-            </li>
+            {menuData.map((item) => {
+              return (
+                <li key={item.id}>
+                  <a className={cl.link} href={item.path}>
+                    {item.text}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <ul className={cl.mediaMenu}>
-            <li>
-              <a className={cl.mediaLink} href="/">
-                <TelegramIcon />
-              </a>
-            </li>
-            <li>
-              <a className={cl.mediaLink} href="/">
-                <FacebookIcon />
-              </a>
-            </li>
-            <li>
-              <a className={cl.mediaLink} href="/">
-                <InstagramIcon />
-              </a>
-            </li>
+            {socialMediaData.map((item) => {
+              return (
+                <li key={item.id}>
+                  <a className={cl.mediaLink} href="/">
+                    {item.icon}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
