@@ -1,6 +1,8 @@
 import React from 'react';
+import classnames from 'classnames/bind';
 import socialMediaData from '@utils/constants/socialMediaData';
 import menuData from '@utils/constants/menuData';
+import LangSwitcher from '@components/common/langSwitcher/LangSwitcher';
 import cl from './MenuContainer.module.scss';
 
 interface IMenuContainerProps {
@@ -9,7 +11,8 @@ interface IMenuContainerProps {
 
 const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
   return (
-    <div className={isOpen ? [cl.menuContainer, cl.activeMenu].join(' ') : cl.menuContainer}>
+    <div className={classnames(cl.menuContainer, { [cl.activeMenu]: isOpen })}>
+      <LangSwitcher mobileClasses={classnames(cl.mobileLangSwitcher, cl.activeMobileLangSwitcher)} />
       <div className={cl.navContainer}>
         <nav className={cl.nav}>
           <ul className={cl.linkMenu}>

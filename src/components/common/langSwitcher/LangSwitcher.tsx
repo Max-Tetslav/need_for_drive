@@ -1,21 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import classnames from 'classnames';
 import cl from './LangSwitcher.module.scss';
 
 interface ILangSwitcherProps {
-  isMenuOpen: boolean;
+  mobileClasses?: string | undefined;
 }
 
-const LangSwitcher: React.FC<ILangSwitcherProps> = ({ isMenuOpen }) => {
+const LangSwitcher: React.FC<ILangSwitcherProps> = ({ mobileClasses }) => {
   const [actualLang, setActualLang] = useState('Eng');
-  const [mobileAdaptive, setMobileAdaptive] = useState<React.CSSProperties>();
-
-  useEffect(() => {
-    if (window.innerWidth <= 420 && isMenuOpen) {
-      setTimeout(() => setMobileAdaptive({ display: 'flex' }), 1000);
-    } else {
-      setMobileAdaptive(undefined);
-    }
-  }, [isMenuOpen]);
 
   const switchLang = useCallback(() => {
     if (actualLang === 'Eng') {
@@ -26,7 +18,11 @@ const LangSwitcher: React.FC<ILangSwitcherProps> = ({ isMenuOpen }) => {
   }, [actualLang]);
 
   return (
-    <button className={cl.container} type="button" style={mobileAdaptive} onClick={switchLang}>
+    <button
+      className={classnames({ [cl.container]: !mobileClasses }, { [mobileClasses as string]: mobileClasses })}
+      type="button"
+      onClick={switchLang}
+    >
       <p className={cl.text}>{actualLang}</p>
     </button>
   );
