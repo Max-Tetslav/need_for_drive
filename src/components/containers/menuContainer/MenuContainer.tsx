@@ -4,11 +4,11 @@ import FacebookIcon from '@components/icons/FacebookIcon';
 import InstagramIcon from '@components/icons/InstagramIcon';
 import cl from './MenuContainer.module.scss';
 
-interface IProps {
+interface IMenuContainerProps {
   isOpen: boolean;
 }
 
-const MenuContainer: React.FC<IProps> = ({ isOpen }) => {
+const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
   return (
     <div className={isOpen ? [cl.menuContainer, cl.activeMenu].join(' ') : cl.menuContainer}>
       <div className={cl.navContainer}>

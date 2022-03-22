@@ -1,12 +1,12 @@
 import React from 'react';
 import cl from './MenuBtn.module.scss';
 
-interface IProps {
+interface IMenuBtnProps {
   isActive: boolean;
   clickHandler: () => void;
 }
 
-const MenuBtn: React.FC<IProps> = ({ isActive, clickHandler }) => {
+const MenuBtn: React.FC<IMenuBtnProps> = ({ isActive, clickHandler }) => {
   return (
     <button
       type="button"

@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import cl from './LangSwitcher.module.scss';
 
-interface IProps {
+interface ILangSwitcherProps {
   isMenuOpen: boolean;
 }
 
-const LangSwitcher: React.FC<IProps> = ({ isMenuOpen }) => {
+const LangSwitcher: React.FC<ILangSwitcherProps> = ({ isMenuOpen }) => {
   const [actualLang, setActualLang] = useState('Eng');
   const [mobileAdaptive, setMobileAdaptive] = useState<React.CSSProperties>();
 

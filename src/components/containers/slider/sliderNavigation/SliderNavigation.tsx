@@ -3,12 +3,12 @@ import leftArrow from '@assets/svg/leftArrow.svg';
 import rightArrow from '@assets/svg/rightArrow.svg';
 import cl from './SliderNavigation.module.scss';
 
-interface IProps {
+interface ISliderNavigationProps {
   direction: 'right' | 'left';
   handleClick: () => void;
 }
 
-const SliderNavigation: React.FC<IProps> = ({ direction, handleClick }) => {
+const SliderNavigation: React.FC<ISliderNavigationProps> = ({ direction, handleClick }) => {
   const [classes] = useState<string>(
     direction === 'right' ? [cl.arrow, cl.rightArrow].join(' ') : [cl.arrow, cl.leftArrow].join(' '),
   );

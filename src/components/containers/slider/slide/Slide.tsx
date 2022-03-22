@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import cl from './Slide.module.scss';
 
-interface IProps {
+interface ISlideProps {
   imgUrl: string;
   title: string;
   description: string;
@@ -9,7 +9,7 @@ interface IProps {
   isActive: boolean;
 }
 
-const Slide: React.FC<IProps> = ({ isActive, imgUrl, title, description, buttonColor }) => {
+const Slide: React.FC<ISlideProps> = ({ isActive, imgUrl, title, description, buttonColor }) => {
   const [classes, setClasses] = useState<string>(isActive ? [cl.container, cl.active].join(' ') : cl.container);
 
   useEffect(() => {

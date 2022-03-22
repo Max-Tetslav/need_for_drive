@@ -6,11 +6,11 @@ import SliderNavigation from './sliderNavigation/SliderNavigation';
 import SliderPagination from './sliderPagination/SliderPagination';
 import cl from './Slider.module.scss';
 
-interface IProps {
+interface ISliderProps {
   slidesData: ISlide[];
 }
 
-const Slider: React.FC<IProps> = ({ slidesData }) => {
+const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
   const [activeNum, setActiveNum] = useState<number>(1);
   const [isHover, setIsHover] = useState<boolean>(false);
 
