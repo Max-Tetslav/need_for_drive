@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
+import classnames from 'classnames';
 import ISlide from '@models/sliderData';
 import cl from './SliderPagination.module.scss';
 
@@ -9,11 +10,7 @@ interface IBulletProps {
 }
 
 const Bullet: React.FC<IBulletProps> = ({ isActive, setSlide, id }) => {
-  const [classes, setClasses] = useState<string>(isActive ? [cl.bullet, cl.activeBullet].join(' ') : cl.bullet);
-
-  useEffect(() => {
-    setClasses(isActive ? [cl.bullet, cl.activeBullet].join(' ') : cl.bullet);
-  });
+  const classes = classnames(cl.bullet, { [cl.activeBullet]: isActive });
 
   const handler = useCallback(() => {
     // из props получаем id выбранного bullet, и устанавливаем новый активный слайд функцией setState из props

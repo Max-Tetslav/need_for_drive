@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import cl from './MenuBtn.module.scss';
 
 interface IMenuBtnProps {
@@ -8,12 +9,7 @@ interface IMenuBtnProps {
 
 const MenuBtn: React.FC<IMenuBtnProps> = ({ isActive, clickHandler }) => {
   return (
-    <button
-      type="button"
-      aria-label="menu"
-      className={isActive ? [cl.btn, cl.activeBtn].join(' ') : cl.btn}
-      onClick={clickHandler}
-    >
+    <button type="button" aria-label="menu" className={classnames(cl.btn, { [cl.activeBtn]: isActive })} onClick={clickHandler}>
       <span />
     </button>
   );

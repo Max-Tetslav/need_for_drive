@@ -1,4 +1,5 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
+import classnames from 'classnames';
 import cl from './Slide.module.scss';
 
 interface ISlideProps {
@@ -10,11 +11,7 @@ interface ISlideProps {
 }
 
 const Slide: React.FC<ISlideProps> = ({ isActive, imgUrl, title, description, buttonColor }) => {
-  const [classes, setClasses] = useState<string>(isActive ? [cl.container, cl.active].join(' ') : cl.container);
-
-  useEffect(() => {
-    setClasses(isActive ? [cl.container, cl.active].join(' ') : cl.container);
-  });
+  const classes = classnames(cl.container, { [cl.active]: isActive });
 
   return (
     <div className={classes}>

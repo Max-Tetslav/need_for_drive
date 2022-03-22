@@ -1,4 +1,5 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
+import classnames from 'classnames';
 import leftArrow from '@assets/svg/leftArrow.svg';
 import rightArrow from '@assets/svg/rightArrow.svg';
 import cl from './SliderNavigation.module.scss';
@@ -9,9 +10,7 @@ interface ISliderNavigationProps {
 }
 
 const SliderNavigation: React.FC<ISliderNavigationProps> = ({ direction, handleClick }) => {
-  const [classes] = useState<string>(
-    direction === 'right' ? [cl.arrow, cl.rightArrow].join(' ') : [cl.arrow, cl.leftArrow].join(' '),
-  );
+  const classes = classnames(cl.arrow, { [cl.rightArrow]: direction === 'right', [cl.leftArrow]: direction === 'left' });
 
   return (
     <button onClick={handleClick} className={classes} type="button">
