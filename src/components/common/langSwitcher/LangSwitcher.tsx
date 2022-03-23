@@ -3,10 +3,10 @@ import classnames from 'classnames';
 import cl from './LangSwitcher.module.scss';
 
 interface ILangSwitcherProps {
-  mobileClasses?: string | undefined;
+  className: string;
 }
 
-const LangSwitcher: React.FC<ILangSwitcherProps> = ({ mobileClasses }) => {
+const LangSwitcher: React.FC<ILangSwitcherProps> = ({ className }) => {
   const [actualLang, setActualLang] = useState('Eng');
 
   const switchLang = useCallback(() => {
@@ -18,11 +18,7 @@ const LangSwitcher: React.FC<ILangSwitcherProps> = ({ mobileClasses }) => {
   }, [actualLang]);
 
   return (
-    <button
-      className={classnames({ [cl.container]: !mobileClasses }, { [mobileClasses as string]: mobileClasses })}
-      type="button"
-      onClick={switchLang}
-    >
+    <button className={classnames(className, cl.container)} type="button" onClick={switchLang}>
       <p className={cl.text}>{actualLang}</p>
     </button>
   );

@@ -3,7 +3,6 @@
   height: 48px;
   border: none;
   background-color: inherit;
-  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
@@ -20,7 +19,6 @@
 
   @media screen and (max-width: 420px) {
     z-index: 99;
-    display: none;
     left: 11px;
     bottom: 13px;
   }

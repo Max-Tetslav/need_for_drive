@@ -1,0 +1,7 @@
+.langSwitcherDesktop {
+  display: flex;
+
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+}
