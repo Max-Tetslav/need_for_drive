@@ -1,0 +1,48 @@
+.container {
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: inherit;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+  bottom: 15px;
+  left: 8px;
+  padding: 0;
+
+  @media screen and (max-width: 768px) {
+    left: 19px;
+    bottom: 19px;
+  }
+
+  @media screen and (max-width: 420px) {
+    z-index: 99;
+    left: 11px;
+    bottom: 13px;
+  }
+
+  .text {
+    color: #0ec261;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    border: 1px solid #eee;
+
+    .text {
+      color: #eee;
+    }
+  }
+
+  &:active {
+    border: 1px solid #eee;
+
+    .text {
+      color: #0ec261;
+    }
+  }
+}
