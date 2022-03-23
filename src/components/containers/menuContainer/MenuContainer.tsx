@@ -12,7 +12,7 @@ interface IMenuContainerProps {
 const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
   return (
     <div className={classnames(cl.menuContainer, { [cl.activeMenu]: isOpen })}>
-      <LangSwitcher mobileClasses={classnames(cl.mobileLangSwitcher, cl.activeMobileLangSwitcher)} />
+      <LangSwitcher className={cl.langSwitcherMobile} />
       <div className={cl.navContainer}>
         <nav className={cl.nav}>
           <ul className={cl.linkMenu}>

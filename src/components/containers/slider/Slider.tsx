@@ -23,7 +23,7 @@ const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
 
   const nextSlide = useCallback(() => {
     if (activeNum < slidesData.length) {
-      setActiveNum(activeNum + 1);
+      setActiveNum((currentNum) => currentNum + 1);
     } else {
       setActiveNum(1);
     }
@@ -31,14 +31,14 @@ const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
 
   const prevSlide = useCallback(() => {
     if (activeNum > slidesData[0].id) {
-      setActiveNum(activeNum - 1);
+      setActiveNum((currentNum) => currentNum - 1);
     } else {
       setActiveNum(slidesData.length);
     }
   }, [activeNum]);
 
   const autoPlayHandler = useCallback(() => {
-    setIsHover(!isHover);
+    setIsHover((currentState) => !currentState);
   }, [isHover]);
 
   // useEffect реализует остановку таймаута при hover на слайдере, и запускает таймаут если над слайдером нет курсора

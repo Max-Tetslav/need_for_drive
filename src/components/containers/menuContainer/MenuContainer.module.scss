@@ -119,47 +119,9 @@
   transform: translateY(0);
 }
 
-.mobileLangSwitcher {
-  width: 48px;
-  height: 48px;
-  border: none;
-  background-color: inherit;
+.langSwitcherMobile {
   display: none;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-  position: absolute;
-  left: 11px;
-  bottom: 13px;
-  z-index: 99;
-  padding: 0;
 
-  p {
-    color: #0ec261;
-    font-size: 13px;
-    font-weight: 700;
-    transition: all 0.1s ease-in-out;
-  }
-
-  &:hover {
-    border: 1px solid #eee;
-
-    p {
-      color: #eee;
-    }
-  }
-
-  &:active {
-    border: 1px solid #eee;
-
-    p {
-      color: #0ec261;
-    }
-  }
-}
-
-.activeMobileLangSwitcher {
   @media screen and (max-width: 420px) {
     display: flex;
   }
