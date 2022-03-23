@@ -1,0 +1,19 @@
+.aside {
+  position: fixed;
+  left: 0;
+  width: 64px;
+  height: 100vh;
+  background-color: #151b1f;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    width: 86px;
+  }
+
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+}

@@ -1,0 +1,105 @@
+.container {
+  max-width: 560px;
+  height: 308px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 97px;
+
+  @media screen and (max-width: 1024px) {
+    max-width: 481px;
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 615px;
+  }
+
+  @media screen and (max-width: 420px) {
+    min-width: 100%;
+    height: 211px;
+    margin-bottom: 130px;
+  }
+}
+
+.textContainer {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (max-width: 420px) {
+    padding: 0 16px;
+    height: 129px;
+  }
+}
+
+.title {
+  font-size: 70px;
+  line-height: 66px;
+  margin: 0;
+
+  @media screen and (max-width: 500px) {
+    font-size: 50px;
+    line-height: 100%;
+  }
+
+  @media screen and (max-width: 420px) {
+    font-size: 32px;
+    line-height: 100%;
+  }
+}
+
+.blackTitle {
+  color: #121212;
+}
+
+.greenTitle {
+  color: #0ec261;
+}
+
+.description {
+  font-size: 26px;
+  color: #999;
+  line-height: 30px;
+  margin: 0;
+
+  @media screen and (max-width: 420px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+.button {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 48px;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+  }
+
+  &:active {
+    color: #fff;
+    background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+  }
+}

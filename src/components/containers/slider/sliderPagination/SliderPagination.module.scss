@@ -1,0 +1,29 @@
+.bullet {
+  width: 8px;
+  height: 100%;
+  padding: 0;
+  background-color: #eee;
+  display: inline-block;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(60%);
+  }
+}
+
+.activeBullet {
+  background-color: #0ec261;
+  opacity: 1;
+}
+
+.bulletsContainer {
+  width: 56px;
+  height: 8px;
+  position: absolute;
+  bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 calc(50% - (56px / 2));
+}

@@ -1,0 +1,46 @@
+.footer {
+  min-width: 100%;
+  height: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+
+  @media screen and (max-width: 420px) {
+    min-width: 100%;
+    height: 72px;
+    padding-right: 16px;
+    background-color: #151b1f;
+    justify-content: right;
+    position: relative;
+  }
+}
+
+.copyRight {
+  color: #999;
+  margin: 0;
+
+  @media screen and (max-width: 420px) {
+    position: absolute;
+    bottom: 16px;
+  }
+}
+
+.phoneLink {
+  color: #121212;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  @media screen and (max-width: 420px) {
+    position: absolute;
+    color: #0ec261;
+    top: 16px;
+  }
+
+  &:hover,
+  &:active {
+    color: #0ec261;
+  }
+}
