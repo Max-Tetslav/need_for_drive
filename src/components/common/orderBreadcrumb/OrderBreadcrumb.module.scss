@@ -1,0 +1,83 @@
+.breadcrumbWrapper {
+  position: absolute;
+  width: calc(100% - 64px);
+  height: 32px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 96px;
+
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 86px);
+  }
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
+}
+
+.breadcrumb {
+  width: 100%;
+  max-width: 1248px;
+
+  @media screen and (max-width: 1312px) {
+    max-width: 1000px;
+  }
+
+  @media screen and (max-width: 1064px) {
+    max-width: 768px;
+  }
+
+  @media screen and (max-width: 832px) {
+    max-width: 588px;
+  }
+
+  @media screen and (max-width: 652px) {
+    max-width: 400px;
+  }
+
+  @media screen and (max-width: 500px) {
+    max-width: 356px;
+  }
+
+  @media screen and (max-width: 340px) {
+    padding-left: 10px;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: #999;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: default;
+
+  @media screen and (max-width: 500px) {
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 340px) {
+    font-size: 10px;
+  }
+}
+
+.activeLink {
+  color: #0ec261;
+  cursor: default;
+}
+
+.lastLink {
+  cursor: default;
+}
+
+.separator {
+  display: inline-block;
+  padding: 0 8px;
+
+  @media screen and (max-width: 340px) {
+    padding: 0 4px;
+  }
+}
