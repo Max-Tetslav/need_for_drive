@@ -82,10 +82,6 @@
 }
 
 .button {
-  &:hover {
-    transform: scale(1.05);
-  }
-
   width: 164px;
   height: 48px;
   bottom: 0;
@@ -99,4 +95,8 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
