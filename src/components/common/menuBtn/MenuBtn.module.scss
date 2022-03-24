@@ -3,7 +3,7 @@
   height: 32px;
   border: none;
   background: transparent;
-  position: absolute;
+  position: fixed;
   left: 16px;
   top: 32px;
   display: flex;
@@ -51,7 +51,7 @@
 
   &::after,
   &::before {
-    content: '';
+    content: "";
     transition: 0.3s width 0.4s;
   }
 
@@ -71,7 +71,7 @@
     transition: transform 0.3s;
 
     &::before {
-      content: '';
+      content: "";
       background-color: #fff;
       width: 100%;
       height: 3px;

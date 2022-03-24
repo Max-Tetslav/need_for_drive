@@ -10,7 +10,7 @@ const Homepage: React.FC = () => {
   return (
     <main className={cl.main}>
       <section className={cl.content}>
-        <Header />
+        <Header headerClass={cl.header} />
         <LandingContent />
         <Footer />
       </section>

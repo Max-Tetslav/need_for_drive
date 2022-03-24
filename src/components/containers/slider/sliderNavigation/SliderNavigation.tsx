@@ -10,7 +10,10 @@ interface ISliderNavigationProps {
 }
 
 const SliderNavigation: React.FC<ISliderNavigationProps> = ({ direction, handleClick }) => {
-  const classes = classnames(cl.arrow, { [cl.rightArrow]: direction === 'right', [cl.leftArrow]: direction === 'left' });
+  const classes = classnames(cl.arrow, {
+    [cl.rightArrow]: direction === 'right',
+    [cl.leftArrow]: direction === 'left',
+  });
 
   return (
     <button onClick={handleClick} className={classes} type="button">
