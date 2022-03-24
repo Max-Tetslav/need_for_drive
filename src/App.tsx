@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { store } from '@store/store';
 import Root from '@views/root/Root';
 import Homepage from '@views/homepage/Homepage';
+import OrderPage from '@views/orderPage/OrderPage';
+import OrderPlaceContent from '@components/containers/orderPlaceContent/OrderPlaceContent';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +14,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Root />}>
             <Route index element={<Homepage />} />
+            <Route path="/order/place" element={<OrderPage />}>
+              <Route index element={<OrderPlaceContent />} />
+            </Route>
           </Route>
         </Routes>
       </Provider>

@@ -11,7 +11,7 @@ const LandingContent: React.FC = () => {
         <h2 className={classnames(cl.title, cl.greenTitle)}>Need for drive</h2>
         <p className={cl.description}>Поминутная аренда авто твоего города</p>
       </div>
-      <Link className={cl.button} to="/order">
+      <Link className={cl.button} to="order/place">
         Забронировать
       </Link>
     </div>
