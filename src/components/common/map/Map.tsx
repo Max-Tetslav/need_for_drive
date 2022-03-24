@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { MAPBOX_API, DEFAULT_COORDINATES_DATA, GEOPIN_STYLES } from '@utils/constants/mapboxData';
 import cl from './Map.module.scss';
+import 'mapbox-gl/src/css/mapbox-gl.css';
 
 const Map: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
