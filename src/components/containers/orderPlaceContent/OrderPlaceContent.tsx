@@ -34,7 +34,7 @@ const OrderPlaceContent: React.FC = () => {
         <h3 className={cl.orderDetailsTitle}>Ваш заказ:</h3>
         <div className={cl.orderDetailsItem}>
           <h4 className={cl.orderDetailsItemTitle}>Пункт выдачи</h4>
-          <span className={cl.orderDetailsItemDots}>.....................................................</span>
+          <span className={cl.orderDetailsItemDots} />
           <p className={cl.orderDetailsItemContent}>
             Ульяновск,
             <br />
