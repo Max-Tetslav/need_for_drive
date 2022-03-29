@@ -21,7 +21,9 @@
   }
 
   .input {
-    max-width: 224px;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 224px;
     height: 19px;
     padding: 0;
     border: none;
@@ -34,8 +36,8 @@
     input {
       padding: 0;
       padding-left: 8px;
-      width: 192px;
-      max-width: calc(224px - 32px);
+      width: 200px;
+      max-width: calc(224px - 24px);
       border: none;
       height: 100%;
 
