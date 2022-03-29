@@ -12,14 +12,14 @@ const OrderPlaceContent: React.FC = () => {
       <div className={cl.pointContainer}>
         <div className={cl.inputContainer}>
           <OrderInput
-            id="city"
+            type="city"
             label={'Город\xa0\xa0'}
             placeholder="Начните вводить город..."
             value={cityValue}
             setValue={setCityValue}
           />
           <OrderInput
-            id="point"
+            type="point"
             label={'Пункт выдачи\xa0'}
             placeholder="Начните вводить пункт..."
             value={pointValue}
@@ -36,9 +36,9 @@ const OrderPlaceContent: React.FC = () => {
           <h4 className={cl.orderDetailsItemTitle}>Пункт выдачи</h4>
           <span className={cl.orderDetailsItemDots} />
           <p className={cl.orderDetailsItemContent}>
-            Ульяновск,
+            <span>{cityValue || 'Ульяновск,'}</span>
             <br />
-            Нариманова 42
+            <span>{pointValue || 'Нариманова 42'}</span>
           </p>
         </div>
         <p className={cl.price}>Цена: от 8 000 до 12 000 ₽</p>
