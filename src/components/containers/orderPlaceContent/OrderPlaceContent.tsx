@@ -27,7 +27,7 @@ const OrderPlaceContent: React.FC = () => {
           />
         </div>
         <p className={cl.mapText}>Выбрать на карте:</p>
-        <Map />
+        <Map city={cityValue} point={pointValue} />
       </div>
 
       <div className={cl.orderDetailsContainer}>
@@ -36,14 +36,24 @@ const OrderPlaceContent: React.FC = () => {
           <h4 className={cl.orderDetailsItemTitle}>Пункт выдачи</h4>
           <span className={cl.orderDetailsItemDots} />
           <p className={cl.orderDetailsItemContent}>
-            <span>{cityValue || 'Ульяновск,'}</span>
-            <br />
-            <span>{pointValue || 'Нариманова 42'}</span>
+            {!pointValue ? (
+              <>
+                <span>Выберите</span>
+                <br />
+                <span>пункт выдачи авто</span>
+              </>
+            ) : (
+              <>
+                <span>{cityValue},</span>
+                <br />
+                <span>{pointValue}</span>
+              </>
+            )}
           </p>
         </div>
         <p className={cl.price}>Цена: от 8 000 до 12 000 ₽</p>
-        {/* ЕСЛИ ПОЛЯ 'ГОРОД' И 'ПУНКТ ВЫДАЧИ' ПУСТЫЕ - КНОПКА DISABLED */}
-        <button type="button" className={cl.button} disabled={Boolean(!cityValue && !pointValue)}>
+        {/* ЕСЛИ ПОЛЯ 'ГОРОД' ИЛИ 'ПУНКТ ВЫДАЧИ' ПУСТЫЕ - КНОПКА DISABLED */}
+        <button type="button" className={cl.button} disabled={Boolean(!cityValue || !pointValue)}>
           Выбрать модель
         </button>
       </div>
