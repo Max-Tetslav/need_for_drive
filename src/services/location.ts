@@ -1,6 +1,6 @@
 import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
 import { BaseQueryFn, createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { MAPBOX_REQUEST_HEADER_KEY } from '@utils/constants/locationData';
+import { MAPBOX_REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
 
 const needForDriveApi = createApi({
   reducerPath: 'locationApi',
