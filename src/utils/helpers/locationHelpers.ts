@@ -1,5 +1,5 @@
 import { IGeoPoint } from '@models/mapData';
-import { GEOCODER_API } from '@utils/constants/locationData';
+import { GEOCODER_API } from '@utils/constants/mapboxData';
 import { GeoJSONSourceRaw, MapboxGeoJSONFeature } from 'mapbox-gl';
 
 export const getGeocoderUrl = (searchPoint: string) => {
