@@ -26,33 +26,44 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({ inputString, type, 
     setIsDropdownShown(isFocus);
   }, [isFocus]);
 
+  const filterDataInCityDropdown = (): void => {
+    setFilteredData(
+      (data.data as ICity[]).filter((item: ICity) => item.name.toLocaleLowerCase().includes(inputString.toLocaleLowerCase())),
+    );
+  };
+
+  const filterDataInPointDropdown = (): void => {
+    setFilteredData(
+      (data.data as IPoint[]).filter(
+        (item: IPoint) =>
+          Boolean(item.cityId) &&
+          item.cityId.name.toLocaleLowerCase() === currentCity.toLocaleLowerCase() &&
+          item.name.toLocaleLowerCase().includes(inputString.toLocaleLowerCase()),
+      ),
+    );
+  };
+
+  const setDataWithoutFilter = (): void => {
+    if (filteredData.length === 0) {
+      setFilteredData(data.data);
+      dispatch(updateCurrentCity(''));
+    }
+  };
+
   useEffect(() => {
     if (data) {
       switch (type) {
         case ELocationInputTypes.CITY:
           // Фильтрует по строке
-          setFilteredData(
-            (data.data as ICity[]).filter((item: ICity) =>
-              item.name.toLocaleLowerCase().includes(inputString.toLocaleLowerCase()),
-            ),
-          );
+          filterDataInCityDropdown();
           break;
         case ELocationInputTypes.POINT:
           // Фильтрует по наличии города в адресе пункта выдачи, с выбранным городом, по строке
-          setFilteredData(
-            (data.data as IPoint[]).filter(
-              (item: IPoint) =>
-                Boolean(item.cityId) &&
-                item.cityId.name.toLocaleLowerCase() === currentCity.toLocaleLowerCase() &&
-                item.name.toLocaleLowerCase().includes(inputString.toLocaleLowerCase()),
-            ),
-          );
+          filterDataInPointDropdown();
           break;
         default: {
-          if (filteredData.length === 0) {
-            setFilteredData(data.data);
-            dispatch(updateCurrentCity(''));
-          }
+          // Сбрасывает фильтры, если инпут пустой
+          setDataWithoutFilter();
         }
       }
     }
@@ -95,17 +106,23 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({ inputString, type, 
 
   if (type === ELocationInputTypes.POINT && !currentCity) {
     // если город не выбран
-    notFoundMessage = <li className={cl.dropdownItem}>Сначала выберите город</li>;
+    notFoundMessage = <li className={cl.dropdownItemNotFound}>Сначала выберите город</li>;
   } else if (inputString.length !== 0 && !choice) {
     // если нет совпадений по строке
-    notFoundMessage = <li className={cl.dropdownItem}>Совпадений не найдено</li>;
+    notFoundMessage = <li className={cl.dropdownItemNotFound}>Совпадений не найдено</li>;
+  } else if (filteredData.length === 0 && inputString.length !== 0) {
+    notFoundMessage = <li className={cl.dropdownItemNotFound}>В этом городе нет других пунктов выдачи</li>;
   } else if (filteredData.length === 0) {
     // если в городе нет пунктов выдачи
-    notFoundMessage = <li className={cl.dropdownItem}>В этом городе нет пункта выдачи</li>;
+    notFoundMessage = <li className={cl.dropdownItemNotFound}>В этом городе нет пункта выдачи</li>;
   }
 
+  const dropdownClassName = classNames(cl.dropdown, {
+    [cl.showDropdown]: isDropdownShown,
+  });
+
   return (
-    <ul className={classNames(cl.dropdown, { [cl.showDropdown]: isDropdownShown })}>
+    <ul className={dropdownClassName}>
       {notFoundMessage ||
         (filteredData as Array<ICity | IPoint>).map((item) => (
           <li

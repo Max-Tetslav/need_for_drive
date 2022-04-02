@@ -11,20 +11,8 @@ const OrderPlaceContent: React.FC = () => {
     <section className={cl.container}>
       <div className={cl.pointContainer}>
         <div className={cl.inputContainer}>
-          <OrderInput
-            type="city"
-            label={'Город\xa0\xa0'}
-            placeholder="Начните вводить город..."
-            value={cityValue}
-            setValue={setCityValue}
-          />
-          <OrderInput
-            type="point"
-            label={'Пункт выдачи\xa0'}
-            placeholder="Начните вводить пункт..."
-            value={pointValue}
-            setValue={setPointValue}
-          />
+          <OrderInput type="city" label={'Город\xa0\xa0'} placeholder="Начните вводить город..." setValue={setCityValue} />
+          <OrderInput type="point" label={'Пункт выдачи\xa0'} placeholder="Начните вводить пункт..." setValue={setPointValue} />
         </div>
         <p className={cl.mapText}>Выбрать на карте:</p>
         <Map city={cityValue} point={pointValue} />
@@ -53,7 +41,7 @@ const OrderPlaceContent: React.FC = () => {
         </div>
         <p className={cl.price}>Цена: от 8 000 до 12 000 ₽</p>
         {/* ЕСЛИ ПОЛЯ 'ГОРОД' ИЛИ 'ПУНКТ ВЫДАЧИ' ПУСТЫЕ - КНОПКА DISABLED */}
-        <button type="button" className={cl.button} disabled={Boolean(!cityValue || !pointValue)}>
+        <button type="button" className={cl.button} disabled={!cityValue || !pointValue}>
           Выбрать модель
         </button>
       </div>

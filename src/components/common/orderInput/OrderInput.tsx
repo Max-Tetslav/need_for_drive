@@ -14,11 +14,10 @@ interface IOrderInputProps {
   label: string;
   type: string;
   placeholder: string;
-  value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const OrderInput: React.FC<IOrderInputProps> = ({ label, type, placeholder, value, setValue }) => {
+const OrderInput: React.FC<IOrderInputProps> = ({ label, type, placeholder, setValue }) => {
   const [inputString, setInputString] = type === ELocationInputTypes.CITY ? useState(DEFAULT_CITY) : useState('');
   const [isFocus, setIsFocus] = useState(false);
   const { data } =
@@ -58,8 +57,6 @@ const OrderInput: React.FC<IOrderInputProps> = ({ label, type, placeholder, valu
       setInputString('');
     }
   }, [currentCity]);
-
-  useEffect(() => {}, [data, value, inputString]);
 
   useEffect(() => {
     // Устанавливает город по умолчанию
