@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import needForDriveApi from '@services/location';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import rootReducer from './reducers';
 
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(needForDriveApi.middleware),
     devTools: process.env.NODE_ENV !== 'production',
   });
 };

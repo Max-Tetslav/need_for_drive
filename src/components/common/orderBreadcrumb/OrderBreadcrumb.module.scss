@@ -75,7 +75,11 @@
 
 .separator {
   display: inline-block;
-  padding: 0 8px;
+  padding: 0 16px;
+
+  @media screen and (max-width: 652px) {
+    padding: 0 8px;
+  }
 
   @media screen and (max-width: 340px) {
     padding: 0 4px;
