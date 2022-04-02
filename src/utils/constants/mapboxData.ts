@@ -1,45 +1,8 @@
 export const MAPBOX_API = process.env.REACT_APP_MAPBOX_API_KEY;
+export const MAPBOX_REQUEST_HEADER_KEY = process.env.REACT_APP_MAPBOX_REQUEST_HEADER_KEY;
+export const GEOCODER_API = process.env.REACT_APP_GEOCODER_API_KEY;
 
-export const DEFAULT_COORDINATES_DATA: mapboxgl.AnySourceData = {
-  type: 'geojson',
-  data: {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'Point',
-          coordinates: [48.4, 54.325],
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'Point',
-          coordinates: [48.37, 54.326],
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'Point',
-          coordinates: [48.36, 54.3],
-        },
-      },
-      {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-          type: 'Point',
-          coordinates: [48.38, 54.31],
-        },
-      },
-    ],
-  },
-};
+export const MAPBOX_STYLES = 'mapbox://styles/mapbox/light-v10';
 
 export const GEOPIN_STYLES: mapboxgl.AnyLayer = {
   id: 'circle',
