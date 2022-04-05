@@ -3,9 +3,12 @@ import classnames from 'classnames';
 import {
   updateModel,
   updateModelId,
+  updateModelMaxPrice,
+  updateModelMinPrice,
   updateModelStatus,
 } from '@store/reducers/orderDetailsReduces';
 import { useAppDispatch, useAppSelector } from '@store/store';
+import formatPrice from '@utils/helpers/formatPrice';
 import cl from './CarModelCard.module.scss';
 
 interface ICarModelCardProps {
@@ -28,34 +31,12 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({
     (state) => state.orderDetails.model.value.id,
   );
 
-  const formatPrice = (price: number): string => {
-    let formatedPrice = price.toString();
-
-    switch (formatedPrice.length) {
-      case 6: {
-        const firstPart = formatedPrice.slice(0, 3);
-        const secondPart = formatedPrice.slice(3);
-
-        formatedPrice = `${firstPart} ${secondPart}`;
-        break;
-      }
-      case 5: {
-        const firstPart = formatedPrice.slice(0, 2);
-        const secondPart = formatedPrice.slice(2);
-
-        formatedPrice = `${firstPart} ${secondPart}`;
-        break;
-      }
-      // no default
-    }
-
-    return formatedPrice;
-  };
-
   const changeHandler = useCallback(() => {
     dispatch(updateModelStatus(true));
     dispatch(updateModel(title));
     dispatch(updateModelId(id));
+    dispatch(updateModelMaxPrice(maxPrice));
+    dispatch(updateModelMinPrice(minPrice));
   }, []);
 
   return (

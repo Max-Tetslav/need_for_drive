@@ -1,5 +1,6 @@
 import OrderDetailsButton from '@components/common/orderDetailsButton/OrderDetailsButton';
 import OrderDetailsItem from '@components/common/orderDetailsItem/OrderDetailsItem';
+import OrderDetailsPrice from '@components/common/orderDetailsPrice/OrderDetailsPrice';
 import { EOrderItemTypes } from '@models/orderPageData';
 import { completeModel } from '@store/reducers/breadcrumbReducer';
 import { updatePointStatus } from '@store/reducers/orderDetailsReduces';
@@ -45,7 +46,7 @@ const OrderDetails: React.FC = () => {
         />
       )}
 
-      <p className={cl.price}>Цена: от 8 000 до 12 000 ₽</p>
+      <OrderDetailsPrice />
       <OrderDetailsButton />
     </div>
   );

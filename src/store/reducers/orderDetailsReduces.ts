@@ -73,6 +73,12 @@ const orderDetailsSlice = createSlice({
     updateModelId(state, action: PayloadAction<string>) {
       state.model.value.id = action.payload;
     },
+    updateModelMaxPrice(state, action: PayloadAction<number>) {
+      state.model.value.maxPrice = action.payload;
+    },
+    updateModelMinPrice(state, action: PayloadAction<number>) {
+      state.model.value.minPrice = action.payload;
+    },
   },
 });
 
@@ -83,5 +89,7 @@ export const {
   updatePointStatus,
   updateModelStatus,
   updateModelId,
+  updateModelMaxPrice,
+  updateModelMinPrice,
 } = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;
