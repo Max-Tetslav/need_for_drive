@@ -9,7 +9,7 @@
     width: calc(100% - 86px);
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     width: 100%;
     margin-left: 0;
   }
@@ -24,7 +24,7 @@
   height: 96px;
   width: 100%;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     width: 192px;
     height: 62px;
     margin-right: 16px;
@@ -61,7 +61,7 @@
     padding-bottom: 35px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     padding: 0;
     align-items: flex-end;
   }

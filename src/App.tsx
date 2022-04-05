@@ -6,6 +6,7 @@ import Root from '@views/root/Root';
 import Homepage from '@views/homepage/Homepage';
 import OrderPage from '@views/orderPage/OrderPage';
 import OrderPlaceContent from '@components/containers/orderPlaceContent/OrderPlaceContent';
+import OrderModelContent from '@components/containers/orderModelContent/OrderModelContent';
 
 const App: React.FC = () => {
   return (
@@ -14,8 +15,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Root />}>
             <Route index element={<Homepage />} />
-            <Route path="/order/place" element={<OrderPage />}>
-              <Route index element={<OrderPlaceContent />} />
+            <Route path="/order" element={<OrderPage />}>
+              <Route path="place" element={<OrderPlaceContent />} />
+              <Route path="model" element={<OrderModelContent />} />
             </Route>
           </Route>
         </Routes>

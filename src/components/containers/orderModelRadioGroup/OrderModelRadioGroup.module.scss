@@ -1,0 +1,35 @@
+.list {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 48px;
+
+  @media screen and (max-width: 1064px) {
+    width: 300px;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 832px) {
+    width: 588px;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 300px;
+    margin: 32px auto 48px;
+  }
+
+  @media screen and (max-width: 450px) {
+    margin: 64px auto 48px;
+  }
+
+  @media screen and (max-width: 330px) {
+    width: 100%;
+    padding: 0 35px;
+    gap: 10px 35px;
+  }
+}

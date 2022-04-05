@@ -13,7 +13,7 @@
     width: 86px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     display: none;
   }
 }
@@ -21,7 +21,7 @@
 .langSwitcherDesktop {
   display: flex;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     display: none;
   }
 }

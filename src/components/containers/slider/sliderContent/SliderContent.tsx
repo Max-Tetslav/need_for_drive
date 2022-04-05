@@ -5,6 +5,8 @@ interface ISliderContentProps {
   children: ReactNode;
 }
 
-const SliderContent: React.FC<ISliderContentProps> = ({ children }) => <div className={cl.container}>{children}</div>;
+const SliderContent: React.FC<ISliderContentProps> = ({ children }) => (
+  <div className={cl.container}>{children}</div>
+);
 
 export default SliderContent;

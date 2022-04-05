@@ -31,7 +31,7 @@
     "no-param-reassign": "off",
     "no-console": "error",
     "no-alert": "error",
-    "consistent-return": "warn",
+    "consistent-return": "off",
     "no-underscore-dangle": "warn",
     "@typescript-eslint/no-explicit-any": "error",
     "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],

@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 572px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-collapse: collapse;
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+    width: 0;
+    background-color: #0ec261;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 4px;
+    background-color: #fff;
+  }
+}
+
+.loading {
+  width: 150px;
+  height: 150px;
+  margin: 150px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingImg {
+  width: 80%;
+  animation: rollin 3s linear infinite;
+  object-fit: contain;
+}
+
+@keyframes rollin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

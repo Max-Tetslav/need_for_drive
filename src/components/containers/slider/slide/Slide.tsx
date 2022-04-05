@@ -10,7 +10,13 @@ interface ISlideProps {
   isActive: boolean;
 }
 
-const Slide: React.FC<ISlideProps> = ({ isActive, imgUrl, title, description, buttonColor }) => {
+const Slide: React.FC<ISlideProps> = ({
+  isActive,
+  imgUrl,
+  title,
+  description,
+  buttonColor,
+}) => {
   const classes = classnames(cl.container, { [cl.active]: isActive });
 
   return (
@@ -19,7 +25,11 @@ const Slide: React.FC<ISlideProps> = ({ isActive, imgUrl, title, description, bu
       <div className={cl.content}>
         <h2 className={cl.title}>{title}</h2>
         <p className={cl.description}>{description}</p>
-        <button className={cl.button} type="button" style={{ background: buttonColor }}>
+        <button
+          className={cl.button}
+          type="button"
+          style={{ background: buttonColor }}
+        >
           Подробнее
         </button>
       </div>
