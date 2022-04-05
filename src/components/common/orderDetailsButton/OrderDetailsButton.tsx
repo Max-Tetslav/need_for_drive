@@ -1,12 +1,18 @@
-import { completeModel, completeOptions, updateCurrentModel, updateCurrentOptions } from '@store/reducers/breadcrumbReducer';
-import { useAppDispatch, useAppSelector } from '@store/store';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {
+  completeModel,
+  completeOptions,
+  updateCurrentModel,
+  updateCurrentOptions,
+} from '@store/reducers/breadcrumbReducer';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cl from './OrderDetailsButton.module.scss';
 
 const OrderDetailsButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const pointState = useAppSelector((state) => state.orderDetails.point);
   const modelState = useAppSelector((state) => state.orderDetails.model);
@@ -21,29 +27,49 @@ const OrderDetailsButton: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const navigateTo = useCallback(() => {
-    if (modelState.status) {
+    if (location.pathname.includes('model') && modelState.value.model) {
       navigate('/order/options');
       dispatch(updateCurrentOptions(true));
       dispatch(completeOptions(true));
-    } else if (pointState.status) {
+    } else if (
+      location.pathname.includes('place') &&
+      pointState.value.address
+    ) {
       navigate('/order/model');
       dispatch(updateCurrentModel(true));
       dispatch(completeModel(true));
       setIsDisabled(true);
-      setNextStep('Дополнительно');
     }
-  }, [pointState.status, modelState.status]);
+  }, [location, pointState.status, modelState.status]);
 
   useEffect(() => {
-    if (modelState.status) {
-      setIsDisabled(false);
-    } else if (pointState.status) {
-      setIsDisabled(false);
+    if (location.pathname.includes('place')) {
+      setNextStep('Выбрать модель');
+    } else if (location.pathname.includes('model')) {
+      setNextStep('Дополнительно');
     }
-  }, [pointState.status, modelState.status]);
+  }, [location]);
+
+  useEffect(() => {
+    if (location.pathname.includes('model') && modelState.value.model) {
+      setIsDisabled(false);
+    } else if (
+      location.pathname.includes('place') &&
+      pointState.value.address
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [location, pointState.value.address, modelState.value.model]);
 
   return (
-    <button type="button" className={cl.button} disabled={isDisabled} onClick={navigateTo}>
+    <button
+      type="button"
+      className={cl.button}
+      disabled={isDisabled}
+      onClick={navigateTo}
+    >
       {nextStep}
     </button>
   );
