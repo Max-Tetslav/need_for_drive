@@ -1,6 +1,7 @@
 export interface IBreadcrumbRoute {
   id: number;
   path: string;
+  type: string;
   breadcrumbName: string;
   isComplete: boolean;
   isCurrent: boolean;

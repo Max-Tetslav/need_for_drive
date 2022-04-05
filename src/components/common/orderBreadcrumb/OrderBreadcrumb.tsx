@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useCallback, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classnames from 'classnames';
 import { Breadcrumb } from 'antd';
 import breadcrumbRoutes from '@utils/constants/breadcrumbData';
 import separatorIcon from '@assets/svg/breadcrumbSeparator.svg';
-import { useAppDispatch } from '@store/store';
+import { useAppDispatch, useAppSelector } from '@store/store';
 import { EOrderItemTypes } from '@models/orderPageData';
 import { updateCurrentModel } from '@store/reducers/breadcrumbReducer';
 import cl from './OrderBreadcrumb.module.scss';
@@ -12,6 +12,27 @@ import cl from './OrderBreadcrumb.module.scss';
 const OrderBreadcrumb: React.FC = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
+  const orderDetailsData = useAppSelector((state) => state.orderDetails);
+
+  const setIsReady = useCallback(
+    (routeType: string): boolean => {
+      let isReady = false;
+      switch (routeType) {
+        case 'point': {
+          isReady = Boolean(orderDetailsData.point.value.address);
+          break;
+        }
+        case 'model': {
+          isReady = Boolean(orderDetailsData.model.value.model);
+          break;
+        }
+
+        // no default
+      }
+      return isReady;
+    },
+    [orderDetailsData],
+  );
 
   useEffect(() => {
     if (location.pathname.includes(EOrderItemTypes.MODEL)) {
@@ -24,6 +45,7 @@ const OrderBreadcrumb: React.FC = () => {
       <Breadcrumb separator="" className={cl.breadcrumb}>
         {breadcrumbRoutes.map((route, index) => {
           const isCurrentPath = location.pathname.includes(route.path);
+          const isStepComplete = setIsReady(route.type);
 
           return index === breadcrumbRoutes.length - 1 ? (
             <Link
@@ -36,11 +58,11 @@ const OrderBreadcrumb: React.FC = () => {
           ) : (
             <Fragment key={route.id}>
               <Link
-                to={route.isComplete ? route.path : location.pathname}
+                to={isStepComplete ? route.path : location.pathname}
                 className={classnames(
                   cl.link,
                   { [cl.activeLink]: isCurrentPath },
-                  { [cl.completeLink]: route.isComplete },
+                  { [cl.completeLink]: isStepComplete },
                 )}
               >
                 {route.breadcrumbName}
