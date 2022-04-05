@@ -37,7 +37,7 @@
     height: 247px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     top: 76px;
     left: 24px;
     height: 219px;
@@ -57,7 +57,7 @@
     height: 177px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     height: 149px;
   }
 
@@ -74,7 +74,7 @@
       line-height: 33px;
     }
 
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       font-size: 22px;
       line-height: 26px;
     }
@@ -122,7 +122,7 @@
 .langSwitcherMobile {
   display: none;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     display: flex;
   }
 }
