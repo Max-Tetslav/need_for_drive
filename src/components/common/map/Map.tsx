@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { DEFAULT_ZOOM, DEFAULT_LAT, DEFAULT_LNG } from '@utils/constants/locationData';
 import { MAPBOX_API, MAPBOX_STYLES, GEOPIN_STYLES } from '@utils/constants/mapboxData';
-import needForDriveApi from '@services/location';
+import needForDriveApi from '@services/needForDriveAPI';
 import { IPoint } from '@models/orderPageData';
 import { IGeoPoint } from '@models/mapData';
 import { getGeocoderUrl, getGeoJsonObject, getGeoJsonObjectList } from '@utils/helpers/locationHelpers';
