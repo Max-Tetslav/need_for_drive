@@ -1,11 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { DEFAULT_ZOOM, DEFAULT_LAT, DEFAULT_LNG } from '@utils/constants/locationData';
-import { MAPBOX_API, MAPBOX_STYLES, GEOPIN_STYLES } from '@utils/constants/mapboxData';
+import {
+  DEFAULT_ZOOM,
+  DEFAULT_LAT,
+  DEFAULT_LNG,
+} from '@utils/constants/locationData';
+import {
+  MAPBOX_API,
+  MAPBOX_STYLES,
+  GEOPIN_STYLES,
+} from '@utils/constants/mapboxData';
 import needForDriveApi from '@services/needForDriveAPI';
 import { IPoint } from '@models/orderPageData';
 import { IGeoPoint } from '@models/mapData';
-import { getGeocoderUrl, getGeoJsonObject, getGeoJsonObjectList } from '@utils/helpers/locationHelpers';
+import {
+  getGeocoderUrl,
+  getGeoJsonObject,
+  getGeoJsonObjectList,
+} from '@utils/helpers/locationHelpers';
 import 'mapbox-gl/src/css/mapbox-gl.css';
 import cl from './Map.module.scss';
 
@@ -55,7 +67,10 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
     const request = await fetch(getGeocoderUrl(centerPoint));
     const response = await request.json();
 
-    const [cityLng, cityLat] = response.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').map(Number);
+    const [cityLng, cityLat] =
+      response.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+        .split(' ')
+        .map(Number);
 
     setLng(cityLng);
     setLat(cityLat);
@@ -66,9 +81,10 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
     const request = await fetch(getGeocoderUrl(searchAddress));
     const response = await request.json();
 
-    const [cityLng, cityLat]: number[] = response.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-      .split(' ')
-      .map(Number);
+    const [cityLng, cityLat]: number[] =
+      response.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+        .split(' ')
+        .map(Number);
 
     return getGeoJsonObject([cityLng, cityLat]);
   }
@@ -93,16 +109,23 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
           });
 
           // Add a circle layer
-          (map.current as mapboxgl.Map).addSource('points', getGeoJsonObjectList(points));
+          (map.current as mapboxgl.Map).addSource(
+            'points',
+            getGeoJsonObjectList(points),
+          );
           (map.current as mapboxgl.Map).addLayer(GEOPIN_STYLES);
 
           // Center the map on the coordinates of any clicked circle from the 'circle' layer.
-          (map.current as mapboxgl.Map).on('click', 'circle', (e: mapboxgl.EventData) => {
-            (map.current as mapboxgl.Map).flyTo({
-              center: e.features[0].geometry.coordinates,
-              zoom: 14,
-            });
-          });
+          (map.current as mapboxgl.Map).on(
+            'click',
+            'circle',
+            (e: mapboxgl.EventData) => {
+              (map.current as mapboxgl.Map).flyTo({
+                center: e.features[0].geometry.coordinates,
+                zoom: 14,
+              });
+            },
+          );
         });
       }
     };

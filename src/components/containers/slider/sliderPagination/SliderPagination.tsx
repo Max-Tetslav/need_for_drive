@@ -17,7 +17,14 @@ const Bullet: React.FC<IBulletProps> = ({ isActive, setSlide, id }) => {
     setSlide(id);
   }, []);
 
-  return <button onClick={handler} className={classes} type="button" aria-label="bullet" />;
+  return (
+    <button
+      onClick={handler}
+      className={classes}
+      type="button"
+      aria-label="bullet"
+    />
+  );
 };
 
 interface ISliderPaginationProps {
@@ -26,11 +33,20 @@ interface ISliderPaginationProps {
   clickHandler: (num: number) => void;
 }
 
-const SliderPagination: React.FC<ISliderPaginationProps> = ({ slides, activeSlide, clickHandler }) => {
+const SliderPagination: React.FC<ISliderPaginationProps> = ({
+  slides,
+  activeSlide,
+  clickHandler,
+}) => {
   return (
     <div className={cl.bulletsContainer}>
       {slides.map((slide) => (
-        <Bullet key={slide.id} isActive={activeSlide === slide.id} id={slide.id} setSlide={clickHandler} />
+        <Bullet
+          key={slide.id}
+          isActive={activeSlide === slide.id}
+          id={slide.id}
+          setSlide={clickHandler}
+        />
       ))}
     </div>
   );

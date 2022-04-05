@@ -9,7 +9,13 @@ interface IOrderRadioProps {
 const OrderRadio: React.FC<IOrderRadioProps> = ({ title, checked }) => {
   return (
     <label className={cl.label} htmlFor={`${title}-radio`}>
-      <input className={cl.input} type="radio" id={`${title}-radio`} name="model" checked={checked} />
+      <input
+        className={cl.input}
+        type="radio"
+        id={`${title}-radio`}
+        name="model"
+        checked={checked}
+      />
       <span className={cl.checkmark} />
       {title}
     </label>

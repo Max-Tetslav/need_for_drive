@@ -6,7 +6,11 @@ import needForDriveApi from '@services/needForDriveAPI';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { DEFAULT_CITY } from '@utils/constants/locationData';
 import { ELocationInputTypes } from '@models/orderPageData';
-import { updateAddress, updateCity, updatePointStatus } from '@store/reducers/orderDetailsReduces';
+import {
+  updateAddress,
+  updateCity,
+  updatePointStatus,
+} from '@store/reducers/orderDetailsReduces';
 import OrderInputDropdown from '../orderInputDropdown/orderInputDropdown';
 import cl from './OrderInput.module.scss';
 
@@ -17,15 +21,29 @@ interface IOrderInputProps {
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const OrderInput: React.FC<IOrderInputProps> = ({ label, type, placeholder, setValue }) => {
+const OrderInput: React.FC<IOrderInputProps> = ({
+  label,
+  type,
+  placeholder,
+  setValue,
+}) => {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.orderDetails.point.value.city);
-  const currentAddress = useAppSelector((state) => state.orderDetails.point.value.address);
+  const currentCity = useAppSelector(
+    (state) => state.orderDetails.point.value.city,
+  );
+  const currentAddress = useAppSelector(
+    (state) => state.orderDetails.point.value.address,
+  );
 
-  const [inputString, setInputString] = type === ELocationInputTypes.CITY ? useState(currentCity) : useState(currentAddress);
+  const [inputString, setInputString] =
+    type === ELocationInputTypes.CITY
+      ? useState(currentCity)
+      : useState(currentAddress);
   const [isFocus, setIsFocus] = useState(false);
   const { data } =
-    type === ELocationInputTypes.CITY ? needForDriveApi.useGetCitiesListQuery('') : needForDriveApi.useGetPointsListQuery('');
+    type === ELocationInputTypes.CITY
+      ? needForDriveApi.useGetCitiesListQuery('')
+      : needForDriveApi.useGetPointsListQuery('');
 
   const changeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -104,7 +122,13 @@ const OrderInput: React.FC<IOrderInputProps> = ({ label, type, placeholder, setV
         id={`${type}-input`}
         allowClear={{
           clearIcon: (
-            <img src={clearIcon} className={classnames(cl.clearIcon, { [cl.clearIconVisible]: inputString })} alt="clear-input" />
+            <img
+              src={clearIcon}
+              className={classnames(cl.clearIcon, {
+                [cl.clearIconVisible]: inputString,
+              })}
+              alt="clear-input"
+            />
           ),
         }}
       />

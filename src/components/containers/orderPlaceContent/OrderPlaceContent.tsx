@@ -10,8 +10,18 @@ const OrderPlaceContent: React.FC = () => {
   return (
     <div className={cl.pointContainer}>
       <div className={cl.inputContainer}>
-        <OrderInput type="city" label={'Город\xa0\xa0'} placeholder="Начните вводить город..." setValue={setCityValue} />
-        <OrderInput type="point" label={'Пункт выдачи\xa0'} placeholder="Начните вводить пункт..." setValue={setPointValue} />
+        <OrderInput
+          type="city"
+          label={'Город\xa0\xa0'}
+          placeholder="Начните вводить город..."
+          setValue={setCityValue}
+        />
+        <OrderInput
+          type="point"
+          label={'Пункт выдачи\xa0'}
+          placeholder="Начните вводить пункт..."
+          setValue={setPointValue}
+        />
       </div>
       <p className={cl.mapText}>Выбрать на карте:</p>
       <Map city={cityValue} point={pointValue} />

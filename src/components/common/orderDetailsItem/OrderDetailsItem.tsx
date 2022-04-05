@@ -1,6 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { EOrderItemTypes } from '@models/orderPageData';
-import { IOrderModelData, IOrderPointData } from '@store/reducers/orderDetailsReduces';
+import {
+  IOrderModelData,
+  IOrderPointData,
+} from '@store/reducers/orderDetailsReduces';
 import cl from './OrderDetailsItem.module.scss';
 
 interface IOrderDetailsItemProps {
@@ -9,9 +12,11 @@ interface IOrderDetailsItemProps {
   itemData: unknown;
 }
 
-const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({ title, itemData, type }) => {
-  useEffect(() => {}, [itemData]);
-
+const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
+  title,
+  itemData,
+  type,
+}) => {
   const getRightData = useCallback((): JSX.Element => {
     switch (type) {
       case EOrderItemTypes.POINT: {

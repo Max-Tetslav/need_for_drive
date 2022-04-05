@@ -1,6 +1,10 @@
 import { ICar, ICarCategory } from '@models/orderPageData';
 import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
-import { BaseQueryFn, createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import {
+  BaseQueryFn,
+  createApi,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/dist/query/react';
 import { MAPBOX_REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
 
 const needForDriveApi = createApi({

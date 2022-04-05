@@ -76,6 +76,12 @@ const orderDetailsSlice = createSlice({
   },
 });
 
-export const { updateCity, updateAddress, updateModel, updatePointStatus, updateModelStatus, updateModelId } =
-  orderDetailsSlice.actions;
+export const {
+  updateCity,
+  updateAddress,
+  updateModel,
+  updatePointStatus,
+  updateModelStatus,
+  updateModelId,
+} = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;

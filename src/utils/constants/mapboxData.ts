@@ -1,5 +1,6 @@
 export const MAPBOX_API = process.env.REACT_APP_MAPBOX_API_KEY;
-export const MAPBOX_REQUEST_HEADER_KEY = process.env.REACT_APP_MAPBOX_REQUEST_HEADER_KEY;
+export const MAPBOX_REQUEST_HEADER_KEY =
+  process.env.REACT_APP_MAPBOX_REQUEST_HEADER_KEY;
 export const GEOCODER_API = process.env.REACT_APP_GEOCODER_API_KEY;
 
 export const MAPBOX_STYLES = 'mapbox://styles/mapbox/light-v10';

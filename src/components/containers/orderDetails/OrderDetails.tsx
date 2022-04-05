@@ -32,8 +32,18 @@ const OrderDetails: React.FC = () => {
   return (
     <div className={cl.orderDetailsContainer}>
       <h3 className={cl.orderDetailsTitle}>Ваш заказ:</h3>
-      <OrderDetailsItem title="Пункт выдачи" itemData={pointState} type={EOrderItemTypes.POINT} />
-      {orderDetailsData.model.status && <OrderDetailsItem title="Модель" itemData={modelState} type={EOrderItemTypes.MODEL} />}
+      <OrderDetailsItem
+        title="Пункт выдачи"
+        itemData={pointState}
+        type={EOrderItemTypes.POINT}
+      />
+      {orderDetailsData.model.status && (
+        <OrderDetailsItem
+          title="Модель"
+          itemData={modelState}
+          type={EOrderItemTypes.MODEL}
+        />
+      )}
 
       <p className={cl.price}>Цена: от 8 000 до 12 000 ₽</p>
       <OrderDetailsButton />

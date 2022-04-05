@@ -26,19 +26,31 @@ const OrderBreadcrumb: React.FC = () => {
           const isCurrentPath = location.pathname.includes(route.path);
 
           return index === breadcrumbRoutes.length - 1 ? (
-            <Link to="/" key={route.id} className={classnames(cl.link, cl.lastLink)}>
+            <Link
+              to="/"
+              key={route.id}
+              className={classnames(cl.link, cl.lastLink)}
+            >
               {route.breadcrumbName}
             </Link>
           ) : (
             <Fragment key={route.id}>
               <Link
                 to={route.isComplete ? route.path : location.pathname}
-                className={classnames(cl.link, { [cl.activeLink]: isCurrentPath }, { [cl.completeLink]: route.isComplete })}
+                className={classnames(
+                  cl.link,
+                  { [cl.activeLink]: isCurrentPath },
+                  { [cl.completeLink]: route.isComplete },
+                )}
               >
                 {route.breadcrumbName}
               </Link>
               <Breadcrumb.Separator>
-                <img src={separatorIcon} className={cl.separator} alt="breadcrumb-separator" />
+                <img
+                  src={separatorIcon}
+                  className={cl.separator}
+                  alt="breadcrumb-separator"
+                />
               </Breadcrumb.Separator>
             </Fragment>
           );

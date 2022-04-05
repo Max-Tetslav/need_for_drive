@@ -18,7 +18,11 @@ const LangSwitcher: React.FC<ILangSwitcherProps> = ({ className }) => {
   }, [actualLang]);
 
   return (
-    <button className={classnames(className, cl.container)} type="button" onClick={switchLang}>
+    <button
+      className={classnames(className, cl.container)}
+      type="button"
+      onClick={switchLang}
+    >
       <p className={cl.text}>{actualLang}</p>
     </button>
   );

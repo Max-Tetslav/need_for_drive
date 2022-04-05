@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import classnames from 'classnames';
-import { updateModel, updateModelId, updateModelStatus } from '@store/reducers/orderDetailsReduces';
+import {
+  updateModel,
+  updateModelId,
+  updateModelStatus,
+} from '@store/reducers/orderDetailsReduces';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import cl from './CarModelCard.module.scss';
 
@@ -12,9 +16,17 @@ interface ICarModelCardProps {
   img: string;
 }
 
-const CarModelCard: React.FC<ICarModelCardProps> = ({ id, title, minPrice, maxPrice, img }) => {
+const CarModelCard: React.FC<ICarModelCardProps> = ({
+  id,
+  title,
+  minPrice,
+  maxPrice,
+  img,
+}) => {
   const dispatch = useAppDispatch();
-  const currentModelId = useAppSelector((state) => state.orderDetails.model.value.id);
+  const currentModelId = useAppSelector(
+    (state) => state.orderDetails.model.value.id,
+  );
 
   const formatPrice = (price: number): string => {
     let formatedPrice = price.toString();
@@ -48,7 +60,9 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({ id, title, minPrice, maxPr
 
   return (
     <div
-      className={classnames(cl.container, { [cl.activeItem]: id === currentModelId })}
+      className={classnames(cl.container, {
+        [cl.activeItem]: id === currentModelId,
+      })}
       role="radio"
       onClick={changeHandler}
       onKeyPress={() => null}
