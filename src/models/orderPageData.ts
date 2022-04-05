@@ -3,6 +3,7 @@ export interface IBreadcrumbRoute {
   path: string;
   breadcrumbName: string;
   isComplete: boolean;
+  isCurrent: boolean;
 }
 
 export enum ELocationInputTypes {
@@ -27,4 +28,24 @@ export interface IPoint {
 
 export interface ILocationResponse {
   data: ICity[] | IPoint[];
+}
+
+export interface ICarCategory {
+  name: string;
+  id: string;
+}
+
+export interface ICar {
+  id: string;
+  priceMax: number;
+  priceMin: number;
+  name: string;
+  thumbnail: {
+    path: string;
+  };
+}
+
+export enum EOrderItemTypes {
+  POINT = 'point',
+  MODEL = 'model',
 }

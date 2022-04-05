@@ -1,0 +1,25 @@
+.orderDetailsItem {
+  margin: 16px 0;
+  display: flex;
+  align-items: flex-end;
+
+  .orderDetailsItemTitle {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0;
+  }
+
+  .orderDetailsItemDots {
+    margin: 3px 12px;
+    flex: 1;
+    overflow: hidden;
+    border: 1px dotted #999;
+  }
+
+  .orderDetailsItemContent {
+    margin: 0;
+    text-align: right;
+    color: #999;
+  }
+}

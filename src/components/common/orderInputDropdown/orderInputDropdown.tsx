@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ELocationInputTypes, ICity, ILocationResponse, IPoint } from '@models/orderPageData';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { updateCurrentCity, updateCurrentPoint } from '@store/reducers/locationReducer';
+import { updateAddress, updateCity } from '@store/reducers/orderDetailsReduces';
 import cl from './orderInputDropdown.module.scss';
 
 interface IDropdownPlaceProps {
@@ -15,10 +15,13 @@ interface IDropdownPlaceProps {
 }
 
 const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({ inputString, type, isFocus, setString, setValue, data }) => {
+  const currentCity = useAppSelector((state) => state.orderDetails.point.value.city);
+  const currentAddress = useAppSelector((state) => state.orderDetails.point.value.address);
+
   const [isDropdownShown, setIsDropdownShown] = useState(false);
-  const [choice, setChoice] = type === ELocationInputTypes.CITY ? useState(true) : useState(false);
+  const [choice, setChoice] =
+    type === ELocationInputTypes.CITY ? useState(Boolean(currentCity)) : useState(Boolean(currentAddress));
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.location.city);
 
   const [filteredData, setFilteredData] = useState<ICity[] | IPoint[]>(data ? data.data : []);
 
@@ -46,7 +49,7 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({ inputString, type, 
   const setDataWithoutFilter = (): void => {
     if (filteredData.length === 0) {
       setFilteredData(data.data);
-      dispatch(updateCurrentCity(''));
+      dispatch(updateCity(''));
     }
   };
 
@@ -78,10 +81,10 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({ inputString, type, 
 
     switch (type) {
       case ELocationInputTypes.CITY:
-        dispatch(updateCurrentCity(selectedValue));
+        dispatch(updateCity(selectedValue));
         break;
       case ELocationInputTypes.POINT:
-        dispatch(updateCurrentPoint(selectedValue));
+        dispatch(updateAddress(selectedValue));
         break;
 
       // no default

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import needForDriveApi from '@services/location';
+import needForDriveApi from '@services/needForDriveAPI';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import rootReducer from './reducers';
 
