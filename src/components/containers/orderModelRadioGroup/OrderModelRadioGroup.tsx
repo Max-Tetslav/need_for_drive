@@ -1,21 +1,36 @@
-import OrderRadio from '@components/common/orderRadio/OrderRadio';
-import { ICarCategory } from '@models/orderPageData';
-import needForDriveApi from '@services/needForDriveAPI';
 import React from 'react';
+import { ICarCategory } from '@models/orderPageData';
+import OrderRadio from '@components/common/orderRadio/OrderRadio';
 import cl from './OrderModelRadioGroup.module.scss';
 
-const OrderModelRadioGroup: React.FC = () => {
-  const { data, isLoading } = needForDriveApi.useGetCarsCategoriesQuery('');
+interface IOrderModelRadioGroupProps {
+  filterBy: string;
+  setFilterBy: React.Dispatch<React.SetStateAction<string>>;
+  data: ICarCategory[];
+}
 
-  return isLoading ? (
-    <h1>Загрузка</h1>
-  ) : (
+const OrderModelRadioGroup: React.FC<IOrderModelRadioGroupProps> = ({
+  filterBy,
+  setFilterBy,
+  data,
+}) => {
+  return (
     <ul className={cl.list}>
-      <OrderRadio title="Все модели" checked />
-      {(data as { data: ICarCategory[] }).data.map((item: ICarCategory) => {
+      <OrderRadio
+        title="Все модели"
+        id=""
+        checkedId={filterBy}
+        setFilterId={setFilterBy}
+      />
+      {data.map((item: ICarCategory) => {
         return (
           <li className={cl.listItem} key={item.id}>
-            <OrderRadio title={item.name} checked={false} />
+            <OrderRadio
+              title={item.name}
+              id={item.id}
+              checkedId={filterBy}
+              setFilterId={setFilterBy}
+            />
           </li>
         );
       })}

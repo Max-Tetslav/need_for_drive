@@ -44,6 +44,9 @@ export interface ICar {
   thumbnail: {
     path: string;
   };
+  categoryId: {
+    id: string;
+  };
 }
 
 export enum EOrderItemTypes {

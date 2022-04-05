@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { SetStateAction, useCallback } from 'react';
 import cl from './OrderRadio.module.scss';
 
 interface IOrderRadioProps {
   title: string;
-  checked: boolean;
+  id: string;
+  checkedId: string;
+  setFilterId: React.Dispatch<SetStateAction<string>>;
 }
 
-const OrderRadio: React.FC<IOrderRadioProps> = ({ title, checked }) => {
+const OrderRadio: React.FC<IOrderRadioProps> = ({
+  title,
+  id,
+  setFilterId,
+  checkedId,
+}) => {
+  const changeHandler = useCallback(() => {
+    setFilterId(id);
+  }, [checkedId]);
+
   return (
     <label className={cl.label} htmlFor={`${title}-radio`}>
       <input
@@ -14,7 +25,8 @@ const OrderRadio: React.FC<IOrderRadioProps> = ({ title, checked }) => {
         type="radio"
         id={`${title}-radio`}
         name="model"
-        checked={checked}
+        checked={checkedId === id}
+        onChange={changeHandler}
       />
       <span className={cl.checkmark} />
       {title}
