@@ -8,7 +8,7 @@
   font-size: 13px;
   line-height: 15px;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     min-width: 100%;
     height: 72px;
     padding-right: 16px;
@@ -22,7 +22,7 @@
   color: #999;
   margin: 0;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     position: absolute;
     bottom: 16px;
   }
@@ -33,7 +33,7 @@
   text-decoration: none;
   transition: all 0.3s ease;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     position: absolute;
     color: #0ec261;
     top: 16px;

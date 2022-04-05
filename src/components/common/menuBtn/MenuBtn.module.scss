@@ -20,7 +20,7 @@
     left: 24px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 450px) {
     width: 32px;
     left: 16px;
     top: 16px;
@@ -43,7 +43,7 @@
       width: 33px;
     }
 
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       width: 21px;
       background-color: #121212;
     }
@@ -85,7 +85,7 @@
   }
 
   &.activeBtn {
-    @media screen and (max-width: 420px) {
+    @media screen and (max-width: 450px) {
       &::after,
       &::before,
       span,

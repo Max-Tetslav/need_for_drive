@@ -1,0 +1,29 @@
+.orderDetailsContainer {
+  width: 320px;
+  max-width: 320px;
+  height: 100%;
+  padding-top: 32px;
+  padding-left: 32px;
+  border-left: 1px solid #eee;
+
+  @media screen and (max-width: 832px) {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    padding: 32px 0;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 32px 16px;
+  }
+
+  .orderDetailsTitle {
+    text-align: right;
+    margin-top: 0;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 832px) {
+      text-align: left;
+    }
+  }
+}

@@ -57,7 +57,11 @@ const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
   });
 
   return (
-    <div className={cl.container} onMouseEnter={autoPlayHandler} onMouseLeave={autoPlayHandler}>
+    <div
+      className={cl.container}
+      onMouseEnter={autoPlayHandler}
+      onMouseLeave={autoPlayHandler}
+    >
       <SliderContent>
         {slidesData.map((slide) => (
           <Slide
@@ -73,7 +77,11 @@ const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
         <SliderNavigation direction="right" handleClick={nextSlide} />
       </SliderContent>
 
-      <SliderPagination slides={slidesData} activeSlide={activeNum} clickHandler={paginationHandler} />
+      <SliderPagination
+        slides={slidesData}
+        activeSlide={activeNum}
+        clickHandler={paginationHandler}
+      />
     </div>
   );
 };

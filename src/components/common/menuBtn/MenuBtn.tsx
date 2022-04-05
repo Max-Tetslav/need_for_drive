@@ -9,7 +9,12 @@ interface IMenuBtnProps {
 
 const MenuBtn: React.FC<IMenuBtnProps> = ({ isActive, clickHandler }) => {
   return (
-    <button type="button" aria-label="menu" className={classnames(cl.btn, { [cl.activeBtn]: isActive })} onClick={clickHandler}>
+    <button
+      type="button"
+      aria-label="menu"
+      className={classnames(cl.btn, { [cl.activeBtn]: isActive })}
+      onClick={clickHandler}
+    >
       <span />
     </button>
   );
