@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { MouseEvent, useCallback } from 'react';
 import Geolocation from '@components/common/geolocation/Geolocation';
+import { useNavigate } from 'react-router-dom';
 import cl from './Header.module.scss';
 
 interface IProps {
@@ -7,9 +8,17 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = ({ headerClass }) => {
+  const navigate = useNavigate();
+  const clickHandler = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+    navigate('/');
+  }, []);
+
   return (
     <header className={headerClass}>
-      <h1 className={cl.title}>Need for drive</h1>
+      <a className={cl.title} href="/" onClick={clickHandler}>
+        Need for drive
+      </a>
       <Geolocation />
     </header>
   );

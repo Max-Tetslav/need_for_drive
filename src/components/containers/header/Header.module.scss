@@ -24,6 +24,14 @@
   line-height: 35px;
   font-weight: 700;
   margin: 0;
+  text-decoration: none;
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #121;
+  }
 
   @media screen and (max-width: 768px) {
     margin: 35px 0;
