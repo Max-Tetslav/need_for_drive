@@ -1,30 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@store/store';
 import {
   completeModel,
   completeOptions,
   updateCurrentModel,
   updateCurrentOptions,
 } from '@store/reducers/breadcrumbReducer';
-import { useAppDispatch, useAppSelector } from '@store/store';
-import { useLocation, useNavigate } from 'react-router-dom';
 import cl from './OrderDetailsButton.module.scss';
 
 const OrderDetailsButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const pointState = useAppSelector((state) => state.orderDetails.point);
-  const modelState = useAppSelector((state) => state.orderDetails.model);
-  // let colorState;
-  // let durationState;
-  // let rateState;
-  // let isFullOil;
-  // let isChildSeat;
-  // let isRightWheel;
-
   const [nextStep, setNextStep] = useState('Выбрать модель');
   const [isDisabled, setIsDisabled] = useState(true);
+  const pointState = useAppSelector((state) => state.orderDetails.point);
+  const modelState = useAppSelector((state) => state.orderDetails.model);
+  const durationState = useAppSelector(
+    (state) => state.orderDetails.options.duration,
+  );
+  const rateState = useAppSelector(
+    (state) => state.orderDetails.options.rateName,
+  );
+
 
   const navigateTo = useCallback(() => {
     if (location.pathname.includes('model') && modelState.value.model) {
@@ -47,6 +46,8 @@ const OrderDetailsButton: React.FC = () => {
       setNextStep('Выбрать модель');
     } else if (location.pathname.includes('model')) {
       setNextStep('Дополнительно');
+    } else if (location.pathname.includes('options')) {
+      setNextStep('Итого');
     }
   }, [location]);
 
@@ -58,10 +59,22 @@ const OrderDetailsButton: React.FC = () => {
       pointState.value.address
     ) {
       setIsDisabled(false);
+    } else if (
+      location.pathname.includes('options') &&
+      durationState &&
+      rateState
+    ) {
+      setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [location, pointState.value.address, modelState.value.model]);
+  }, [
+    location,
+    pointState.value.address,
+    modelState.value.model,
+    durationState,
+    rateState,
+  ]);
 
   return (
     <button
