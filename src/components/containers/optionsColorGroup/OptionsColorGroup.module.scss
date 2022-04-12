@@ -1,0 +1,19 @@
+.container {
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121;
+}
+
+.colorGroup {
+  display: flex;
+  gap: 0 16px;
+}
