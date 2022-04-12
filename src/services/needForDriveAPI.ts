@@ -1,11 +1,11 @@
-import { ICar, ICarCategory } from '@models/orderPageData';
+import { ICar, ICarCategory, IRate } from '@models/orderPageData';
 import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
 import {
   BaseQueryFn,
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/dist/query/react';
-import { MAPBOX_REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
+import { REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
 
 const needForDriveApi = createApi({
   reducerPath: 'locationApi',
@@ -17,7 +17,7 @@ const needForDriveApi = createApi({
       query: () => ({
         url: '/city',
         headers: {
-          'X-Api-Factory-Application-Id': MAPBOX_REQUEST_HEADER_KEY,
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
         },
       }),
     }),
@@ -25,7 +25,7 @@ const needForDriveApi = createApi({
       query: () => ({
         url: '/point',
         headers: {
-          'X-Api-Factory-Application-Id': MAPBOX_REQUEST_HEADER_KEY,
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
         },
       }),
     }),
@@ -33,7 +33,7 @@ const needForDriveApi = createApi({
       query: () => ({
         url: '/category',
         headers: {
-          'X-Api-Factory-Application-Id': MAPBOX_REQUEST_HEADER_KEY,
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
         },
       }),
     }),
@@ -41,7 +41,15 @@ const needForDriveApi = createApi({
       query: () => ({
         url: '/car',
         headers: {
-          'X-Api-Factory-Application-Id': MAPBOX_REQUEST_HEADER_KEY,
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
+        },
+      }),
+    }),
+    getRatesList: build.query<{ data: Array<IRate> }, string>({
+      query: () => ({
+        url: '/rate',
+        headers: {
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
         },
       }),
     }),
