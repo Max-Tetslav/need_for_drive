@@ -10,7 +10,7 @@ const OrderModelContent: React.FC = () => {
   const { data, isLoading } = needForDriveApi.useGetCarsListQuery('');
   const { data: categories } = needForDriveApi.useGetCarsCategoriesQuery('');
 
-  const [filterId, setFilterId] = useState('');
+  const [filterId, setFilterId] = useState('allModels');
   const [filteredData, setFilteredData] = useState<Array<ICar>>([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const OrderModelContent: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      if (filterId === '') {
+      if (filterId === 'allModels') {
         setFilteredData(data.data);
       } else {
         setFilteredData(
@@ -51,6 +51,7 @@ const OrderModelContent: React.FC = () => {
                 id={item.id}
                 title={item.name}
                 img={item.thumbnail.path}
+                colors={item.colors}
                 key={item.id}
               />
             ))

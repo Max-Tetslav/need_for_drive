@@ -1,5 +1,6 @@
 /* The label */
 .label {
+  width: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +29,7 @@
   }
 }
 
-.checkedLabel {
+.selected {
   color: #121212;
 }
 

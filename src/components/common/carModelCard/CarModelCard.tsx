@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import classnames from 'classnames';
 import {
   updateModel,
+  updateModelColorsList,
   updateModelId,
   updateModelMaxPrice,
   updateModelMinPrice,
@@ -17,6 +18,7 @@ interface ICarModelCardProps {
   minPrice: number;
   maxPrice: number;
   img: string;
+  colors: string[];
 }
 
 const CarModelCard: React.FC<ICarModelCardProps> = ({
@@ -25,6 +27,7 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({
   minPrice,
   maxPrice,
   img,
+  colors,
 }) => {
   const dispatch = useAppDispatch();
   const currentModelId = useAppSelector(
@@ -37,6 +40,7 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({
     dispatch(updateModelId(id));
     dispatch(updateModelMaxPrice(maxPrice));
     dispatch(updateModelMinPrice(minPrice));
+    dispatch(updateModelColorsList(colors));
   }, []);
 
   return (
