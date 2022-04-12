@@ -14,8 +14,16 @@ const OptionsDateGroup: React.FC = () => {
   const dispatch = useAppDispatch();
   const placeholder = 'Введите дату и время';
   const actualDate = new Date();
-  const formatedDate = actualDate.toLocaleDateString().split('.').reverse().join('-');
-  const formatedTime = actualDate.toLocaleTimeString().split(':').slice(0, 2).join(':');
+  const formatedDate = actualDate
+    .toLocaleDateString()
+    .split('.')
+    .reverse()
+    .join('-');
+  const formatedTime = actualDate
+    .toLocaleTimeString()
+    .split(':')
+    .slice(0, 2)
+    .join(':');
   const [dateFrom, setDateFrom] = useState(`${formatedDate}T${formatedTime}`);
   const [dateTo, setDateTo] = useState('');
 

@@ -29,7 +29,6 @@ const OrderDetailsPrice: React.FC = () => {
     (state) => state.orderDetails.options.isRightWheel,
   );
 
-
   useEffect(() => {
     if (orderDetailsModelData.maxPrice) {
       setMinPrice(formatPrice(orderDetailsModelData.minPrice));

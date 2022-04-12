@@ -24,7 +24,6 @@ const OrderDetailsButton: React.FC = () => {
     (state) => state.orderDetails.options.rateName,
   );
 
-
   const navigateTo = useCallback(() => {
     if (location.pathname.includes('model') && modelState.value.model) {
       navigate('/order/options');
