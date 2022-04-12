@@ -1,0 +1,84 @@
+.container {
+  height: 83px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121;
+}
+
+.dateGroup {
+  height: 51px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label {
+  width: 250px;
+  max-width: 250px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121;
+  position: relative;
+  gap: 0 8px;
+
+  .labelText {
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .input {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 224px;
+    height: 19px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #999;
+
+    @media screen and (max-width: 450px) {
+      height: 30px;
+    }
+
+    input {
+      padding: 0;
+      padding-left: 8px;
+      width: 200px;
+      max-width: calc(224px - 24px);
+      border: none;
+      height: 100%;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &:hover {
+      border-color: #999;
+      border-bottom: 1px solid #999;
+    }
+  }
+}
+
+.clearIcon {
+  margin: 0 8px;
+  visibility: hidden;
+}
+
+.clearIconVisible {
+  visibility: visible;
+}
