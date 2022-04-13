@@ -47,6 +47,8 @@ export interface ICar {
   priceMax: number;
   priceMin: number;
   name: string;
+  number: string;
+  tank?: number;
   thumbnail: {
     path: string;
   };
@@ -77,4 +79,14 @@ export interface IRate {
   id: string;
   price: number;
   rateTypeId?: IRateTypeId;
+}
+
+export interface IOrder {
+  orderStatusId: { name: string; id: string };
+  cityId: ICity;
+  pointId: IPoint;
+  carId: ICar;
+  dateFrom: number;
+  dateTo: number;
+  price: number;
 }
