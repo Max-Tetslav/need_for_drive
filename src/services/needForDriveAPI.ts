@@ -1,10 +1,10 @@
-import { ICar, ICarCategory, IRate } from '@models/orderPageData';
-import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
 import {
   BaseQueryFn,
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/dist/query/react';
+import { EndpointBuilder } from '@reduxjs/toolkit/dist/query/endpointDefinitions';
+import { ICar, ICarCategory, IOrder, IRate } from '@models/orderPageData';
 import { REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
 
 const needForDriveApi = createApi({
@@ -51,6 +51,16 @@ const needForDriveApi = createApi({
         headers: {
           'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
         },
+      }),
+    }),
+    postOrder: build.mutation<unknown, IOrder>({
+      query: (post) => ({
+        url: '/order',
+        method: 'POST',
+        headers: {
+          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
+        },
+        body: post,
       }),
     }),
   }),
