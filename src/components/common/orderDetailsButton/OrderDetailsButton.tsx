@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@store/store';
+import { updateIsModalShown } from '@store/reducers/orderDetailsReduces';
 import {
   completeModel,
   completeOptions,
@@ -17,6 +18,9 @@ const OrderDetailsButton: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const pointState = useAppSelector((state) => state.orderDetails.point);
   const modelState = useAppSelector((state) => state.orderDetails.model);
+  const optionsState = useAppSelector(
+    (state) => state.orderDetails.options.finalPrice,
+  );
   const durationState = useAppSelector(
     (state) => state.orderDetails.options.duration,
   );
@@ -25,7 +29,11 @@ const OrderDetailsButton: React.FC = () => {
   );
 
   const navigateTo = useCallback(() => {
-    if (location.pathname.includes('model') && modelState.value.model) {
+    if (location.pathname.includes('total')) {
+      dispatch(updateIsModalShown(true));
+    } else if (location.pathname.includes('options') && optionsState) {
+      navigate('/order/total');
+    } else if (location.pathname.includes('model') && modelState.value.name) {
       navigate('/order/options');
       dispatch(updateCurrentOptions(true));
       dispatch(completeOptions(true));
@@ -38,7 +46,7 @@ const OrderDetailsButton: React.FC = () => {
       dispatch(completeModel(true));
       setIsDisabled(true);
     }
-  }, [location, pointState.status, modelState.status]);
+  }, [location, pointState.status, modelState.status, optionsState]);
 
   useEffect(() => {
     if (location.pathname.includes('place')) {
@@ -47,11 +55,15 @@ const OrderDetailsButton: React.FC = () => {
       setNextStep('Дополнительно');
     } else if (location.pathname.includes('options')) {
       setNextStep('Итого');
+    } else {
+      setNextStep('Заказать');
     }
   }, [location]);
 
   useEffect(() => {
-    if (location.pathname.includes('model') && modelState.value.model) {
+    if (location.pathname.includes('total')) {
+      setIsDisabled(false);
+    } else if (location.pathname.includes('model') && modelState.value.name) {
       setIsDisabled(false);
     } else if (
       location.pathname.includes('place') &&
@@ -70,7 +82,7 @@ const OrderDetailsButton: React.FC = () => {
   }, [
     location,
     pointState.value.address,
-    modelState.value.model,
+    modelState.value,
     durationState,
     rateState,
   ]);
