@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react';
-import {
-  IOrderModelData,
-  IOrderPointData,
-} from '@store/reducers/orderDetailsReduces';
 import { EOrderItemTypes } from '@models/orderPageData';
+import { IOrderModelData, IOrderPointData } from '@models/store';
 import cl from './OrderDetailsItem.module.scss';
 
 interface IOrderDetailsItemProps {
@@ -40,7 +37,7 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
       }
       case EOrderItemTypes.MODEL: {
         if ((itemData as IOrderModelData).status) {
-          return <span>{(itemData as IOrderModelData).value.model}</span>;
+          return <span>{(itemData as IOrderModelData).value.name}</span>;
         }
         return (
           <>

@@ -2,33 +2,19 @@ import React, { useCallback } from 'react';
 import classnames from 'classnames';
 import {
   updateModel,
-  updateModelColorsList,
-  updateModelId,
-  updateModelMaxPrice,
-  updateModelMinPrice,
   updateModelStatus,
 } from '@store/reducers/orderDetailsReduces';
 import { useAppDispatch, useAppSelector } from '@store/store';
+import { ICar } from '@models/orderPageData';
 import formatPrice from '@utils/helpers/formatPrice';
 import cl from './CarModelCard.module.scss';
 
 interface ICarModelCardProps {
   id: string;
-  title: string;
-  minPrice: number;
-  maxPrice: number;
-  img: string;
-  colors: string[];
+  car: ICar;
 }
 
-const CarModelCard: React.FC<ICarModelCardProps> = ({
-  id,
-  title,
-  minPrice,
-  maxPrice,
-  img,
-  colors,
-}) => {
+const CarModelCard: React.FC<ICarModelCardProps> = ({ id, car }) => {
   const dispatch = useAppDispatch();
   const currentModelId = useAppSelector(
     (state) => state.orderDetails.model.value.id,
@@ -36,11 +22,7 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({
 
   const changeHandler = useCallback(() => {
     dispatch(updateModelStatus(true));
-    dispatch(updateModel(title));
-    dispatch(updateModelId(id));
-    dispatch(updateModelMaxPrice(maxPrice));
-    dispatch(updateModelMinPrice(minPrice));
-    dispatch(updateModelColorsList(colors));
+    dispatch(updateModel(car));
   }, []);
 
   return (
@@ -56,12 +38,12 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({
       tabIndex={0}
     >
       <h4 className={cl.title}>
-        {title}
+        {car.name}
         <p className={cl.price}>
-          {formatPrice(minPrice)} - {formatPrice(maxPrice)} ₽
+          {formatPrice(car.priceMin)} - {formatPrice(car.priceMax)} ₽
         </p>
       </h4>
-      <img className={cl.img} src={img} alt={title} />
+      <img className={cl.img} src={car.thumbnail.path} alt={car.name} />
     </div>
   );
 };

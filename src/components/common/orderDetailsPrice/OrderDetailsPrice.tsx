@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useAppSelector } from '@store/store';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { updateFinalPrice } from '@store/reducers/orderDetailsReduces';
 import formatPrice from '@utils/helpers/formatPrice';
 import cl from './OrderDetailsPrice.module.scss';
 
 const OrderDetailsPrice: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [priceRange, setPriceRange] = useState('');
@@ -30,12 +32,12 @@ const OrderDetailsPrice: React.FC = () => {
   );
 
   useEffect(() => {
-    if (orderDetailsModelData.maxPrice) {
-      setMinPrice(formatPrice(orderDetailsModelData.minPrice));
-      setMaxPrice(formatPrice(orderDetailsModelData.maxPrice));
+    if (orderDetailsModelData.priceMax) {
+      setMinPrice(formatPrice(orderDetailsModelData.priceMin));
+      setMaxPrice(formatPrice(orderDetailsModelData.priceMax));
       setPriceRange(`от ${minPrice} до ${maxPrice} `);
     }
-  }, [orderDetailsModelData.model, minPrice, maxPrice]);
+  }, [orderDetailsModelData, minPrice, maxPrice]);
 
   useMemo(() => {
     let finalPrice = 0;
@@ -69,8 +71,10 @@ const OrderDetailsPrice: React.FC = () => {
       }
 
       setPrice(formatPrice(finalPrice));
+      dispatch(updateFinalPrice(finalPrice));
     } else {
       setPrice('');
+      dispatch(updateFinalPrice(0));
     }
   }, [dateFrom, dateTo, rate, isFullTank, isNeedChildChair, isRightWheel]);
 
