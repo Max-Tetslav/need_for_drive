@@ -1,89 +1,6 @@
-import { EOrderItemTypes } from '@models/orderPageData';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface IOrderPointData {
-  status: boolean;
-  value: {
-    city: string;
-    cityId: string;
-    address: string;
-    addressId: string;
-  };
-}
-
-export interface IOrderModelData {
-  status: boolean;
-  value: {
-    id: string;
-    model: string;
-    maxPrice: number;
-    minPrice: number;
-    colors: string[];
-  };
-}
-
-export interface IOrderOptionsData {
-  color: string;
-  rateName: string;
-  rateId: string;
-  ratePrice: number;
-  dateFrom: number;
-  dateTo: number;
-  duration: string;
-  finalPrice: string;
-  isFullTank: boolean | null;
-  isNeedChildChair: boolean | null;
-  isRightWheel: boolean | null;
-}
-
-interface IOrderDetailsInitialState {
-  orderStep: {
-    current: string;
-    next: string;
-  };
-  point: IOrderPointData;
-  model: IOrderModelData;
-  options: IOrderOptionsData;
-}
-
-export const initialState: IOrderDetailsInitialState = {
-  orderStep: {
-    current: EOrderItemTypes.POINT,
-    next: EOrderItemTypes.MODEL,
-  },
-  point: {
-    status: false,
-    value: {
-      city: 'Ульяновск',
-      cityId: '',
-      address: '',
-      addressId: '',
-    },
-  },
-  model: {
-    status: false,
-    value: {
-      id: '',
-      model: '',
-      maxPrice: 0,
-      minPrice: 0,
-      colors: [],
-    },
-  },
-  options: {
-    color: '',
-    rateName: '',
-    rateId: '',
-    ratePrice: 0,
-    dateFrom: 0,
-    dateTo: 0,
-    duration: '',
-    finalPrice: '',
-    isFullTank: null,
-    isNeedChildChair: null,
-    isRightWheel: null,
-  },
-};
+import { ICar, IPoint } from '@models/orderPageData';
+import initialState from '@utils/constants/store';
 
 const orderDetailsSlice = createSlice({
   name: 'test',
@@ -98,23 +15,14 @@ const orderDetailsSlice = createSlice({
     updateAddress(state, action: PayloadAction<string>) {
       state.point.value.address = action.payload;
     },
+    updatePoint(state, action: PayloadAction<IPoint>) {
+      state.point.orderData = action.payload;
+    },
     updateModelStatus(state, action: PayloadAction<boolean>) {
       state.model.status = action.payload;
     },
-    updateModel(state, action: PayloadAction<string>) {
-      state.model.value.model = action.payload;
-    },
-    updateModelId(state, action: PayloadAction<string>) {
-      state.model.value.id = action.payload;
-    },
-    updateModelMaxPrice(state, action: PayloadAction<number>) {
-      state.model.value.maxPrice = action.payload;
-    },
-    updateModelMinPrice(state, action: PayloadAction<number>) {
-      state.model.value.minPrice = action.payload;
-    },
-    updateModelColorsList(state, action: PayloadAction<string[]>) {
-      state.model.value.colors = action.payload;
+    updateModel(state, action: PayloadAction<ICar>) {
+      state.model.value = action.payload;
     },
     updateColor(state, action: PayloadAction<string>) {
       state.options.color = action.payload;
@@ -137,7 +45,7 @@ const orderDetailsSlice = createSlice({
     updateDuration(state, action: PayloadAction<string>) {
       state.options.duration = action.payload;
     },
-    updateFinalPrice(state, action: PayloadAction<string>) {
+    updateFinalPrice(state, action: PayloadAction<number>) {
       state.options.finalPrice = action.payload;
     },
     updateIsFullTank(state, action: PayloadAction<boolean>) {
@@ -149,6 +57,9 @@ const orderDetailsSlice = createSlice({
     updateIsRightWheel(state, action: PayloadAction<boolean>) {
       state.options.isRightWheel = action.payload;
     },
+    updateIsModalShown(state, action: PayloadAction<boolean>) {
+      state.total.isModalShown = action.payload;
+    },
   },
 });
 
@@ -157,11 +68,8 @@ export const {
   updateAddress,
   updateModel,
   updatePointStatus,
+  updatePoint,
   updateModelStatus,
-  updateModelId,
-  updateModelMaxPrice,
-  updateModelMinPrice,
-  updateModelColorsList,
   updateColor,
   updateRateName,
   updateRateId,
@@ -173,5 +81,6 @@ export const {
   updateIsFullTank,
   updateIsNeedChildChair,
   updateIsRightWheel,
+  updateIsModalShown,
 } = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;
