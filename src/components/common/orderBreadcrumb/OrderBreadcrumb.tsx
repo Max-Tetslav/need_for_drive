@@ -2,11 +2,11 @@ import React, { Fragment, useCallback, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classnames from 'classnames';
 import { Breadcrumb } from 'antd';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { updateCurrentModel } from '@store/reducers/breadcrumbReducer';
+import { EOrderItemTypes } from '@models/orderPageData';
 import breadcrumbRoutes from '@utils/constants/breadcrumbData';
 import separatorIcon from '@assets/svg/breadcrumbSeparator.svg';
-import { useAppDispatch, useAppSelector } from '@store/store';
-import { EOrderItemTypes } from '@models/orderPageData';
-import { updateCurrentModel } from '@store/reducers/breadcrumbReducer';
 import cl from './OrderBreadcrumb.module.scss';
 
 const OrderBreadcrumb: React.FC = () => {
@@ -23,7 +23,11 @@ const OrderBreadcrumb: React.FC = () => {
           break;
         }
         case 'model': {
-          isReady = Boolean(orderDetailsData.model.value.model);
+          isReady = Boolean(orderDetailsData.model.value.name);
+          break;
+        }
+        case 'options': {
+          isReady = Boolean(orderDetailsData.options.finalPrice);
           break;
         }
 
@@ -49,9 +53,13 @@ const OrderBreadcrumb: React.FC = () => {
 
           return index === breadcrumbRoutes.length - 1 ? (
             <Link
-              to="/"
+              to={isStepComplete ? route.path : location.pathname}
               key={route.id}
-              className={classnames(cl.link, cl.lastLink)}
+              className={classnames(
+                cl.link,
+                { [cl.activeLink]: isCurrentPath },
+                { [cl.completeLink]: isStepComplete },
+              )}
             >
               {route.breadcrumbName}
             </Link>
