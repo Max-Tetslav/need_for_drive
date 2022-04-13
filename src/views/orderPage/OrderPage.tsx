@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '@components/containers/header/Header';
 import OrderBreadcrumb from '@components/common/orderBreadcrumb/OrderBreadcrumb';
 import OrderDetails from '@components/containers/orderDetails/OrderDetails';
+import OrderSubmitModal from '@components/containers/orderSubmitModal/OrderSubmitModal';
 import cl from './OrderPage.module.scss';
 
 const OrderPage: React.FC = () => {
@@ -17,6 +18,7 @@ const OrderPage: React.FC = () => {
           </section>
           <OrderDetails />
         </div>
+        <OrderSubmitModal />
       </div>
     </main>
   );
