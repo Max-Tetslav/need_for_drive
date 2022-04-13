@@ -46,12 +46,8 @@ const OrderModelContent: React.FC = () => {
         {!isLoading
           ? filteredData.map((item) => (
               <CarModelCard
-                maxPrice={item.priceMax}
-                minPrice={item.priceMin}
                 id={item.id}
-                title={item.name}
-                img={item.thumbnail.path}
-                colors={item.colors}
+                car={item}
                 key={item.id}
               />
             ))
