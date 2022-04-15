@@ -1,17 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import needForDriveApi from '@services/needForDriveAPI';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { updateIsModalShown } from '@store/reducers/orderDetailsReduces';
+import { updateIsModalShown } from '@store/reducers/orderDetailsReducer';
 import cl from './OrderSubmitModal.module.scss';
 
 const OrderSubmitModal: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const orderData = useAppSelector((state) => state.orderDetails);
   const modalState = useAppSelector(
     (state) => state.orderDetails.total.isModalShown,
   );
-  const [postOrder] = needForDriveApi.usePostOrderMutation();
+  const [postOrder, postResponse] = needForDriveApi.usePostOrderMutation();
 
   const cancelHandler = useCallback(() => {
     dispatch(updateIsModalShown(false));
@@ -26,10 +28,21 @@ const OrderSubmitModal: React.FC = () => {
       dateFrom: orderData.options.dateFrom,
       dateTo: orderData.options.dateTo,
       price: orderData.options.finalPrice,
+      color: orderData.options.color,
+      rateId: orderData.options.rate,
+      isFullTank: Boolean(orderData.options.isFullTank),
+      isNeedChildChair: Boolean(orderData.options.isNeedChildChair),
+      isRightWheel: Boolean(orderData.options.isRightWheel),
     });
 
     dispatch(updateIsModalShown(false));
   }, [orderData]);
+
+  useEffect(() => {
+    if (postResponse.data) {
+      navigate(`/order/:${postResponse.data.data.id}`);
+    }
+  }, [postResponse]);
 
   return (
     <div className={classNames(cl.container, { [cl.showModal]: modalState })}>
