@@ -1,34 +1,44 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { updateColor } from '@store/reducers/orderDetailsReduces';
+import React, { useEffect, useState } from 'react';
+import { updateColor } from '@store/reducers/orderDetailsReducer';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import OrderRadio from '@components/common/orderRadio/OrderRadio';
 import cl from './OptionsColorGroup.module.scss';
 
 const OptionsColorGroup: React.FC = () => {
   const dispath = useAppDispatch();
-  const [selectedId, setSelectedId] = useState('anyColor');
+  const currentColorId = useAppSelector(
+    (state) => state.orderDetails.options.colorId,
+  );
   const colorsList = useAppSelector(
     (state) => state.orderDetails.model.value.colors,
   );
   const colors = colorsList.map((color, index) => ({
     colorName: color,
-    id: index,
+    id: index.toString(),
   }));
 
-  const selectColor = useCallback(() => {
-    const colorId = selectedId.replace(/[^0-9.]/g, '');
+  const [selectedId, setSelectedId] = useState(currentColorId || 'anyColor');
 
-    if (colorId) {
+  useEffect(() => {
+    if (selectedId === 'anyColor') {
+      const randomId = Math.floor(Math.random() * colors.length);
+      dispath(updateColor(colors[randomId].colorName));
+    } else {
+      setSelectedId(currentColorId);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedId !== 'anyColor') {
+      const colorId = selectedId.replace(/[^0-9.]/g, '');
+
       dispath(updateColor(colors[Number(colorId)].colorName));
     } else {
       const randomId = Math.floor(Math.random() * colors.length);
+
       dispath(updateColor(colors[randomId].colorName));
     }
   }, [selectedId]);
-
-  useEffect(() => {
-    selectColor();
-  }, [selectColor]);
 
   return (
     <div className={cl.container}>
@@ -44,7 +54,7 @@ const OptionsColorGroup: React.FC = () => {
         {colors.map((color) => (
           <OrderRadio
             title={color.colorName}
-            id={`color${color.id.toString()}`}
+            id={`color${color.id}`}
             groupName="color"
             key={color.id}
             checkedId={selectedId}

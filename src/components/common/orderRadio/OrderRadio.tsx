@@ -1,5 +1,8 @@
+import React, { SetStateAction, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
-import React, { SetStateAction, useCallback } from 'react';
+import { updateColorId } from '@store/reducers/orderDetailsReducer';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { ERadioGroupNames } from '@models/orderPageData';
 import cl from './OrderRadio.module.scss';
 
 interface IOrderRadioProps {
@@ -17,6 +20,29 @@ const OrderRadio: React.FC<IOrderRadioProps> = ({
   checkedId,
   groupName,
 }) => {
+  const dispatch = useAppDispatch();
+  const colorState = useAppSelector(
+    (state) => state.orderDetails.options.color,
+  );
+  const rateState = useAppSelector((state) => state.orderDetails.options.rate);
+
+  useEffect(() => {
+    switch (groupName) {
+      case ERadioGroupNames.RATE:
+        if (rateState.rateTypeId) {
+          setFilterId(rateState.rateTypeId.id);
+        }
+        break;
+      case ERadioGroupNames.COLOR:
+        if (id !== 'anyColor' && colorState === title) {
+          dispatch(updateColorId(id));
+        }
+        break;
+
+      // no default
+    }
+  }, [colorState, rateState]);
+
   const changeHandler = useCallback(() => {
     setFilterId(id);
   }, [checkedId]);
