@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import {
   updateModel,
   updateModelStatus,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { ICar } from '@models/orderPageData';
 import formatPrice from '@utils/helpers/formatPrice';

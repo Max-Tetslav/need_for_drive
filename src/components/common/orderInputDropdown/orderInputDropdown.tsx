@@ -5,7 +5,7 @@ import {
   updateAddress,
   updateCity,
   updatePoint,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
 import {
   ELocationInputTypes,
   ICity,
