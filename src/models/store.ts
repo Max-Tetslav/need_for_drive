@@ -1,4 +1,4 @@
-import { ICar, IPoint } from './orderPageData';
+import { ICar, IPoint, IRate } from './orderPageData';
 
 export interface IOrderPointData {
   status: boolean;
@@ -16,9 +16,11 @@ export interface IOrderModelData {
 
 export interface IOrderOptionsData {
   color: string;
+  colorId: string;
   rateName: string;
   rateId: string;
   ratePrice: number;
+  rate: IRate;
   dateFrom: number;
   dateTo: number;
   duration: string;
