@@ -1,5 +1,16 @@
-import { EOrderItemTypes } from '@models/orderPageData';
+import { EOrderItemTypes, IPoint } from '@models/orderPageData';
 import { IOrderDetailsInitialState } from '@models/store';
+import { DEFAULT_CITY } from './locationData';
+
+export const initialLocationOrderData: IPoint = {
+  cityId: {
+    name: '',
+    id: '',
+  },
+  address: '',
+  name: '',
+  id: '',
+};
 
 const initialState: IOrderDetailsInitialState = {
   orderStep: {
@@ -9,18 +20,10 @@ const initialState: IOrderDetailsInitialState = {
   point: {
     status: false,
     value: {
-      city: 'Ульяновск',
+      city: DEFAULT_CITY,
       address: '',
     },
-    orderData: {
-      cityId: {
-        name: '',
-        id: '',
-      },
-      address: '',
-      name: '',
-      id: '',
-    },
+    orderData: initialLocationOrderData,
   },
   model: {
     status: false,
@@ -42,7 +45,16 @@ const initialState: IOrderDetailsInitialState = {
   },
   options: {
     color: '',
+    colorId: '',
     rateName: '',
+    rate: {
+      price: 0,
+      rateTypeId: {
+        name: '',
+        id: '',
+        unit: '',
+      },
+    },
     rateId: '',
     ratePrice: 0,
     dateFrom: 0,

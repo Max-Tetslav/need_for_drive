@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICar, IPoint } from '@models/orderPageData';
+import { ICar, IPoint, IRate } from '@models/orderPageData';
 import initialState from '@utils/constants/store';
 
 const orderDetailsSlice = createSlice({
@@ -26,6 +26,12 @@ const orderDetailsSlice = createSlice({
     },
     updateColor(state, action: PayloadAction<string>) {
       state.options.color = action.payload;
+    },
+    updateColorId(state, action: PayloadAction<string>) {
+      state.options.colorId = action.payload;
+    },
+    updateRate(state, action: PayloadAction<IRate>) {
+      state.options.rate = action.payload;
     },
     updateRateName(state, action: PayloadAction<string>) {
       state.options.rateName = action.payload;
@@ -71,9 +77,11 @@ export const {
   updatePoint,
   updateModelStatus,
   updateColor,
+  updateColorId,
   updateRateName,
   updateRateId,
   updateRatePrice,
+  updateRate,
   updateDateFrom,
   updateDateTo,
   updateDuration,
