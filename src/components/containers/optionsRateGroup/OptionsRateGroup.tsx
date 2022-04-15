@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '@store/store';
 import needForDriveApi from '@services/needForDriveAPI';
 import {
@@ -14,7 +14,7 @@ const OptionsRateGroup: React.FC = () => {
   const { data } = needForDriveApi.useGetRatesListQuery('');
   const [rateList, setRateList] = useState<IRate[]>([]);
 
-  useMemo(() => {
+  const setData = useCallback(() => {
     if (data) {
       const filteredData = data.data.filter((item) => item.rateTypeId);
 
@@ -24,14 +24,22 @@ const OptionsRateGroup: React.FC = () => {
 
   const [rate, setRate] = useState('');
 
-  useMemo(() => {
+  const selectRate = useCallback(() => {
     if (rate) {
-      const currentRate = rateList.filter((item) => item.id === rate);
+      const currentRate = rateList.filter((item) => item.id === rate)[0];
 
-      dispatch(updateRateName((currentRate[0].rateTypeId as IRateTypeId).name));
-      dispatch(updateRatePrice(currentRate[0].price));
+      dispatch(updateRateName((currentRate.rateTypeId as IRateTypeId).name));
+      dispatch(updateRatePrice(currentRate.price));
     }
   }, [rate]);
+
+  useEffect(() => {
+    setData();
+  }, [setData]);
+
+  useEffect(() => {
+    selectRate();
+  }, [selectRate]);
 
   return (
     <div className={cl.container}>

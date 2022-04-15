@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { updateColor } from '@store/reducers/orderDetailsReduces';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import OrderRadio from '@components/common/orderRadio/OrderRadio';
@@ -15,7 +15,7 @@ const OptionsColorGroup: React.FC = () => {
     id: index,
   }));
 
-  useMemo(() => {
+  const selectColor = useCallback(() => {
     const colorId = selectedId.replace(/[^0-9.]/g, '');
 
     if (colorId) {
@@ -25,6 +25,10 @@ const OptionsColorGroup: React.FC = () => {
       dispath(updateColor(colors[randomId].colorName));
     }
   }, [selectedId]);
+
+  useEffect(() => {
+    selectColor();
+  }, [selectColor]);
 
   return (
     <div className={cl.container}>

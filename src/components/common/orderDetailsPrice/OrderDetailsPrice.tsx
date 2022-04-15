@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { updateFinalPrice } from '@store/reducers/orderDetailsReduces';
 import formatPrice from '@utils/helpers/formatPrice';
@@ -39,7 +39,7 @@ const OrderDetailsPrice: React.FC = () => {
     }
   }, [orderDetailsModelData, minPrice, maxPrice]);
 
-  useMemo(() => {
+  const setFinalPrice = useCallback(() => {
     let finalPrice = 0;
     const duration = dateTo - dateFrom;
 
@@ -77,6 +77,10 @@ const OrderDetailsPrice: React.FC = () => {
       dispatch(updateFinalPrice(0));
     }
   }, [dateFrom, dateTo, rate, isFullTank, isNeedChildChair, isRightWheel]);
+
+  useEffect(() => {
+    setFinalPrice();
+  }, [setFinalPrice]);
 
   return priceRange ? (
     <p className={cl.price}>Цена: {price || priceRange} ₽</p>

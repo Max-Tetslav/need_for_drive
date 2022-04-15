@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { Input } from 'antd';
 import { useAppDispatch } from '@store/store';
@@ -27,7 +27,7 @@ const OptionsDateGroup: React.FC = () => {
   const [dateFrom, setDateFrom] = useState(`${formatedDate}T${formatedTime}`);
   const [dateTo, setDateTo] = useState('');
 
-  useMemo(() => {
+  const setDate = useCallback(() => {
     if (dateFrom && dateTo) {
       const dateFromTime = new Date(dateFrom).getTime();
       const dateToTime = new Date(dateTo).getTime();
@@ -48,6 +48,10 @@ const OptionsDateGroup: React.FC = () => {
       dispatch(updateDuration(''));
     }
   }, [dateFrom, dateTo]);
+
+  useEffect(() => {
+    setDate();
+  }, [setDate]);
 
   return (
     <div className={cl.container}>

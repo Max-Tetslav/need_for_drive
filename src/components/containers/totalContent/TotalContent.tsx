@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@store/store';
 import cl from './TotalContent.module.scss';
 
@@ -6,7 +6,7 @@ const TotalContent: React.FC = () => {
   const orderData = useAppSelector((state) => state.orderDetails);
   const [tank, setTank] = useState<number>();
 
-  useMemo(() => {
+  useEffect(() => {
     if (orderData.options.isFullTank) {
       setTank(100);
     } else if (orderData.model.value.tank) {
