@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@store/store';
-import { updatePointStatus } from '@store/reducers/orderDetailsReduces';
-import { completeModel } from '@store/reducers/breadcrumbReducer';
-import { EOrderItemTypes } from '@models/orderPageData';
+import React from 'react';
+import { useAppSelector } from '@store/store';
+import { EOrderItemTypes, IRateTypeId } from '@models/orderPageData';
 import OrderDetailsButton from '@components/common/orderDetailsButton/OrderDetailsButton';
 import OrderDetailsItem from '@components/common/orderDetailsItem/OrderDetailsItem';
 import OrderDetailsPrice from '@components/common/orderDetailsPrice/OrderDetailsPrice';
 import cl from './OrderDetails.module.scss';
 
 const OrderDetails: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const pointState = useAppSelector((state) => state.orderDetails.point);
-  const modelState = useAppSelector((state) => state.orderDetails.model);
+  const pointState = useAppSelector(
+    (state) => state.orderDetails.point.orderData,
+  );
+  const modelState = useAppSelector((state) => state.orderDetails.model.value);
   const colorState = useAppSelector(
     (state) => state.orderDetails.options.color,
   );
@@ -19,7 +18,7 @@ const OrderDetails: React.FC = () => {
     (state) => state.orderDetails.options.duration,
   );
   const rateState = useAppSelector(
-    (state) => state.orderDetails.options.rateName,
+    (state) => (state.orderDetails.options.rate.rateTypeId as IRateTypeId).name,
   );
   const isFullTank = useAppSelector(
     (state) => state.orderDetails.options.isFullTank,
@@ -31,13 +30,6 @@ const OrderDetails: React.FC = () => {
     (state) => state.orderDetails.options.isRightWheel,
   );
 
-  useEffect(() => {
-    if (pointState.value.city && pointState.value.address) {
-      dispatch(updatePointStatus(true));
-      dispatch(completeModel(true));
-    }
-  }, [pointState]);
-
   return (
     <div className={cl.orderDetailsContainer}>
       <h3 className={cl.orderDetailsTitle}>Ваш заказ:</h3>
@@ -46,7 +38,7 @@ const OrderDetails: React.FC = () => {
         itemData={pointState}
         type={EOrderItemTypes.POINT}
       />
-      {modelState.status && (
+      {modelState.name && (
         <OrderDetailsItem
           title="Модель"
           itemData={modelState}
