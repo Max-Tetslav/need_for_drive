@@ -38,3 +38,18 @@
     background: #eee;
   }
 }
+
+.cancel {
+  background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: linear-gradient(90deg, #412b11 0%, #6e0a35 100%);
+  }
+
+  &:active {
+    color: #fff;
+    background: linear-gradient(90deg, #3a260f 0%, #62092f 100%);
+  }
+}
