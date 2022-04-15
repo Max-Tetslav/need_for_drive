@@ -1,9 +1,11 @@
+import classNames from 'classnames';
 import React, { SetStateAction, useCallback } from 'react';
 import cl from './OrderRadio.module.scss';
 
 interface IOrderRadioProps {
   title: string;
   id: string;
+  groupName: string;
   checkedId: string;
   setFilterId: React.Dispatch<SetStateAction<string>>;
 }
@@ -13,18 +15,22 @@ const OrderRadio: React.FC<IOrderRadioProps> = ({
   id,
   setFilterId,
   checkedId,
+  groupName,
 }) => {
   const changeHandler = useCallback(() => {
     setFilterId(id);
   }, [checkedId]);
 
   return (
-    <label className={cl.label} htmlFor={`${title}-radio`}>
+    <label
+      className={classNames(cl.label, { [cl.selected]: checkedId === id })}
+      htmlFor={`${title}-radio`}
+    >
       <input
         className={cl.input}
         type="radio"
         id={`${title}-radio`}
-        name="model"
+        name={groupName}
         checked={checkedId === id}
         onChange={changeHandler}
       />

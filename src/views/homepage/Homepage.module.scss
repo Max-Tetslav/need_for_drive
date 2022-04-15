@@ -42,6 +42,7 @@
   align-items: flex-start;
   flex-direction: column;
   max-width: calc(100% - 688px);
+  width: calc(100% - 688px);
   height: 100vh;
   padding-bottom: 32px;
   padding-left: 64px;
@@ -49,12 +50,12 @@
 
   @media screen and (max-width: 1280px) {
     max-width: 100%;
+    width: calc(100% - 530px);
+    padding: 0 32px 32px;
   }
 
   @media screen and (max-width: 1024px) {
     max-width: 100%;
-    padding-left: 32px;
-    padding-right: 32px;
   }
 
   @media screen and (max-width: 768px) {

@@ -27,7 +27,7 @@ const breadcrumbRoutes: IBreadcrumbRoute[] = [
   },
   {
     id: 3,
-    path: '/order/submit',
+    path: '/order/total',
     breadcrumbName: 'Итого',
     type: 'total',
     isComplete: false,

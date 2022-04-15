@@ -1,0 +1,74 @@
+.label {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-left: 20px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999;
+  /* stylelint-disable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* stylelint-enable */
+  user-select: none;
+  cursor: pointer;
+
+  .checkmark {
+    position: absolute;
+    top: calc(50% - 6px);
+    left: 0;
+    height: 12px;
+    width: 12px;
+    background-color: #fff;
+    border: 1px solid #999;
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 4px;
+      top: -3px;
+      width: 4px;
+      height: 9px;
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      /* stylelint-disable */
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      /* stylelint-enable */
+      transform: rotate(45deg);
+    }
+  }
+
+  .input {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+
+    &:checked ~ .checkmark {
+      border: 1px solid #0ec261;
+
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  &:hover {
+    .input ~ .checkmark {
+      border: 1px solid #0ec261;
+    }
+  }
+}
+
+.selected {
+  color: #121212;
+}
