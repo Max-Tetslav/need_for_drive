@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { Input } from 'antd';
-import clearIcon from '@assets/svg/clearIcon.svg';
 import needForDriveApi from '@services/needForDriveAPI';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { DEFAULT_CITY } from '@utils/constants/locationData';
@@ -9,8 +8,11 @@ import { ELocationInputTypes } from '@models/orderPageData';
 import {
   updateAddress,
   updateCity,
+  updatePoint,
   updatePointStatus,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
+import { initialLocationOrderData } from '@utils/constants/store';
+import clearIcon from '@assets/svg/clearIcon.svg';
 import OrderInputDropdown from '../orderInputDropdown/orderInputDropdown';
 import cl from './OrderInput.module.scss';
 
@@ -54,6 +56,7 @@ const OrderInput: React.FC<IOrderInputProps> = ({
         }
         setValue('');
         dispatch(updateAddress(''));
+        dispatch(updatePoint(initialLocationOrderData));
         dispatch(updatePointStatus(false));
       }
 
