@@ -47,6 +47,17 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  height: auto;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
 #app-root {
   height: auto;
   display: flex;
@@ -56,5 +67,9 @@ input[type="search"]::-webkit-search-results-decoration {
 /* stylelint-disable */
 .mapboxgl-control-container {
   display: none;
+}
+
+.ant-input-suffix {
+  z-index: 0;
 }
 /* stylelint-enable */

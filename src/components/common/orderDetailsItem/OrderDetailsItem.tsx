@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react';
 import { EOrderItemTypes } from '@models/orderPageData';
-import {
-  IOrderModelData,
-  IOrderPointData,
-} from '@store/reducers/orderDetailsReduces';
+import { IOrderModelData, IOrderPointData } from '@models/store';
 import cl from './OrderDetailsItem.module.scss';
 
 interface IOrderDetailsItemProps {
@@ -17,7 +14,7 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
   itemData,
   type,
 }) => {
-  const getRightData = useCallback((): JSX.Element => {
+  const getRightData = useCallback(() => {
     switch (type) {
       case EOrderItemTypes.POINT: {
         if ((itemData as IOrderPointData).status) {
@@ -36,10 +33,11 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
             <span>пункт выдачи</span>
           </>
         );
+        break;
       }
       case EOrderItemTypes.MODEL: {
         if ((itemData as IOrderModelData).status) {
-          return <span>{(itemData as IOrderModelData).value.model}</span>;
+          return <span>{(itemData as IOrderModelData).value.name}</span>;
         }
         return (
           <>
@@ -48,6 +46,43 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
             <span>модель авто</span>
           </>
         );
+        break;
+      }
+      case EOrderItemTypes.COLOR: {
+        if (itemData) {
+          return <span>{itemData as string}</span>;
+        }
+        break;
+      }
+      case EOrderItemTypes.DURATION: {
+        if (itemData) {
+          return <span>{itemData as string}</span>;
+        }
+        break;
+      }
+      case EOrderItemTypes.RATE: {
+        if (itemData) {
+          return <span>{itemData as string}</span>;
+        }
+        break;
+      }
+      case EOrderItemTypes.TANK: {
+        if (itemData) {
+          return <span>Да</span>;
+        }
+        break;
+      }
+      case EOrderItemTypes.CHAIR: {
+        if (itemData) {
+          return <span>Да</span>;
+        }
+        break;
+      }
+      case EOrderItemTypes.WHEEL: {
+        if (itemData) {
+          return <span>Да</span>;
+        }
+        break;
       }
       // no default
     }

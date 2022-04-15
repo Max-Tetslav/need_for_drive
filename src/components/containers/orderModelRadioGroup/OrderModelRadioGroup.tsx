@@ -18,7 +18,8 @@ const OrderModelRadioGroup: React.FC<IOrderModelRadioGroupProps> = ({
     <ul className={cl.list}>
       <OrderRadio
         title="Все модели"
-        id=""
+        id="allModels"
+        groupName="model"
         checkedId={filterBy}
         setFilterId={setFilterBy}
       />
@@ -28,6 +29,7 @@ const OrderModelRadioGroup: React.FC<IOrderModelRadioGroupProps> = ({
             <OrderRadio
               title={item.name}
               id={item.id}
+              groupName="model"
               checkedId={filterBy}
               setFilterId={setFilterBy}
             />

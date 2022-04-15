@@ -1,13 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import {
+  updateAddress,
+  updateCity,
+  updatePoint,
+} from '@store/reducers/orderDetailsReduces';
 import {
   ELocationInputTypes,
   ICity,
   ILocationResponse,
   IPoint,
 } from '@models/orderPageData';
-import { useAppDispatch, useAppSelector } from '@store/store';
-import { updateAddress, updateCity } from '@store/reducers/orderDetailsReduces';
 import cl from './orderInputDropdown.module.scss';
 
 interface IDropdownPlaceProps {
@@ -98,7 +102,10 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({
   }, [inputString, data, currentCity]);
 
   const clickHandler = useCallback(
-    (e: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+    (
+      e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+      item: IPoint | ICity,
+    ): void => {
       const selectedValue = (e.target as HTMLLIElement).textContent as string;
       setChoice(true);
 
@@ -110,6 +117,7 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({
           dispatch(updateCity(selectedValue));
           break;
         case ELocationInputTypes.POINT:
+          dispatch(updatePoint(item as IPoint));
           dispatch(updateAddress(selectedValue));
           break;
 
@@ -171,7 +179,7 @@ const orderInputDropdown: React.FC<IDropdownPlaceProps> = ({
           <li
             key={item.id}
             className={cl.dropdownItem}
-            onClick={clickHandler}
+            onClick={(e) => clickHandler(e, item)}
             onKeyUp={() => false}
             role="option"
             aria-selected="false"

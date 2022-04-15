@@ -11,15 +11,15 @@
 
 .navContainer {
   height: auto;
-  width: calc((100% / 2) + 64px);
+  width: calc(100% - 668px);
   background-color: #111518;
   position: relative;
 
-  @media screen and (max-width: 1024px) {
-    width: 615px;
+  @media screen and (max-width: 1280px) {
+    width: calc(100% - 529px);
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     width: 100%;
   }
 }
@@ -129,14 +129,14 @@
 
 .transparent {
   height: 100%;
-  width: calc((100% - 64px) / 2);
+  width: 668px;
   background: rgb(21 27 31 / 81%);
 
-  @media screen and (max-width: 1024px) {
-    width: 410px;
+  @media screen and (max-width: 1280px) {
+    width: 530px;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     display: none;
   }
 }

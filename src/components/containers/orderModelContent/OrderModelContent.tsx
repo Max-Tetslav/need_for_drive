@@ -10,7 +10,7 @@ const OrderModelContent: React.FC = () => {
   const { data, isLoading } = needForDriveApi.useGetCarsListQuery('');
   const { data: categories } = needForDriveApi.useGetCarsCategoriesQuery('');
 
-  const [filterId, setFilterId] = useState('');
+  const [filterId, setFilterId] = useState('allModels');
   const [filteredData, setFilteredData] = useState<Array<ICar>>([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const OrderModelContent: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      if (filterId === '') {
+      if (filterId === 'allModels') {
         setFilteredData(data.data);
       } else {
         setFilteredData(
@@ -45,14 +45,7 @@ const OrderModelContent: React.FC = () => {
       <div className={cl.container}>
         {!isLoading
           ? filteredData.map((item) => (
-              <CarModelCard
-                maxPrice={item.priceMax}
-                minPrice={item.priceMin}
-                id={item.id}
-                title={item.name}
-                img={item.thumbnail.path}
-                key={item.id}
-              />
+              <CarModelCard id={item.id} car={item} key={item.id} />
             ))
           : null}
       </div>

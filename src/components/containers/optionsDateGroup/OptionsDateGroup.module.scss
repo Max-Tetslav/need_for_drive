@@ -1,19 +1,37 @@
-.label {
-  width: 320px;
-  max-width: 320px;
+.container {
+  height: 83px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  position: relative;
+  color: #121;
+}
 
-  @media screen and (max-width: 450px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    max-width: 100%;
-  }
+.dateGroup {
+  height: 51px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label {
+  width: 250px;
+  max-width: 250px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #121;
+  position: relative;
+  gap: 0 8px;
 
   .labelText {
     display: inline-block;
@@ -22,6 +40,7 @@
   }
 
   .input {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -53,16 +72,6 @@
       border-bottom: 1px solid #999;
     }
   }
-}
-
-.dropdown {
-  background-color: #fff;
-  padding: 8px 8px 0;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
-  color: #999;
-  margin: 6px 0;
 }
 
 .clearIcon {
