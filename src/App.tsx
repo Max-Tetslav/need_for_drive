@@ -9,6 +9,7 @@ import OrderPlaceContent from '@components/containers/orderPlaceContent/OrderPla
 import OrderModelContent from '@components/containers/orderModelContent/OrderModelContent';
 import OptionsContent from '@components/containers/optionsContent/OptionsContent';
 import TotalContent from '@components/containers/totalContent/TotalContent';
+import FullOrder from '@components/containers/fullOrder/FullOrder';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
               <Route path="model" element={<OrderModelContent />} />
               <Route path="options" element={<OptionsContent />} />
               <Route path="total" element={<TotalContent />} />
+              <Route path=":orderId" element={<FullOrder />} />
             </Route>
           </Route>
         </Routes>
