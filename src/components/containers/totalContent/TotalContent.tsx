@@ -20,11 +20,13 @@ const TotalContent: React.FC = () => {
     <div className={cl.container}>
       <div className={cl.infoContainer}>
         <p className={cl.model}>{orderData.model.value.name}</p>
-        <p className={cl.number}>
-          {orderData.model.value.number
-            .replace(/\d{1,}/g, ` $& `)
-            .toLocaleUpperCase()}
-        </p>
+        {orderData.model.value.number ? (
+          <p className={cl.number}>
+            {orderData.model.value.number
+              .replace(/\d{1,}/g, ` $& `)
+              .toLocaleUpperCase()}
+          </p>
+        ) : null}
         <p className={cl.otherText}>
           <strong>Топливо</strong>
           {` ${tank} %`}
