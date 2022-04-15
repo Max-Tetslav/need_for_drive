@@ -8,59 +8,53 @@ import { ICar, ICarCategory, IOrder, IRate } from '@models/orderPageData';
 import { REQUEST_HEADER_KEY } from '@utils/constants/mapboxData';
 
 const needForDriveApi = createApi({
-  reducerPath: 'locationApi',
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api-factory.simbirsoft1.com/api/db',
+    prepareHeaders: (headers) => {
+      if (REQUEST_HEADER_KEY) {
+        headers.set('X-Api-Factory-Application-Id', REQUEST_HEADER_KEY);
+      }
+
+      return headers;
+    },
   }),
   endpoints: (build: EndpointBuilder<BaseQueryFn, string, string>) => ({
     getCitiesList: build.query({
       query: () => ({
         url: '/city',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
       }),
     }),
     getPointsList: build.query({
       query: () => ({
         url: '/point',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
       }),
     }),
     getCarsCategories: build.query<{ data: Array<ICarCategory> }, string>({
       query: () => ({
         url: '/category',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
       }),
     }),
     getCarsList: build.query<{ data: Array<ICar> }, string>({
       query: () => ({
         url: '/car',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
       }),
     }),
     getRatesList: build.query<{ data: Array<IRate> }, string>({
       query: () => ({
         url: '/rate',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
       }),
     }),
-    postOrder: build.mutation<unknown, IOrder>({
+    postOrder: build.mutation<{ data: { id: string } }, IOrder>({
       query: (post) => ({
         url: '/order',
         method: 'POST',
-        headers: {
-          'X-Api-Factory-Application-Id': REQUEST_HEADER_KEY,
-        },
         body: post,
+      }),
+    }),
+    getOrder: build.query<{ data: IOrder }, string>({
+      query: (id) => ({
+        url: `/order/${id}`,
       }),
     }),
   }),
