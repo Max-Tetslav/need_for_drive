@@ -45,11 +45,7 @@ const OrderModelContent: React.FC = () => {
       <div className={cl.container}>
         {!isLoading
           ? filteredData.map((item) => (
-              <CarModelCard
-                id={item.id}
-                car={item}
-                key={item.id}
-              />
+              <CarModelCard id={item.id} car={item} key={item.id} />
             ))
           : null}
       </div>
