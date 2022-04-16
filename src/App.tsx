@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { store } from '@store/store';
 import Root from '@views/root/Root';
 import Homepage from '@views/homepage/Homepage';
@@ -13,7 +13,7 @@ import FullOrder from '@components/containers/fullOrder/FullOrder';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <Routes>
           <Route path="/" element={<Root />}>
@@ -25,10 +25,11 @@ const App: React.FC = () => {
               <Route path="total" element={<TotalContent />} />
               <Route path=":orderId" element={<FullOrder />} />
             </Route>
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

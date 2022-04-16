@@ -2,6 +2,7 @@
   "name": "need_for_drive",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@reduxjs/toolkit": "^1.8.0",
