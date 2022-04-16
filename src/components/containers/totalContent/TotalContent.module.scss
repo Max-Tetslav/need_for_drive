@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   padding: 32px 0;
   width: 736px;
@@ -39,20 +41,20 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
-    color: #121212;
+    color: $black-primary;
   }
 
   .number {
     width: fit-content;
     display: inline-block;
     padding: 4px 8px;
-    border: 1px solid #999;
+    border: 1px solid $gray;
     border-radius: 4px;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    color: #121212;
+    color: $black-primary;
   }
 
   .otherText {
@@ -60,7 +62,7 @@
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
-    color: #121212;
+    color: $black-primary;
   }
 }
 

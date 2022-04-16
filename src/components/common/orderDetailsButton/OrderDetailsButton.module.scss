@@ -1,6 +1,8 @@
+@import "../../../vars.scss";
+
 .button {
   text-decoration: none;
-  color: #fff;
+  color: $white;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -12,7 +14,7 @@
   height: 48px;
   margin-top: 28px;
   transition: all 0.3s ease;
-  background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
+  background: $green-gradient;
   background-blend-mode: darken;
   border-radius: 8px;
 
@@ -22,34 +24,32 @@
     border-radius: 10px;
   }
 
-  &:hover,
-  &:focus {
-    color: #fff;
-    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+  &:hover {
+    color: $white;
+    background: $green-gradient_hover;
   }
 
   &:active {
-    color: #fff;
-    background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+    color: $white;
+    background: $green-gradient_active;
   }
 
   &:disabled {
     cursor: default;
-    background: #eee;
+    background: $lightgray;
   }
 }
 
 .cancel {
-  background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+  background: $red-gradient;
 
-  &:hover,
-  &:focus {
-    color: #fff;
-    background: linear-gradient(90deg, #412b11 0%, #6e0a35 100%);
+  &:hover {
+    color: $white;
+    background: $red-gradient_hover;
   }
 
   &:active {
-    color: #fff;
-    background: linear-gradient(90deg, #3a260f 0%, #62092f 100%);
+    color: $white;
+    background: $red-gradient_active;
   }
 }

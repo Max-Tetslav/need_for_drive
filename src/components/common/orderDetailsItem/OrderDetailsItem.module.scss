@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .orderDetailsItem {
   margin: 16px 0;
   display: flex;
@@ -14,7 +16,7 @@
     margin: 3px 12px;
     flex: 1;
     overflow: hidden;
-    border: 1px dotted #999;
+    border: 1px dotted $gray;
   }
 
   .orderDetailsItemContent {
@@ -23,6 +25,6 @@
     font-size: 14px;
     line-height: 16px;
     text-align: right;
-    color: #999;
+    color: $gray;
   }
 }

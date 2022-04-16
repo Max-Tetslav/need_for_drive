@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .dropdown {
   display: none;
   flex-direction: column;
@@ -5,8 +7,8 @@
   width: 224px;
   height: fit-content;
   max-height: 106px;
-  background-color: white;
-  border: 1px solid #eee;
+  background-color: $white;
+  border: 1px solid $lightgray;
   border-top: none;
   padding: 8px;
   margin-top: 19px;
@@ -21,13 +23,13 @@
 
   &::-webkit-scrollbar-thumb {
     width: 2px;
-    background-color: #0ec261;
+    background-color: $green-primary;
     border-radius: 2px;
   }
 
   &::-webkit-scrollbar {
     width: 4px;
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
@@ -37,7 +39,7 @@
 
 .dropdownItem {
   margin: 6px 0;
-  color: #999;
+  color: $gray;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
@@ -45,13 +47,13 @@
   cursor: pointer;
 
   &:hover {
-    color: #0ec261;
+    color: $green-primary;
   }
 }
 
 .dropdownItemNotFound {
   margin: 6px 0;
-  color: #999;
+  color: $gray;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;

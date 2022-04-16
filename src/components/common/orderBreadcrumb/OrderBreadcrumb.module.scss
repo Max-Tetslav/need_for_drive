@@ -1,9 +1,11 @@
+@import "../../../vars.scss";
+
 .breadcrumbWrapper {
   position: absolute;
   width: calc(100% - 64px);
   height: 32px;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid $lightgray;
+  border-bottom: 1px solid $lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +27,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #121212;
+  color: $black-primary;
 
   @media screen and (max-width: 1312px) {
     max-width: 1000px;
@@ -84,7 +86,7 @@
 
 .link {
   text-decoration: none;
-  color: #999;
+  color: $gray;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -101,16 +103,16 @@
 }
 
 .completeLink {
-  color: #121;
+  color: $black-primary;
 
   &:hover {
-    color: #0ec261;
+    color: $green-primary;
     cursor: pointer;
   }
 }
 
 .activeLink {
-  color: #0ec261;
+  color: $green-primary;
 
   &:hover {
     cursor: default;
