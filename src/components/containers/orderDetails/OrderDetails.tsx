@@ -7,27 +7,13 @@ import OrderDetailsPrice from '@components/common/orderDetailsPrice/OrderDetails
 import cl from './OrderDetails.module.scss';
 
 const OrderDetails: React.FC = () => {
+  const modelState = useAppSelector((state) => state.orderDetails.model.value);
+  const optionsState = useAppSelector((state) => state.orderDetails.options);
   const pointState = useAppSelector(
     (state) => state.orderDetails.point.orderData,
   );
-  const modelState = useAppSelector((state) => state.orderDetails.model.value);
-  const colorState = useAppSelector(
-    (state) => state.orderDetails.options.color,
-  );
-  const durationState = useAppSelector(
-    (state) => state.orderDetails.options.duration,
-  );
   const rateState = useAppSelector(
     (state) => (state.orderDetails.options.rate.rateTypeId as IRateTypeId).name,
-  );
-  const isFullTank = useAppSelector(
-    (state) => state.orderDetails.options.isFullTank,
-  );
-  const isNeedChildChair = useAppSelector(
-    (state) => state.orderDetails.options.isNeedChildChair,
-  );
-  const isRightWheel = useAppSelector(
-    (state) => state.orderDetails.options.isRightWheel,
   );
 
   return (
@@ -45,17 +31,17 @@ const OrderDetails: React.FC = () => {
           type={EOrderItemTypes.MODEL}
         />
       )}
-      {colorState && (
+      {optionsState.color && (
         <OrderDetailsItem
           title="Цвет"
-          itemData={colorState}
+          itemData={optionsState.color}
           type={EOrderItemTypes.COLOR}
         />
       )}
-      {durationState && (
+      {optionsState.duration && (
         <OrderDetailsItem
           title="Длительность аренды"
-          itemData={durationState}
+          itemData={optionsState.duration}
           type={EOrderItemTypes.DURATION}
         />
       )}
@@ -66,24 +52,24 @@ const OrderDetails: React.FC = () => {
           type={EOrderItemTypes.RATE}
         />
       )}
-      {isFullTank && (
+      {optionsState.isFullTank && (
         <OrderDetailsItem
           title="Полный бак"
-          itemData={isFullTank}
+          itemData={optionsState.isFullTank}
           type={EOrderItemTypes.TANK}
         />
       )}
-      {isNeedChildChair && (
+      {optionsState.isNeedChildChair && (
         <OrderDetailsItem
           title="Детское кресло"
-          itemData={isNeedChildChair}
+          itemData={optionsState.isNeedChildChair}
           type={EOrderItemTypes.CHAIR}
         />
       )}
-      {isRightWheel && (
+      {optionsState.isRightWheel && (
         <OrderDetailsItem
           title="Правый руль"
-          itemData={isRightWheel}
+          itemData={optionsState.isRightWheel}
           type={EOrderItemTypes.WHEEL}
         />
       )}
