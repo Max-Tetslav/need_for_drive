@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/need_for_drive/static/css/main.89d0252a.css",
-    "main.js": "/need_for_drive/static/js/main.e61244a0.js",
-    "static/media/slide4.webp": "/need_for_drive/static/media/slide4.16de4cb7ff4be54817e0.webp",
-    "static/media/slide3.webp": "/need_for_drive/static/media/slide3.14378bfaf3fd58ac9bde.webp",
-    "static/media/slide1.webp": "/need_for_drive/static/media/slide1.4e592c4065b3f94ffc63.webp",
-    "static/media/slide2.webp": "/need_for_drive/static/media/slide2.53101a3b0d8b52a79a1c.webp",
-    "static/media/Roboto.ttf": "/need_for_drive/static/media/Roboto.ecf539e1e3bc3e936f78.ttf",
-    "static/media/Roboto.woff": "/need_for_drive/static/media/Roboto.59d18e163bfcd0607572.woff",
-    "static/media/Roboto.woff2": "/need_for_drive/static/media/Roboto.806e04d8241d87f99a68.woff2",
-    "static/media/geopin.svg": "/need_for_drive/static/media/geopin.dd9d4bed9761cae3a42f0aa73aeceec2.svg",
-    "static/media/loading.svg": "/need_for_drive/static/media/loading.4e219b466c2f70030f52691f7528dcbe.svg",
-    "index.html": "/need_for_drive/index.html",
-    "static/media/clearIcon.svg": "/need_for_drive/static/media/clearIcon.13854ee106ed73c47a96abbcbadc98e0.svg",
-    "static/media/leftArrow.svg": "/need_for_drive/static/media/leftArrow.dd0226d1ef40f8836d758d1d948bcb88.svg",
-    "static/media/rightArrow.svg": "/need_for_drive/static/media/rightArrow.9d87137d3cdc657274dc93047421f39a.svg",
-    "static/media/breadcrumbSeparator.svg": "/need_for_drive/static/media/breadcrumbSeparator.ce81e7425fdbcb8e18e8475e250c5da8.svg",
-    "main.89d0252a.css.map": "/need_for_drive/static/css/main.89d0252a.css.map",
-    "main.e61244a0.js.map": "/need_for_drive/static/js/main.e61244a0.js.map"
+    "main.css": "./static/css/main.0c65d6c8.css",
+    "main.js": "./static/js/main.7f4ec74d.js",
+    "static/media/slide4.webp": "./static/media/slide4.16de4cb7ff4be54817e0.webp",
+    "static/media/slide3.webp": "./static/media/slide3.14378bfaf3fd58ac9bde.webp",
+    "static/media/slide1.webp": "./static/media/slide1.4e592c4065b3f94ffc63.webp",
+    "static/media/slide2.webp": "./static/media/slide2.53101a3b0d8b52a79a1c.webp",
+    "static/media/Roboto.ttf": "./static/media/Roboto.ecf539e1e3bc3e936f78.ttf",
+    "static/media/Roboto.woff": "./static/media/Roboto.59d18e163bfcd0607572.woff",
+    "static/media/Roboto.woff2": "./static/media/Roboto.806e04d8241d87f99a68.woff2",
+    "static/media/geopin.svg": "./static/media/geopin.dd9d4bed9761cae3a42f0aa73aeceec2.svg",
+    "static/media/loading.svg": "./static/media/loading.4e219b466c2f70030f52691f7528dcbe.svg",
+    "index.html": "./index.html",
+    "static/media/clearIcon.svg": "./static/media/clearIcon.13854ee106ed73c47a96abbcbadc98e0.svg",
+    "static/media/leftArrow.svg": "./static/media/leftArrow.dd0226d1ef40f8836d758d1d948bcb88.svg",
+    "static/media/rightArrow.svg": "./static/media/rightArrow.9d87137d3cdc657274dc93047421f39a.svg",
+    "static/media/breadcrumbSeparator.svg": "./static/media/breadcrumbSeparator.ce81e7425fdbcb8e18e8475e250c5da8.svg",
+    "main.0c65d6c8.css.map": "./static/css/main.0c65d6c8.css.map",
+    "main.7f4ec74d.js.map": "./static/js/main.7f4ec74d.js.map"
   },
   "entrypoints": [
-    "static/css/main.89d0252a.css",
-    "static/js/main.e61244a0.js"
+    "static/css/main.0c65d6c8.css",
+    "static/js/main.7f4ec74d.js"
   ]
 }
