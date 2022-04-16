@@ -25,11 +25,11 @@ const OrderBreadcrumb: React.FC = () => {
           break;
         }
         case 'options': {
-          isReady = Boolean(orderDetailsData.model.value.name);
+          isReady = Boolean(orderDetailsData.model.value.name && orderDetailsData.point.orderData.address);
           break;
         }
         case 'total': {
-          isReady = Boolean(orderDetailsData.options.finalPrice);
+          isReady = Boolean(orderDetailsData.options.finalPrice && orderDetailsData.model.value.name && orderDetailsData.point.orderData.address);
           break;
         }
 
