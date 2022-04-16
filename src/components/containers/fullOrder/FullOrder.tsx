@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '@store/store';
 import {
   updateColor,
@@ -21,10 +21,10 @@ import cl from './FullOrder.module.scss';
 
 const FullOrder: React.FC = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
-  const locationArr = location.pathname.split('/');
-  const orderId = locationArr[locationArr.length - 1].replace(':', '');
-  const { data: order } = needForDriveApi.useGetOrderQuery(orderId);
+  const { orderId } = useParams();
+  const { data: order } = needForDriveApi.useGetOrderQuery(
+    (orderId as string).replace(':', ''),
+  );
   const [tank, setTank] = useState<number>();
 
   useEffect(() => {
