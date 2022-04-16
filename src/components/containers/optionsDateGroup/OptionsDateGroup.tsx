@@ -9,8 +9,8 @@ import {
 } from '@store/reducers/orderDetailsReducer';
 import getDurationString from '@utils/helpers/getDurationString';
 import clearIcon from '@assets/svg/clearIcon.svg';
-import cl from './OptionsDateGroup.module.scss';
 import getCalendarDateFormat from '@utils/helpers/getCalendarDateFormat';
+import cl from './OptionsDateGroup.module.scss';
 
 const OptionsDateGroup: React.FC = () => {
   const dispatch = useAppDispatch();

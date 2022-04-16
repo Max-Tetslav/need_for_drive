@@ -1,6 +1,6 @@
 const getCalendarDateFormat = (date?: number) => {
-  let actualDate
-  
+  let actualDate;
+
   if (date) {
     actualDate = new Date(date);
   } else {
@@ -8,15 +8,15 @@ const getCalendarDateFormat = (date?: number) => {
   }
 
   const formatedDate = actualDate
-        .toLocaleDateString()
-        .split('.')
-        .reverse()
-        .join('-');
+    .toLocaleDateString()
+    .split('.')
+    .reverse()
+    .join('-');
   const formatedTime = actualDate
-        .toLocaleTimeString()
-        .split(':')
-        .slice(0, 2)
-        .join(':');
+    .toLocaleTimeString()
+    .split(':')
+    .slice(0, 2)
+    .join(':');
 
   return `${formatedDate}T${formatedTime}`;
 };
