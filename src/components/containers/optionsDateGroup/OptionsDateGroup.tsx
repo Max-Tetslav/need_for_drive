@@ -10,6 +10,7 @@ import {
 import getDurationString from '@utils/helpers/getDurationString';
 import clearIcon from '@assets/svg/clearIcon.svg';
 import cl from './OptionsDateGroup.module.scss';
+import getCalendarDateFormat from '@utils/helpers/getCalendarDateFormat';
 
 const OptionsDateGroup: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,38 +21,20 @@ const OptionsDateGroup: React.FC = () => {
   const dateToState = useAppSelector(
     (state) => state.orderDetails.options.dateTo,
   ) as number;
-  const actualDateFrom = dateFromState ? new Date(dateFromState) : new Date();
-  const formatedDateFrom = actualDateFrom
-    .toLocaleDateString()
-    .split('.')
-    .reverse()
-    .join('-');
-  const formatedTimeFrom = actualDateFrom
-    .toLocaleTimeString()
-    .split(':')
-    .slice(0, 2)
-    .join(':');
-  const [dateFrom, setDateFrom] = useState(
-    `${formatedDateFrom}T${formatedTimeFrom}`,
-  );
+  const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
   useEffect(() => {
+    if (dateFromState) {
+      setDateFrom(getCalendarDateFormat(dateFromState));
+    } else {
+      setDateFrom(getCalendarDateFormat());
+    }
+  }, [dateFromState]);
+
+  useEffect(() => {
     if (dateToState) {
-      const actualDateTo = new Date(dateToState);
-
-      const formatedDateTo = actualDateTo
-        .toLocaleDateString()
-        .split('.')
-        .reverse()
-        .join('-');
-      const formatedTimeTo = actualDateTo
-        .toLocaleTimeString()
-        .split(':')
-        .slice(0, 2)
-        .join(':');
-
-      setDateTo(`${formatedDateTo}T${formatedTimeTo}`);
+      setDateTo(getCalendarDateFormat(dateToState));
     }
   }, [dateToState]);
 
