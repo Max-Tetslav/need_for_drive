@@ -65,6 +65,7 @@ const OptionsDateGroup: React.FC = () => {
           <span className={cl.labelText}>{`C `}</span>
           <Input
             value={dateFrom}
+            min={getCalendarDateFormat(new Date().getTime())}
             type="datetime-local"
             bordered={false}
             className={cl.input}
@@ -89,6 +90,7 @@ const OptionsDateGroup: React.FC = () => {
           <span className={cl.labelText}>{`По `}</span>
           <Input
             value={dateTo}
+            min={getCalendarDateFormat(new Date().getTime())}
             onChange={(e) => setDateTo(e.target.value)}
             type="datetime-local"
             bordered={false}
