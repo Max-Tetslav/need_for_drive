@@ -30,7 +30,7 @@ const OptionsDateGroup: React.FC = () => {
     } else {
       setDateFrom(getCalendarDateFormat());
     }
-  }, [dateFromState]);
+  }, []);
 
   useEffect(() => {
     if (dateToState) {
