@@ -66,6 +66,9 @@ const orderDetailsSlice = createSlice({
     updateIsModalShown(state, action: PayloadAction<boolean>) {
       state.total.isModalShown = action.payload;
     },
+    clearOrderData() {
+      return initialState;
+    },
   },
 });
 
@@ -90,5 +93,6 @@ export const {
   updateIsNeedChildChair,
   updateIsRightWheel,
   updateIsModalShown,
+  clearOrderData,
 } = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;

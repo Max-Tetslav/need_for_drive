@@ -2,7 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { updateIsModalShown } from '@store/reducers/orderDetailsReducer';
+import {
+  clearOrderData,
+  updateIsModalShown,
+} from '@store/reducers/orderDetailsReducer';
 import cl from './OrderDetailsButton.module.scss';
 
 const OrderDetailsButton: React.FC = () => {
@@ -19,6 +22,10 @@ const OrderDetailsButton: React.FC = () => {
   );
 
   const clickHandler = useCallback(() => {
+    if (isFullOrder) {
+      navigate('/');
+      dispatch(clearOrderData());
+    }
     if (location.pathname.includes('total')) {
       dispatch(updateIsModalShown(true));
     } else if (location.pathname.includes('options')) {
