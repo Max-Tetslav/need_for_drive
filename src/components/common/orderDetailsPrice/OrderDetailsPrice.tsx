@@ -9,7 +9,7 @@ import cl from './OrderDetailsPrice.module.scss';
 const OrderDetailsPrice: React.FC = () => {
   const dispatch = useAppDispatch();
   const orderDetailsModelData = useAppSelector(
-    (state) => state.orderDetails.model.value,
+    (state) => state.orderDetails.model,
   );
   const dateFrom = useAppSelector(
     (state) => state.orderDetails.options.dateFrom,

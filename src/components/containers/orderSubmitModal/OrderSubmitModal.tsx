@@ -22,9 +22,9 @@ const OrderSubmitModal: React.FC = () => {
   const submitHandler = useCallback(() => {
     postOrder({
       orderStatusId: { name: 'new', id: '5e26a191099b810b946c5d89' },
-      cityId: orderData.point.orderData.cityId,
-      pointId: orderData.point.orderData,
-      carId: orderData.model.value,
+      cityId: orderData.point.cityId,
+      pointId: orderData.point,
+      carId: orderData.model,
       dateFrom: orderData.options.dateFrom,
       dateTo: orderData.options.dateTo,
       price: orderData.options.finalPrice,

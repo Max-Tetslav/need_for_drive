@@ -7,11 +7,9 @@ import OrderDetailsPrice from '@components/common/orderDetailsPrice/OrderDetails
 import cl from './OrderDetails.module.scss';
 
 const OrderDetails: React.FC = () => {
-  const modelState = useAppSelector((state) => state.orderDetails.model.value);
+  const modelState = useAppSelector((state) => state.orderDetails.model);
   const optionsState = useAppSelector((state) => state.orderDetails.options);
-  const pointState = useAppSelector(
-    (state) => state.orderDetails.point.orderData,
-  );
+  const pointState = useAppSelector((state) => state.orderDetails.point);
   const rateState = useAppSelector(
     (state) => (state.orderDetails.options.rate.rateTypeId as IRateTypeId).name,
   );

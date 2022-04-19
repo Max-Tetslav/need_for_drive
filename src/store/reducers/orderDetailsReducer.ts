@@ -6,23 +6,17 @@ const orderDetailsSlice = createSlice({
   name: 'test',
   initialState,
   reducers: {
-    updatePointStatus(state, action: PayloadAction<boolean>) {
-      state.point.status = action.payload;
-    },
     updateCity(state, action: PayloadAction<string>) {
-      state.point.value.city = action.payload;
+      state.point.cityId.name = action.payload;
     },
     updateAddress(state, action: PayloadAction<string>) {
-      state.point.value.address = action.payload;
+      state.point.address = action.payload;
     },
     updatePoint(state, action: PayloadAction<IPoint>) {
-      state.point.orderData = action.payload;
-    },
-    updateModelStatus(state, action: PayloadAction<boolean>) {
-      state.model.status = action.payload;
+      state.point = action.payload;
     },
     updateModel(state, action: PayloadAction<ICar>) {
-      state.model.value = action.payload;
+      state.model = action.payload;
     },
     updateColor(state, action: PayloadAction<string>) {
       state.options.color = action.payload;
@@ -76,9 +70,7 @@ export const {
   updateCity,
   updateAddress,
   updateModel,
-  updatePointStatus,
   updatePoint,
-  updateModelStatus,
   updateColor,
   updateColorId,
   updateRateName,

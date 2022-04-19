@@ -1,10 +1,10 @@
-import { EOrderItemTypes, IPoint } from '@models/orderPageData';
+import { IPoint } from '@models/orderPageData';
 import { IOrderDetailsInitialState } from '@models/store';
 import { DEFAULT_CITY } from './locationData';
 
 export const initialLocationOrderData: IPoint = {
   cityId: {
-    name: '',
+    name: DEFAULT_CITY,
     id: '',
   },
   address: '',
@@ -13,35 +13,21 @@ export const initialLocationOrderData: IPoint = {
 };
 
 const initialState: IOrderDetailsInitialState = {
-  orderStep: {
-    current: EOrderItemTypes.POINT,
-    next: EOrderItemTypes.MODEL,
-  },
-  point: {
-    status: false,
-    value: {
-      city: DEFAULT_CITY,
-      address: '',
-    },
-    orderData: initialLocationOrderData,
-  },
+  point: initialLocationOrderData,
   model: {
-    status: false,
-    value: {
-      id: '',
-      priceMax: 0,
-      priceMin: 0,
-      name: '',
-      number: '',
-      tank: 0,
-      thumbnail: {
-        path: '',
-      },
-      categoryId: {
-        id: '',
-      },
-      colors: [],
+    id: '',
+    priceMax: 0,
+    priceMin: 0,
+    name: '',
+    number: '',
+    tank: 0,
+    thumbnail: {
+      path: '',
     },
+    categoryId: {
+      id: '',
+    },
+    colors: [],
   },
   options: {
     color: '',

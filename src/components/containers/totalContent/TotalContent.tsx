@@ -9,8 +9,8 @@ const TotalContent: React.FC = () => {
   useEffect(() => {
     if (orderData.options.isFullTank) {
       setTank(100);
-    } else if (orderData.model.value.tank) {
-      setTank(orderData.model.value.tank);
+    } else if (orderData.model.tank) {
+      setTank(orderData.model.tank);
     } else {
       setTank(35);
     }
@@ -19,10 +19,10 @@ const TotalContent: React.FC = () => {
   return (
     <div className={cl.container}>
       <div className={cl.infoContainer}>
-        <p className={cl.model}>{orderData.model.value.name}</p>
-        {orderData.model.value.number ? (
+        <p className={cl.model}>{orderData.model.name}</p>
+        {orderData.model.number ? (
           <p className={cl.number}>
-            {orderData.model.value.number
+            {orderData.model.number
               .replace(/\d{1,}/g, ` $& `)
               .toLocaleUpperCase()}
           </p>
@@ -38,7 +38,7 @@ const TotalContent: React.FC = () => {
       </div>
       <img
         className={cl.img}
-        src={orderData.model.value.thumbnail.path}
+        src={orderData.model.thumbnail.path}
         alt="model"
       />
     </div>

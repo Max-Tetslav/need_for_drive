@@ -21,21 +21,20 @@ const OrderBreadcrumb: React.FC = () => {
           break;
         }
         case 'model': {
-          isReady = Boolean(orderDetailsData.point.orderData.address);
+          isReady = Boolean(orderDetailsData.point.address);
           break;
         }
         case 'options': {
           isReady = Boolean(
-            orderDetailsData.model.value.name &&
-              orderDetailsData.point.orderData.address,
+            orderDetailsData.model.name && orderDetailsData.point.address,
           );
           break;
         }
         case 'total': {
           isReady = Boolean(
             orderDetailsData.options.finalPrice &&
-              orderDetailsData.model.value.name &&
-              orderDetailsData.point.orderData.address,
+              orderDetailsData.model.name &&
+              orderDetailsData.point.address,
           );
           break;
         }

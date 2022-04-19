@@ -4,7 +4,6 @@ import {
   updateColor,
   updateColorId,
   updateModel,
-  updateModelStatus,
 } from '@store/reducers/orderDetailsReducer';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { ICar } from '@models/orderPageData';
@@ -21,12 +20,9 @@ const CarModelCard: React.FC<ICarModelCardProps> = ({ id, car }) => {
   const currentColor = useAppSelector(
     (state) => state.orderDetails.options.color,
   );
-  const currentModelId = useAppSelector(
-    (state) => state.orderDetails.model.value.id,
-  );
+  const currentModelId = useAppSelector((state) => state.orderDetails.model.id);
 
   const changeHandler = useCallback(() => {
-    dispatch(updateModelStatus(true));
     dispatch(updateModel(car));
 
     if (currentColor) {

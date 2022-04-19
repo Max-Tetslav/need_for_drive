@@ -9,9 +9,7 @@ const OptionsColorGroup: React.FC = () => {
   const currentColorId = useAppSelector(
     (state) => state.orderDetails.options.colorId,
   );
-  const colorsList = useAppSelector(
-    (state) => state.orderDetails.model.value.colors,
-  );
+  const colorsList = useAppSelector((state) => state.orderDetails.model.colors);
   const colors = colorsList.map((color, index) => ({
     colorName: color,
     id: index.toString(),

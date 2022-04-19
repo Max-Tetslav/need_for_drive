@@ -56,19 +56,16 @@ const OrderDetailsButton: React.FC = () => {
       setIsDisabled(false);
     } else if (location.pathname.includes('total')) {
       setIsDisabled(false);
-    } else if (location.pathname.includes('model') && modelState.value.name) {
+    } else if (location.pathname.includes('model') && modelState.name) {
       setIsDisabled(false);
-    } else if (
-      location.pathname.includes('place') &&
-      pointState.orderData.address
-    ) {
+    } else if (location.pathname.includes('place') && pointState.address) {
       setIsDisabled(false);
     } else if (location.pathname.includes('options') && priceState) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [location, pointState.orderData.address, modelState.value, priceState]);
+  }, [location, pointState.address, modelState, priceState]);
 
   return (
     <button
