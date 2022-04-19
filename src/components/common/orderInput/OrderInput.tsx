@@ -3,13 +3,11 @@ import classnames from 'classnames';
 import { Input } from 'antd';
 import needForDriveApi from '@services/needForDriveAPI';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { DEFAULT_CITY } from '@utils/constants/locationData';
 import { ELocationInputTypes } from '@models/orderPageData';
 import {
   updateAddress,
   updateCity,
   updatePoint,
-  updatePointStatus,
 } from '@store/reducers/orderDetailsReducer';
 import { initialLocationOrderData } from '@utils/constants/store';
 import clearIcon from '@assets/svg/clearIcon.svg';
@@ -20,27 +18,19 @@ interface IOrderInputProps {
   label: string;
   type: string;
   placeholder: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const OrderInput: React.FC<IOrderInputProps> = ({
   label,
   type,
   placeholder,
-  setValue,
 }) => {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector(
-    (state) => state.orderDetails.point.value.city,
-  );
-  const currentAddress = useAppSelector(
-    (state) => state.orderDetails.point.value.address,
-  );
-
+  const point = useAppSelector((state) => state.orderDetails.point);
   const [inputString, setInputString] =
     type === ELocationInputTypes.CITY
-      ? useState(currentCity)
-      : useState(currentAddress);
+      ? useState(point.cityId.name)
+      : useState(point.address);
   const [isFocus, setIsFocus] = useState(false);
   const { data } =
     type === ELocationInputTypes.CITY
@@ -54,15 +44,12 @@ const OrderInput: React.FC<IOrderInputProps> = ({
         if (type === ELocationInputTypes.CITY) {
           dispatch(updateCity(''));
         }
-        setValue('');
         dispatch(updateAddress(''));
-        dispatch(updatePoint(initialLocationOrderData));
-        dispatch(updatePointStatus(false));
       }
 
       setInputString(e.target.value);
     },
-    [inputString],
+    [],
   );
 
   const focusHandler = useCallback(() => {
@@ -76,39 +63,30 @@ const OrderInput: React.FC<IOrderInputProps> = ({
 
   useEffect(() => {
     // Если город становится пустым, пункт выдачи тоже
-    if (type === ELocationInputTypes.POINT && currentCity.length === 0) {
-      setValue('');
+    if (type === ELocationInputTypes.POINT && point.cityId.name.length === 0) {
       setInputString('');
+      updatePoint(initialLocationOrderData);
       dispatch(updateCity(''));
-      dispatch(updateAddress(''));
-      dispatch(updatePointStatus(false));
     }
-  }, [currentCity]);
-
-  useEffect(() => {
-    // Устанавливает город по умолчанию
-    if (type === ELocationInputTypes.CITY) {
-      setValue(DEFAULT_CITY);
-    }
-  }, []);
+  }, [point.cityId.name]);
 
   useEffect(() => {
     switch (type) {
       case ELocationInputTypes.CITY: {
-        if (currentCity) {
-          setValue(currentCity);
+        if (point.cityId.name) {
+          setInputString(point.cityId.name);
         }
         break;
       }
       case ELocationInputTypes.POINT: {
-        if (currentAddress) {
-          setValue(currentAddress);
+        if (point.address) {
+          setInputString(point.address);
         }
       }
 
       // no default
     }
-  }, []);
+  }, [point]);
 
   return (
     <label htmlFor={`${type}-input`} className={cl.label}>
@@ -137,7 +115,6 @@ const OrderInput: React.FC<IOrderInputProps> = ({
       />
       <OrderInputDropdown
         type={type}
-        setValue={setValue}
         isFocus={isFocus}
         setString={setInputString}
         inputString={inputString}

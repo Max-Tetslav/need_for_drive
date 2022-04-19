@@ -66,8 +66,20 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 /* stylelint-disable */
-.mapboxgl-control-container {
+.mapboxgl-ctrl-bottom-right {
   display: none;
+}
+
+.mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+  background-image: url('./assets/svg/mapboxgl-zoom-out.svg');
+}
+
+.mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+  background-image: url('./assets/svg/mapboxgl-zoom-in.svg');
+}
+
+.mapboxgl-ctrl button.mapboxgl-ctrl-compass .mapboxgl-ctrl-icon {
+  background-image: url('./assets/svg/mapboxgl-compass.svg');
 }
 
 .ant-input-suffix {
