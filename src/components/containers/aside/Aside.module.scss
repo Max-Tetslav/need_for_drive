@@ -1,9 +1,11 @@
+@import "../../../vars.scss";
+
 .aside {
   position: fixed;
   left: 0;
   width: 64px;
   height: 100vh;
-  background-color: #151b1f;
+  background-color: $black-second;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

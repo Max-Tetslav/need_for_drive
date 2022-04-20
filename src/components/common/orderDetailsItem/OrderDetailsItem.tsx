@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import { EOrderItemTypes } from '@models/orderPageData';
-import { IOrderModelData, IOrderPointData } from '@models/store';
+import { EOrderItemTypes, ICar, IPoint } from '@models/orderPageData';
 import cl from './OrderDetailsItem.module.scss';
 
 interface IOrderDetailsItemProps {
@@ -17,12 +16,12 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
   const getRightData = useCallback(() => {
     switch (type) {
       case EOrderItemTypes.POINT: {
-        if ((itemData as IOrderPointData).status) {
+        if ((itemData as IPoint).address) {
           return (
             <>
-              <span>{(itemData as IOrderPointData).value.city}</span>
+              <span>{(itemData as IPoint).cityId.name}</span>
               <br />
-              <span>{(itemData as IOrderPointData).value.address}</span>
+              <span>{(itemData as IPoint).address}</span>
             </>
           );
         }
@@ -36,8 +35,8 @@ const OrderDetailsItem: React.FC<IOrderDetailsItemProps> = ({
         break;
       }
       case EOrderItemTypes.MODEL: {
-        if ((itemData as IOrderModelData).status) {
-          return <span>{(itemData as IOrderModelData).value.name}</span>;
+        if ((itemData as ICar).name) {
+          return <span>{(itemData as ICar).name}</span>;
         }
         return (
           <>

@@ -2,9 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '@store/store';
 import needForDriveApi from '@services/needForDriveAPI';
 import {
+  updateRate,
   updateRateName,
   updateRatePrice,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
 import { IRate, IRateTypeId } from '@models/orderPageData';
 import OrderRadio from '@components/common/orderRadio/OrderRadio';
 import cl from './OptionsRateGroup.module.scss';
@@ -26,8 +27,11 @@ const OptionsRateGroup: React.FC = () => {
 
   const selectRate = useCallback(() => {
     if (rate) {
-      const currentRate = rateList.filter((item) => item.id === rate)[0];
+      const currentRate = rateList.filter(
+        (item) => (item.rateTypeId?.id as string) === rate,
+      )[0];
 
+      dispatch(updateRate(currentRate));
       dispatch(updateRateName((currentRate.rateTypeId as IRateTypeId).name));
       dispatch(updateRatePrice(currentRate.price));
     }
@@ -54,10 +58,11 @@ const OptionsRateGroup: React.FC = () => {
             return (
               <OrderRadio
                 title={orderTitle}
-                id={item.id}
+                id={item.rateTypeId?.id as string}
                 groupName="rate"
                 checkedId={rate}
                 setFilterId={setRate}
+                key={item.rateTypeId?.id as string}
               />
             );
           })}

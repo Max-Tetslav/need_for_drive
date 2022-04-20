@@ -1,8 +1,10 @@
+@import "../../../../vars.scss";
+
 .bullet {
   width: 8px;
   height: 100%;
   padding: 0;
-  background-color: #eee;
+  background-color: $lightgray;
   display: inline-block;
   border-radius: 50%;
   transition: all 0.3s ease-in-out;
@@ -14,7 +16,7 @@
 }
 
 .activeBullet {
-  background-color: #0ec261;
+  background-color: $green-primary;
   opacity: 1;
 }
 

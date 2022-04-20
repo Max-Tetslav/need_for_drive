@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   max-width: 560px;
   height: 308px;
@@ -50,16 +52,16 @@
 }
 
 .blackTitle {
-  color: #121212;
+  color: $black-primary;
 }
 
 .greenTitle {
-  color: #0ec261;
+  color: $green-primary;
 }
 
 .description {
   font-size: 26px;
-  color: #999;
+  color: $gray;
   line-height: 30px;
   margin: 0;
 
@@ -71,7 +73,7 @@
 
 .button {
   text-decoration: none;
-  color: #fff;
+  color: $white;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -82,7 +84,7 @@
   width: 250px;
   height: 48px;
   transition: all 0.3s ease;
-  background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
+  background: $green-gradient;
   background-blend-mode: darken;
   border-radius: 8px;
 
@@ -94,12 +96,12 @@
 
   &:hover,
   &:focus {
-    color: #fff;
-    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+    color: $white;
+    background: $green-gradient_hover;
   }
 
   &:active {
-    color: #fff;
-    background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+    color: $white;
+    background: $green-gradient_active;
   }
 }

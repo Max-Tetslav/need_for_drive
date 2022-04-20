@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   height: 83px;
   display: flex;
@@ -10,7 +12,7 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  color: #121;
+  color: $black-primary;
 }
 
 .dateGroup {
@@ -29,7 +31,7 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  color: #121;
+  color: $black-primary;
   position: relative;
   gap: 0 8px;
 
@@ -48,7 +50,7 @@
     height: 19px;
     padding: 0;
     border: none;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid $gray;
 
     @media screen and (max-width: 450px) {
       height: 30px;
@@ -68,8 +70,8 @@
     }
 
     &:hover {
-      border-color: #999;
-      border-bottom: 1px solid #999;
+      border-color: $gray;
+      border-bottom: 1px solid $gray;
     }
   }
 }

@@ -1,9 +1,11 @@
+@import "../../../vars.scss";
+
 .breadcrumbWrapper {
   position: absolute;
   width: calc(100% - 64px);
   height: 32px;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid $lightgray;
+  border-bottom: 1px solid $lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +17,41 @@
 
   @media screen and (max-width: 450px) {
     width: 100%;
+  }
+}
+
+.orderId {
+  width: inherit;
+  max-width: 1248px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: $black-primary;
+
+  @media screen and (max-width: 1312px) {
+    max-width: 1000px;
+  }
+
+  @media screen and (max-width: 1064px) {
+    max-width: 768px;
+  }
+
+  @media screen and (max-width: 832px) {
+    max-width: 588px;
+  }
+
+  @media screen and (max-width: 700px) {
+    max-width: 400px;
+  }
+
+  @media screen and (max-width: 500px) {
+    max-width: 356px;
+  }
+
+  @media screen and (max-width: 450px) {
+    text-align: center;
+    max-width: 100%;
   }
 }
 
@@ -49,7 +86,7 @@
 
 .link {
   text-decoration: none;
-  color: #999;
+  color: $gray;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -66,16 +103,16 @@
 }
 
 .completeLink {
-  color: #121;
+  color: $black-primary;
 
   &:hover {
-    color: #0ec261;
+    color: $green-primary;
     cursor: pointer;
   }
 }
 
 .activeLink {
-  color: #0ec261;
+  color: $green-primary;
 
   &:hover {
     cursor: default;

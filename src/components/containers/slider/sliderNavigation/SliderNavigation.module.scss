@@ -1,3 +1,5 @@
+@import "../../../../vars.scss";
+
 .arrow {
   display: flex;
   justify-content: center;
@@ -11,7 +13,7 @@
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: #0ec26233;
+    background-color: $green-primary_opacity20;
   }
 
   @media screen and (max-width: 1024px) {

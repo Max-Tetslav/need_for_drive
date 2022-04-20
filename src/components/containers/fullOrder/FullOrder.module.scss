@@ -34,6 +34,14 @@
     margin: 0;
   }
 
+  .orderStatus {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: $black-primary;
+  }
+
   .model {
     width: fit-content;
     display: inline-block;

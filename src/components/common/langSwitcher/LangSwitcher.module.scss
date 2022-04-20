@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   width: 48px;
   height: 48px;
@@ -24,25 +26,25 @@
   }
 
   .text {
-    color: #0ec261;
+    color: $green-primary;
     font-size: 13px;
     font-weight: 700;
     transition: all 0.1s ease-in-out;
   }
 
   &:hover {
-    border: 1px solid #eee;
+    border: 1px solid $lightgray;
 
     .text {
-      color: #eee;
+      color: $lightgray;
     }
   }
 
   &:active {
-    border: 1px solid #eee;
+    border: 1px solid $lightgray;
 
     .text {
-      color: #0ec261;
+      color: $green-primary;
     }
   }
 }

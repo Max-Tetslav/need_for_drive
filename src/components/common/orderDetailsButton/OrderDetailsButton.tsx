@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { updateIsModalShown } from '@store/reducers/orderDetailsReduces';
 import {
-  completeModel,
-  completeOptions,
-  updateCurrentModel,
-  updateCurrentOptions,
-} from '@store/reducers/breadcrumbReducer';
+  clearOrderData,
+  updateIsModalShown,
+} from '@store/reducers/orderDetailsReducer';
 import cl from './OrderDetailsButton.module.scss';
 
 const OrderDetailsButton: React.FC = () => {
@@ -16,40 +14,33 @@ const OrderDetailsButton: React.FC = () => {
   const location = useLocation();
   const [nextStep, setNextStep] = useState('Выбрать модель');
   const [isDisabled, setIsDisabled] = useState(true);
+  const isFullOrder = location.pathname.includes(':');
   const pointState = useAppSelector((state) => state.orderDetails.point);
   const modelState = useAppSelector((state) => state.orderDetails.model);
-  const optionsState = useAppSelector(
+  const priceState = useAppSelector(
     (state) => state.orderDetails.options.finalPrice,
   );
-  const durationState = useAppSelector(
-    (state) => state.orderDetails.options.duration,
-  );
-  const rateState = useAppSelector(
-    (state) => state.orderDetails.options.rateName,
-  );
 
-  const navigateTo = useCallback(() => {
+  const clickHandler = useCallback(() => {
+    if (isFullOrder) {
+      navigate('/');
+      dispatch(clearOrderData());
+    }
     if (location.pathname.includes('total')) {
       dispatch(updateIsModalShown(true));
-    } else if (location.pathname.includes('options') && optionsState) {
+    } else if (location.pathname.includes('options')) {
       navigate('/order/total');
-    } else if (location.pathname.includes('model') && modelState.value.name) {
+    } else if (location.pathname.includes('model')) {
       navigate('/order/options');
-      dispatch(updateCurrentOptions(true));
-      dispatch(completeOptions(true));
-    } else if (
-      location.pathname.includes('place') &&
-      pointState.value.address
-    ) {
+    } else if (location.pathname.includes('place')) {
       navigate('/order/model');
-      dispatch(updateCurrentModel(true));
-      dispatch(completeModel(true));
-      setIsDisabled(true);
     }
-  }, [location, pointState.status, modelState.status, optionsState]);
+  }, [location]);
 
   useEffect(() => {
-    if (location.pathname.includes('place')) {
+    if (isFullOrder) {
+      setNextStep('Отменить');
+    } else if (location.pathname.includes('place')) {
       setNextStep('Выбрать модель');
     } else if (location.pathname.includes('model')) {
       setNextStep('Дополнительно');
@@ -61,38 +52,27 @@ const OrderDetailsButton: React.FC = () => {
   }, [location]);
 
   useEffect(() => {
-    if (location.pathname.includes('total')) {
+    if (isFullOrder) {
       setIsDisabled(false);
-    } else if (location.pathname.includes('model') && modelState.value.name) {
+    } else if (location.pathname.includes('total')) {
       setIsDisabled(false);
-    } else if (
-      location.pathname.includes('place') &&
-      pointState.value.address
-    ) {
+    } else if (location.pathname.includes('model') && modelState.name) {
       setIsDisabled(false);
-    } else if (
-      location.pathname.includes('options') &&
-      durationState &&
-      rateState
-    ) {
+    } else if (location.pathname.includes('place') && pointState.address) {
+      setIsDisabled(false);
+    } else if (location.pathname.includes('options') && priceState) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [
-    location,
-    pointState.value.address,
-    modelState.value,
-    durationState,
-    rateState,
-  ]);
+  }, [location, pointState.address, modelState, priceState]);
 
   return (
     <button
       type="button"
-      className={cl.button}
+      className={classNames(cl.button, { [cl.cancel]: isFullOrder })}
       disabled={isDisabled}
-      onClick={navigateTo}
+      onClick={clickHandler}
     >
       {nextStep}
     </button>

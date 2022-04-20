@@ -1,5 +1,5 @@
 import React from 'react';
-import otherOptions from '@utils/constants/orderDetailsData';
+import otherOptions from '@utils/constants/otherOptionsData';
 import OrderCheckbox from '@components/common/orderCheckbox/OrderCheckbox';
 import cl from './OptionsOtherGroup.module.scss';
 

@@ -1,4 +1,5 @@
-/* The label */
+@import "../../../vars.scss";
+
 .label {
   width: fit-content;
   display: flex;
@@ -12,7 +13,7 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
-  color: #999;
+  color: $gray;
   /* stylelint-disable */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -30,7 +31,7 @@
 }
 
 .selected {
-  color: #121212;
+  color: $black-primary;
 }
 
 /* Create a custom radio button */
@@ -40,20 +41,20 @@
   left: 0;
   height: 12px;
   width: 12px;
-  background-color: #fff;
-  border: 1px solid #999;
+  background-color: $white;
+  border: 1px solid $gray;
   border-radius: 50%;
 }
 
 /* On mouse-over, add a grey background color */
 .label:hover input ~ .checkmark {
-  border: 1px solid #0ec261;
+  border: 1px solid $green-primary;
 }
 
 /* When the radio button is checked, add a blue background */
 .label input:checked ~ .checkmark {
-  background-color: #0ec261;
-  border-color: #0ec261;
+  background-color: $green-primary;
+  border-color: $green-primary;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -70,7 +71,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: white;
+  background: $white;
 }
 
 /* Show the indicator (dot/circle) when checked */

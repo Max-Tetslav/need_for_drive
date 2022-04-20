@@ -1,42 +1,18 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@store/store';
-import { updatePointStatus } from '@store/reducers/orderDetailsReduces';
-import { completeModel } from '@store/reducers/breadcrumbReducer';
-import { EOrderItemTypes } from '@models/orderPageData';
+import React from 'react';
+import { useAppSelector } from '@store/store';
+import { EOrderItemTypes, IRateTypeId } from '@models/orderPageData';
 import OrderDetailsButton from '@components/common/orderDetailsButton/OrderDetailsButton';
 import OrderDetailsItem from '@components/common/orderDetailsItem/OrderDetailsItem';
 import OrderDetailsPrice from '@components/common/orderDetailsPrice/OrderDetailsPrice';
 import cl from './OrderDetails.module.scss';
 
 const OrderDetails: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const pointState = useAppSelector((state) => state.orderDetails.point);
   const modelState = useAppSelector((state) => state.orderDetails.model);
-  const colorState = useAppSelector(
-    (state) => state.orderDetails.options.color,
-  );
-  const durationState = useAppSelector(
-    (state) => state.orderDetails.options.duration,
-  );
+  const optionsState = useAppSelector((state) => state.orderDetails.options);
+  const pointState = useAppSelector((state) => state.orderDetails.point);
   const rateState = useAppSelector(
-    (state) => state.orderDetails.options.rateName,
+    (state) => (state.orderDetails.options.rate.rateTypeId as IRateTypeId).name,
   );
-  const isFullTank = useAppSelector(
-    (state) => state.orderDetails.options.isFullTank,
-  );
-  const isNeedChildChair = useAppSelector(
-    (state) => state.orderDetails.options.isNeedChildChair,
-  );
-  const isRightWheel = useAppSelector(
-    (state) => state.orderDetails.options.isRightWheel,
-  );
-
-  useEffect(() => {
-    if (pointState.value.city && pointState.value.address) {
-      dispatch(updatePointStatus(true));
-      dispatch(completeModel(true));
-    }
-  }, [pointState]);
 
   return (
     <div className={cl.orderDetailsContainer}>
@@ -46,24 +22,24 @@ const OrderDetails: React.FC = () => {
         itemData={pointState}
         type={EOrderItemTypes.POINT}
       />
-      {modelState.status && (
+      {modelState.name && (
         <OrderDetailsItem
           title="Модель"
           itemData={modelState}
           type={EOrderItemTypes.MODEL}
         />
       )}
-      {colorState && (
+      {optionsState.color && (
         <OrderDetailsItem
           title="Цвет"
-          itemData={colorState}
+          itemData={optionsState.color}
           type={EOrderItemTypes.COLOR}
         />
       )}
-      {durationState && (
+      {optionsState.duration && (
         <OrderDetailsItem
           title="Длительность аренды"
-          itemData={durationState}
+          itemData={optionsState.duration}
           type={EOrderItemTypes.DURATION}
         />
       )}
@@ -74,24 +50,24 @@ const OrderDetails: React.FC = () => {
           type={EOrderItemTypes.RATE}
         />
       )}
-      {isFullTank && (
+      {optionsState.isFullTank && (
         <OrderDetailsItem
           title="Полный бак"
-          itemData={isFullTank}
+          itemData={optionsState.isFullTank}
           type={EOrderItemTypes.TANK}
         />
       )}
-      {isNeedChildChair && (
+      {optionsState.isNeedChildChair && (
         <OrderDetailsItem
           title="Детское кресло"
-          itemData={isNeedChildChair}
+          itemData={optionsState.isNeedChildChair}
           type={EOrderItemTypes.CHAIR}
         />
       )}
-      {isRightWheel && (
+      {optionsState.isRightWheel && (
         <OrderDetailsItem
           title="Правый руль"
-          itemData={isRightWheel}
+          itemData={optionsState.isRightWheel}
           type={EOrderItemTypes.WHEEL}
         />
       )}
