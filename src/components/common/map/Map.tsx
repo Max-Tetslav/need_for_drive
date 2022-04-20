@@ -19,20 +19,23 @@ import {
   getGeoJsonObjectList,
 } from '@utils/helpers/locationHelpers';
 import 'mapbox-gl/src/css/mapbox-gl.css';
+import { useAppDispatch, useAppSelector } from '@store/store';
+import {
+  updateAddress,
+  updateCity,
+  updatePoint,
+} from '@store/reducers/orderDetailsReducer';
 import cl from './Map.module.scss';
 
-interface IMapProps {
-  city: string;
-  point: string;
-}
-
-const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
+const Map: React.FC = () => {
+  const dispatch = useAppDispatch();
   mapboxgl.accessToken = MAPBOX_API as string;
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map>();
-  const [lng, setLng] = useState(DEFAULT_LNG);
-  const [lat, setLat] = useState(DEFAULT_LAT);
+  const [centerLng, setCenterLng] = useState(DEFAULT_LNG);
+  const [centerLat, setCenterLat] = useState(DEFAULT_LAT);
   const [mapZoom] = useState(DEFAULT_ZOOM);
+  const pointState = useAppSelector((state) => state.orderDetails.point);
 
   let { data } = needForDriveApi.useGetPointsListQuery('');
   const points = [] as IGeoPoint[];
@@ -42,12 +45,14 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current as HTMLElement,
       style: MAPBOX_STYLES,
-      center: [lng, lat],
+      center: [centerLng, centerLat],
       zoom: mapZoom,
     });
 
     const nav = new mapboxgl.NavigationControl();
     map.current.addControl(nav);
+
+    // map.addControl(new mapboxgl.NavigationControl());
 
     map.current.on('load', () => {
       // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
@@ -72,12 +77,12 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
         .split(' ')
         .map(Number);
 
-    setLng(cityLng);
-    setLat(cityLat);
+    setCenterLng(cityLng);
+    setCenterLat(cityLat);
   }
 
-  // Возвращает обект с координатами всех пунктов выдачи
-  async function getCoordinatesFormat(searchAddress: string) {
+  // Возвращает массив с координатами пункта выдачи
+  async function getCoordinates(searchAddress: string) {
     const request = await fetch(getGeocoderUrl(searchAddress));
     const response = await request.json();
 
@@ -86,7 +91,7 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
         .split(' ')
         .map(Number);
 
-    return getGeoJsonObject([cityLng, cityLat]);
+    return [cityLng, cityLat];
   }
 
   useEffect(() => {
@@ -96,9 +101,11 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
         data = data.data.filter((item: IPoint) => item.cityId);
         const promises: IGeoPoint[] = data.map(async (item: IPoint) => {
           const searchAddress = `${item.cityId.name} ${item.address}`;
-          const promisePoint = await getCoordinatesFormat(searchAddress);
 
-          return promisePoint;
+          const [pointLng, pointLat] = await getCoordinates(searchAddress);
+          const geoObject = getGeoJsonObject([pointLng, pointLat], item);
+
+          return geoObject;
         });
 
         Promise.allSettled(promises).then((settledPromise) => {
@@ -120,10 +127,23 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
             'click',
             'circle',
             (e: mapboxgl.EventData) => {
+              const coordinates = e.features[0].geometry.coordinates.slice();
+              const { description, address } = e.features[0].properties;
+              const point = JSON.parse(address) as IPoint;
+
               (map.current as mapboxgl.Map).flyTo({
-                center: e.features[0].geometry.coordinates,
+                center: coordinates,
                 zoom: 14,
               });
+
+              dispatch(updatePoint(point));
+              dispatch(updateCity(point.cityId.name));
+              dispatch(updateAddress(point.address));
+
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map.current as mapboxgl.Map);
             },
           );
         });
@@ -134,22 +154,22 @@ const Map: React.FC<IMapProps> = ({ city = '', point = '' }) => {
   }, [data]);
 
   useEffect(() => {
-    if (city) {
-      getCenter(city);
+    if (pointState.cityId.name) {
+      getCenter(pointState.cityId.name);
     }
-  }, [city]);
+  }, [pointState.cityId.name]);
 
   useEffect(() => {
-    if (point) {
-      getCenter(`${city} ${point}`);
+    if (pointState.address) {
+      getCenter(`${pointState.cityId.name} ${pointState.address}`);
     }
-  }, [point]);
+  }, [pointState.address]);
 
   useEffect(() => {
     if (map.current) {
-      map.current.setCenter([lng, lat]);
+      map.current.setCenter([centerLng, centerLat]);
     }
-  }, [lat, lng]);
+  }, [centerLat, centerLng]);
 
   return <div className={cl.map} id="map" ref={mapContainer} />;
 };

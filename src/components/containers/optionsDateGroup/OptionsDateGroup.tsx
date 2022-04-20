@@ -1,47 +1,51 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { Input } from 'antd';
-import { useAppDispatch } from '@store/store';
+import { useAppDispatch, useAppSelector } from '@store/store';
 import {
   updateDateFrom,
   updateDateTo,
   updateDuration,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
+import getDurationString from '@utils/helpers/getDurationString';
 import clearIcon from '@assets/svg/clearIcon.svg';
+import getCalendarDateFormat from '@utils/helpers/getCalendarDateFormat';
 import cl from './OptionsDateGroup.module.scss';
 
 const OptionsDateGroup: React.FC = () => {
   const dispatch = useAppDispatch();
   const placeholder = 'Введите дату и время';
-  const actualDate = new Date();
-  const formatedDate = actualDate
-    .toLocaleDateString()
-    .split('.')
-    .reverse()
-    .join('-');
-  const formatedTime = actualDate
-    .toLocaleTimeString()
-    .split(':')
-    .slice(0, 2)
-    .join(':');
-  const [dateFrom, setDateFrom] = useState(`${formatedDate}T${formatedTime}`);
+  const dateFromState = useAppSelector(
+    (state) => state.orderDetails.options.dateFrom,
+  ) as number;
+  const dateToState = useAppSelector(
+    (state) => state.orderDetails.options.dateTo,
+  ) as number;
+  const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+
+  useEffect(() => {
+    if (dateFromState) {
+      setDateFrom(getCalendarDateFormat(dateFromState));
+    } else {
+      setDateFrom(getCalendarDateFormat());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (dateToState) {
+      setDateTo(getCalendarDateFormat(dateToState));
+    }
+  }, [dateToState]);
 
   const setDate = useCallback(() => {
     if (dateFrom && dateTo) {
       const dateFromTime = new Date(dateFrom).getTime();
       const dateToTime = new Date(dateTo).getTime();
 
-      const duration = dateToTime - dateFromTime;
-      const mins = duration / 1000 / 60;
-      const fullMins = mins % 60;
-      const hours = mins / 60;
-      const fullHours = Math.floor(hours % 24);
-      const days = Math.floor(hours / 24);
-
       dispatch(updateDateFrom(dateFromTime));
       dispatch(updateDateTo(dateToTime));
-      dispatch(updateDuration(`${days}д ${fullHours}ч ${fullMins}мин`));
+      dispatch(updateDuration(getDurationString(dateFromTime, dateToTime)));
     } else {
       dispatch(updateDateFrom(0));
       dispatch(updateDateTo(0));
@@ -61,6 +65,7 @@ const OptionsDateGroup: React.FC = () => {
           <span className={cl.labelText}>{`C `}</span>
           <Input
             value={dateFrom}
+            min={getCalendarDateFormat(new Date().getTime())}
             type="datetime-local"
             bordered={false}
             className={cl.input}
@@ -85,6 +90,7 @@ const OptionsDateGroup: React.FC = () => {
           <span className={cl.labelText}>{`По `}</span>
           <Input
             value={dateTo}
+            min={getCalendarDateFormat(new Date().getTime())}
             onChange={(e) => setDateTo(e.target.value)}
             type="datetime-local"
             bordered={false}

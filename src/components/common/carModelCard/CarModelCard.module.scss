@@ -1,8 +1,10 @@
+@import "../../../vars.scss";
+
 .container {
   width: 368px;
   height: 224px;
   padding: 16px;
-  border: 1px solid #eee;
+  border: 1px solid $lightgray;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -11,7 +13,7 @@
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #0ec261;
+    border: 1px solid $green-primary;
   }
 
   @media screen and (max-width: 1312px) {
@@ -40,7 +42,7 @@
 }
 
 .activeItem {
-  border: 1px solid #0ec261;
+  border: 1px solid $green-primary;
 }
 
 .title {
@@ -52,7 +54,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
-  color: #121;
+  color: $black-primary;
 }
 
 .price {
@@ -62,7 +64,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  color: #999;
+  color: $gray;
 }
 
 .img {

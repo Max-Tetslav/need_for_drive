@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import classnames from 'classnames/bind';
 import socialMediaData from '@utils/constants/socialMediaData';
 import menuData from '@utils/constants/menuData';
@@ -10,6 +11,9 @@ interface IMenuContainerProps {
 }
 
 const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
+  const location = useLocation();
+  const isOrderPage = location.pathname.includes('order');
+
   return (
     <div className={classnames(cl.menuContainer, { [cl.activeMenu]: isOpen })}>
       <LangSwitcher className={cl.langSwitcherMobile} />
@@ -39,7 +43,11 @@ const MenuContainer: React.FC<IMenuContainerProps> = ({ isOpen }) => {
           </ul>
         </nav>
       </div>
-      <div className={cl.transparent} />
+      <div
+        className={classnames(cl.transparent, {
+          [cl.noTransparent]: isOrderPage,
+        })}
+      />
     </div>
   );
 };

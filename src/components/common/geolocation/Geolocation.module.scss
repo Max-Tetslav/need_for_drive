@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   width: 92px;
   display: flex;
@@ -6,7 +8,7 @@
 }
 
 .text {
-  color: #999;
+  color: $gray;
   font-size: 14px;
   margin: 0;
 }

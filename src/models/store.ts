@@ -1,24 +1,12 @@
-import { ICar, IPoint } from './orderPageData';
-
-export interface IOrderPointData {
-  status: boolean;
-  value: {
-    city: string;
-    address: string;
-  };
-  orderData: IPoint;
-}
-
-export interface IOrderModelData {
-  status: boolean;
-  value: ICar;
-}
+import { ICar, IPoint, IRate } from './orderPageData';
 
 export interface IOrderOptionsData {
   color: string;
+  colorId: string;
   rateName: string;
   rateId: string;
   ratePrice: number;
+  rate: IRate;
   dateFrom: number;
   dateTo: number;
   duration: string;
@@ -29,12 +17,8 @@ export interface IOrderOptionsData {
 }
 
 export interface IOrderDetailsInitialState {
-  orderStep: {
-    current: string;
-    next: string;
-  };
-  point: IOrderPointData;
-  model: IOrderModelData;
+  point: IPoint;
+  model: ICar;
   options: IOrderOptionsData;
   total: {
     isModalShown: boolean;

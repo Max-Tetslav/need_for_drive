@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .header {
   position: relative;
   top: 0;
@@ -19,7 +21,7 @@
 }
 
 .title {
-  color: #0ec261;
+  color: $green-primary;
   font-size: 30px;
   line-height: 35px;
   font-weight: 700;
@@ -30,7 +32,7 @@
   cursor: pointer;
 
   &:hover {
-    color: #121;
+    color: $black-primary;
   }
 
   @media screen and (max-width: 768px) {

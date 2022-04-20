@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .pointContainer {
   width: 100%;
   padding-top: 32px;
@@ -34,7 +36,7 @@
     font-size: 14px;
     line-height: 16px;
     margin-top: 45px;
-    color: #121212;
+    color: $black-primary;
 
     @media screen and (max-width: 450px) {
       text-align: center;
@@ -49,7 +51,7 @@
   height: 100%;
   padding-top: 32px;
   padding-left: 32px;
-  border-left: 1px solid #eee;
+  border-left: 1px solid $lightgray;
 
   @media screen and (max-width: 832px) {
     width: 100%;
@@ -86,13 +88,13 @@
       margin: 3px 12px;
       flex: 1;
       overflow: hidden;
-      border: 1px dotted #999;
+      border: 1px dotted $gray;
     }
 
     .orderDetailsItemContent {
       margin: 0;
       text-align: right;
-      color: #999;
+      color: $gray;
     }
   }
 
@@ -103,7 +105,7 @@
 
 .button {
   text-decoration: none;
-  color: #fff;
+  color: $white;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
@@ -114,7 +116,7 @@
   width: 288px;
   height: 48px;
   transition: all 0.3s ease;
-  background: linear-gradient(90deg, #0ec262 2.61%, #039f67 112.6%);
+  background: $green-gradient;
   background-blend-mode: darken;
   border-radius: 8px;
 
@@ -126,17 +128,17 @@
 
   &:hover,
   &:focus {
-    color: #fff;
-    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+    color: $white;
+    background: $green-gradient_hover;
   }
 
   &:active {
-    color: #fff;
-    background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+    color: $white;
+    background: $green-gradient_active;
   }
 
   &:disabled {
     cursor: default;
-    background: #eee;
+    background: $lightgray;
   }
 }

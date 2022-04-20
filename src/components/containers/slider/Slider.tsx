@@ -54,6 +54,8 @@ const Slider: React.FC<ISliderProps> = ({ slidesData }) => {
       const timerId = Number(localStorage.getItem('timeoutId'));
       clearTimeout(timerId);
     }
+
+    return () => clearTimeout(Number(localStorage.getItem('timeoutId')));
   });
 
   return (

@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useAppDispatch } from '@store/store';
+import { useAppDispatch, useAppSelector } from '@store/store';
 import {
   updateIsFullTank,
   updateIsNeedChildChair,
   updateIsRightWheel,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
 import cl from './OrderCheckbox.module.scss';
 
 interface IOrderCheckboxProps {
@@ -16,7 +16,27 @@ interface IOrderCheckboxProps {
 
 const OrderCheckbox: React.FC<IOrderCheckboxProps> = ({ title, type, id }) => {
   const dispatch = useAppDispatch();
+  const optionsData = useAppSelector((state) => state.orderDetails.options);
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    switch (type) {
+      case 'tank': {
+        setIsChecked(Boolean(optionsData.isFullTank));
+        break;
+      }
+      case 'chair': {
+        setIsChecked(Boolean(optionsData.isNeedChildChair));
+        break;
+      }
+      case 'wheel': {
+        setIsChecked(Boolean(optionsData.isRightWheel));
+        break;
+      }
+
+      // no default
+    }
+  }, []);
 
   const changeHandler = useCallback(() => {
     switch (type) {

@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .menuContainer {
   position: fixed;
   display: flex;
@@ -12,7 +14,7 @@
 .navContainer {
   height: auto;
   width: calc(100% - 668px);
-  background-color: #111518;
+  background-color: $black-navbar;
   position: relative;
 
   @media screen and (max-width: 1280px) {
@@ -65,7 +67,7 @@
     font-weight: 500;
     font-size: 32px;
     line-height: 38px;
-    color: #fff;
+    color: $white;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 
@@ -80,7 +82,7 @@
     }
 
     &:hover {
-      color: #0ec261;
+      color: $green-primary;
     }
   }
 }
@@ -109,7 +111,7 @@
     &:active,
     &:focus {
       svg path {
-        fill: #0ec261;
+        fill: $green-primary;
       }
     }
   }
@@ -139,4 +141,8 @@
   @media screen and (max-width: 1024px) {
     display: none;
   }
+}
+
+.noTransparent {
+  background: $black-navbar;
 }

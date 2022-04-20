@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import classnames from 'classnames';
 import {
+  updateColor,
+  updateColorId,
   updateModel,
-  updateModelStatus,
-} from '@store/reducers/orderDetailsReduces';
+} from '@store/reducers/orderDetailsReducer';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { ICar } from '@models/orderPageData';
 import formatPrice from '@utils/helpers/formatPrice';
@@ -16,13 +17,18 @@ interface ICarModelCardProps {
 
 const CarModelCard: React.FC<ICarModelCardProps> = ({ id, car }) => {
   const dispatch = useAppDispatch();
-  const currentModelId = useAppSelector(
-    (state) => state.orderDetails.model.value.id,
+  const currentColor = useAppSelector(
+    (state) => state.orderDetails.options.color,
   );
+  const currentModelId = useAppSelector((state) => state.orderDetails.model.id);
 
   const changeHandler = useCallback(() => {
-    dispatch(updateModelStatus(true));
     dispatch(updateModel(car));
+
+    if (currentColor) {
+      dispatch(updateColor(''));
+      dispatch(updateColorId(''));
+    }
   }, []);
 
   return (

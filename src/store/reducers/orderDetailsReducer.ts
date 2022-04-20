@@ -1,31 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICar, IPoint } from '@models/orderPageData';
+import { ICar, IPoint, IRate } from '@models/orderPageData';
 import initialState from '@utils/constants/store';
 
 const orderDetailsSlice = createSlice({
   name: 'test',
   initialState,
   reducers: {
-    updatePointStatus(state, action: PayloadAction<boolean>) {
-      state.point.status = action.payload;
-    },
     updateCity(state, action: PayloadAction<string>) {
-      state.point.value.city = action.payload;
+      state.point.cityId.name = action.payload;
     },
     updateAddress(state, action: PayloadAction<string>) {
-      state.point.value.address = action.payload;
+      state.point.address = action.payload;
     },
     updatePoint(state, action: PayloadAction<IPoint>) {
-      state.point.orderData = action.payload;
-    },
-    updateModelStatus(state, action: PayloadAction<boolean>) {
-      state.model.status = action.payload;
+      state.point = action.payload;
     },
     updateModel(state, action: PayloadAction<ICar>) {
-      state.model.value = action.payload;
+      state.model = action.payload;
     },
     updateColor(state, action: PayloadAction<string>) {
       state.options.color = action.payload;
+    },
+    updateColorId(state, action: PayloadAction<string>) {
+      state.options.colorId = action.payload;
+    },
+    updateRate(state, action: PayloadAction<IRate>) {
+      state.options.rate = action.payload;
     },
     updateRateName(state, action: PayloadAction<string>) {
       state.options.rateName = action.payload;
@@ -60,6 +60,9 @@ const orderDetailsSlice = createSlice({
     updateIsModalShown(state, action: PayloadAction<boolean>) {
       state.total.isModalShown = action.payload;
     },
+    clearOrderData() {
+      return initialState;
+    },
   },
 });
 
@@ -67,13 +70,13 @@ export const {
   updateCity,
   updateAddress,
   updateModel,
-  updatePointStatus,
   updatePoint,
-  updateModelStatus,
   updateColor,
+  updateColorId,
   updateRateName,
   updateRateId,
   updateRatePrice,
+  updateRate,
   updateDateFrom,
   updateDateTo,
   updateDuration,
@@ -82,5 +85,6 @@ export const {
   updateIsNeedChildChair,
   updateIsRightWheel,
   updateIsModalShown,
+  clearOrderData,
 } = orderDetailsSlice.actions;
 export default orderDetailsSlice.reducer;

@@ -1,3 +1,5 @@
+@import "../../../vars.scss";
+
 .container {
   position: relative;
   height: 100vh;
@@ -23,14 +25,14 @@
 .bullet {
   width: 8px;
   height: 100%;
-  background-color: #eee;
+  background-color: $lightgray;
   display: inline-block;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .activeBullet {
-  background-color: #0ec261;
+  background-color: $green-primary;
   opacity: 1;
 }
 
@@ -47,10 +49,10 @@
 .nextButton {
   height: 100%;
   width: 64px;
-  color: #eee;
+  color: $lightgray;
 
   &:hover {
-    background-color: #0ec261;
+    background-color: $green-primary;
     opacity: 0.2;
   }
 

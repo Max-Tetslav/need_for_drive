@@ -1,6 +1,8 @@
 import React, { MouseEvent, useCallback } from 'react';
-import Geolocation from '@components/common/geolocation/Geolocation';
 import { useNavigate } from 'react-router-dom';
+import { clearOrderData } from '@store/reducers/orderDetailsReducer';
+import { useAppDispatch } from '@store/store';
+import Geolocation from '@components/common/geolocation/Geolocation';
 import cl from './Header.module.scss';
 
 interface IProps {
@@ -9,8 +11,10 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ headerClass }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const clickHandler = useCallback((e: MouseEvent) => {
     e.preventDefault();
+    dispatch(clearOrderData());
     navigate('/');
   }, []);
 

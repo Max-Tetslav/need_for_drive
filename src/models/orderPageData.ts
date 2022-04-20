@@ -3,8 +3,6 @@ export interface IBreadcrumbRoute {
   path: string;
   type: string;
   breadcrumbName: string;
-  isComplete: boolean;
-  isCurrent: boolean;
 }
 
 export enum ELocationInputTypes {
@@ -16,6 +14,12 @@ export enum ELocationInputTypes {
   TANK = 'tank',
   CHAIR = 'chair',
   WHEEL = 'wheel',
+}
+
+export enum ERadioGroupNames {
+  MODEL = 'model',
+  COLOR = 'color',
+  RATE = 'rate',
 }
 
 export interface ICity {
@@ -76,7 +80,6 @@ export interface IRateTypeId {
 }
 
 export interface IRate {
-  id: string;
   price: number;
   rateTypeId?: IRateTypeId;
 }
@@ -89,4 +92,9 @@ export interface IOrder {
   dateFrom: number;
   dateTo: number;
   price: number;
+  color?: string;
+  rateId?: IRate;
+  isFullTank?: boolean;
+  isNeedChildChair?: boolean;
+  isRightWheel?: boolean;
 }
